@@ -136,7 +136,7 @@ public class APIService {
 		String response = Constants.EMPTY_STRING;
 		try {
 			if (serviceBinding.equalsIgnoreCase(Constants.SOAP)) {
-				String soapPayload = auth.appendSoapHeader(headers, payload,
+				String soapPayload = auth.appendSoapHeader(payload,
 						accessToken, tokenSecret);
 				if ((Constants.EMPTY_STRING != accessToken && accessToken != null)
 						&& (Constants.EMPTY_STRING != tokenSecret && tokenSecret != null)) {

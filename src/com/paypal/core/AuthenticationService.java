@@ -91,9 +91,9 @@ public class AuthenticationService {
 
 	}
 
-	public String appendSoapHeader(Map<String, String> headers, String payload,
-			String accessToken, String tokenSecret)
-			throws InvalidCredentialException, MissingCredentialException {
+	public String appendSoapHeader(String payload, String accessToken,
+			String tokenSecret) throws InvalidCredentialException,
+			MissingCredentialException {
 
 		StringBuffer soapMsg = new StringBuffer(
 				"<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:ebay:api:PayPalAPI\" xmlns:ebl=\"urn:ebay:apis:eBLBaseComponents\">");
@@ -107,13 +107,13 @@ public class AuthenticationService {
 			soapMsg.append("<urn:RequesterCredentials>");
 			soapMsg.append("<ebl:Credentials>");
 			soapMsg.append("<ebl:Username>"
-					+ headers.get("X-PAYPAL-SECURITY-USERID")
+					+ ((SignatureCredential) apiCred).getUserName()
 					+ "</ebl:Username>");
 			soapMsg.append("<ebl:Password>"
-					+ headers.get("X-PAYPAL-SECURITY-PASSWORD")
+					+ ((SignatureCredential) apiCred).getPassword()
 					+ "</ebl:Password>");
 			soapMsg.append("<ebl:Signature>"
-					+ headers.get("X-PAYPAL-SECURITY-SIGNATURE")
+					+ ((SignatureCredential) apiCred).getSignature()
 					+ "</ebl:Signature>");
 			soapMsg.append("</ebl:Credentials>");
 			soapMsg.append("</urn:RequesterCredentials>");
@@ -123,10 +123,10 @@ public class AuthenticationService {
 			soapMsg.append("<urn:RequesterCredentials>");
 			soapMsg.append("<ebl:Credentials>");
 			soapMsg.append("<ebl:Username>"
-					+ headers.get("X-PAYPAL-SECURITY-USERID")
+					+ ((CertificateCredential) apiCred).getUserName()
 					+ "</ebl:Username>");
 			soapMsg.append("<ebl:Password>"
-					+ headers.get("X-PAYPAL-SECURITY-PASSWORD")
+					+ ((CertificateCredential) apiCred).getPassword()
 					+ "</ebl:Password>");
 			soapMsg.append("</ebl:Credentials>");
 			soapMsg.append("</urn:RequesterCredentials>");

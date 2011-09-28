@@ -79,7 +79,7 @@ public class AuthenticationServiceTest {
 	public void appendSoapHeader() throws InvalidCredentialException,
 			MissingCredentialException {
 		String payload = "<Version>78.0</Version>";
-		String headers = auth.appendSoapHeader(map, payload, null, null);
+		String headers = auth.appendSoapHeader(payload, null, null);
 		Assert.assertEquals(
 				"<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:ebay:api:PayPalAPI\" xmlns:ebl=\"urn:ebay:apis:eBLBaseComponents\"><soapenv:Body><Version>78.0</Version></soapenv:Body></soapenv:Envelope>",
 				headers);
