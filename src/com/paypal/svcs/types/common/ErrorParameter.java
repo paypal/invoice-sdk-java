@@ -40,7 +40,6 @@ public class ErrorParameter {
 	public ErrorParameter() {
 	}
 	public ErrorParameter(Map<String, String> map, String prefix) {
-
 		if( map.containsKey(prefix + "value") ) {
 			this.value = map.get(prefix + "value");
 		}

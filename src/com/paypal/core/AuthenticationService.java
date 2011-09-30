@@ -96,7 +96,7 @@ public class AuthenticationService {
 			MissingCredentialException {
 
 		StringBuffer soapMsg = new StringBuffer(
-				"<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:ebay:api:PayPalAPI\" xmlns:ebl=\"urn:ebay:apis:eBLBaseComponents\">");
+				"<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:ebay:api:PayPalAPI\" xmlns:ebl=\"urn:ebay:apis:eBLBaseComponents\" xmlns:cc=\"urn:ebay:apis:CoreComponentTypes\" xmlns:ed=\"urn:ebay:apis:EnhancedDataTypes\">");
 		if ((Constants.EMPTY_STRING != accessToken && accessToken != null)
 				&& (Constants.EMPTY_STRING != tokenSecret && tokenSecret != null)) {
 			soapMsg.append("<soapenv:Header>");

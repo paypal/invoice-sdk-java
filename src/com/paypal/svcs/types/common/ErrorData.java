@@ -104,7 +104,6 @@ public class ErrorData {
 	public ErrorData() {
 	}
 	public ErrorData(Map<String, String> map, String prefix) {
-
 		if( map.containsKey(prefix + "errorId") ) {
 			this.errorId = Integer.valueOf(map.get(prefix + "errorId"));
 		}

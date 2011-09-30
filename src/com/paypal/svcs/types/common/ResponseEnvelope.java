@@ -68,7 +68,6 @@ public class ResponseEnvelope {
 	public ResponseEnvelope() {
 	}
 	public ResponseEnvelope(Map<String, String> map, String prefix) {
-
 		if( map.containsKey(prefix + "timestamp") ) {
 			this.timestamp = map.get(prefix + "timestamp");
 		}

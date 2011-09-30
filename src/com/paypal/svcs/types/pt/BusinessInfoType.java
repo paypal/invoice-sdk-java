@@ -150,7 +150,6 @@ public class BusinessInfoType {
 	}
 
 	public BusinessInfoType(Map<String, String> map, String prefix) {
-
 		if( map.containsKey(prefix + "firstName") ) {
 			this.firstName = map.get(prefix + "firstName");
 		}

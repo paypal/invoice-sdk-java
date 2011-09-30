@@ -81,7 +81,7 @@ public class AuthenticationServiceTest {
 		String payload = "<Version>78.0</Version>";
 		String headers = auth.appendSoapHeader(payload, null, null);
 		Assert.assertEquals(
-				"<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:ebay:api:PayPalAPI\" xmlns:ebl=\"urn:ebay:apis:eBLBaseComponents\"><soapenv:Body><Version>78.0</Version></soapenv:Body></soapenv:Envelope>",
+				"<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:ebay:api:PayPalAPI\" xmlns:ebl=\"urn:ebay:apis:eBLBaseComponents\" xmlns:cc=\"urn:ebay:apis:CoreComponentTypes\" xmlns:ed=\"urn:ebay:apis:EnhancedDataTypes\"><soapenv:Body><Version>78.0</Version></soapenv:Body></soapenv:Envelope>",
 				headers);
 	}
 }

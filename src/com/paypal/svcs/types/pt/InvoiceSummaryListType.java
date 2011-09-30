@@ -30,7 +30,6 @@ public class InvoiceSummaryListType {
 	public InvoiceSummaryListType() {
 	}
 	public InvoiceSummaryListType(Map<String, String> map, String prefix) {
-
 		for(int i=0; i<10; i++) {
 			if( map.containsKey(prefix + "invoice" + '(' + i + ')'+ ".invoiceID") ) {
 				String newPrefix = prefix + "invoice" + '(' + i + ')' + '.';

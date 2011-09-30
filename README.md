@@ -50,12 +50,16 @@ For example,
 	      env.setErrorLanguage("en_US");
           ...
           
+		  List<InvoiceItemType> items = new ArrayList<InvoiceItemType>();
+		  InvoiceItemListType invoiceItem = new InvoiceItemListType();
           InvoiceItemType item = new InvoiceItemType();
 	      item.setName("product1");
+		  invoiceItem.setItem(item);
           ...
           
           InvoiceType invo = new InvoiceType();
 	      invo.setCurrencyCode("USD");
+		  invo.setItemList(invoiceItem);
 	      ...
 	  
 	      CreateInvoiceRequest request = new CreateInvoiceRequest();

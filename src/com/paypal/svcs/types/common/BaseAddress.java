@@ -137,7 +137,6 @@ public class BaseAddress {
 	}
 
 	public BaseAddress(Map<String, String> map, String prefix) {
-
 		if( map.containsKey(prefix + "line1") ) {
 			this.line1 = map.get(prefix + "line1");
 		}

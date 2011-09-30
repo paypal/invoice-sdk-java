@@ -82,7 +82,6 @@ public class UpdateInvoiceResponse {
 	public UpdateInvoiceResponse() {
 	}
 	public UpdateInvoiceResponse(Map<String, String> map, String prefix) {
-
 		if( map.containsKey(prefix + "responseEnvelope" + ".timestamp") ) {
 			String newPrefix = prefix + "responseEnvelope" + '.';
 			this.responseEnvelope =  new ResponseEnvelope(map, newPrefix);

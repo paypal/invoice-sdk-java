@@ -54,7 +54,6 @@ public class PaymentDetailsType {
 	public PaymentDetailsType() {
 	}
 	public PaymentDetailsType(Map<String, String> map, String prefix) {
-
 		if( map.containsKey(prefix + "viaPayPal") ) {
 			this.viaPayPal = Boolean.valueOf(map.get(prefix + "viaPayPal"));
 		}
