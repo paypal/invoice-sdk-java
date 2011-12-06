@@ -1,14 +1,15 @@
 package com.sample.invoice;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.paypal.exception.ClientActionRequiredException;
 import com.paypal.exception.HttpErrorException;
@@ -21,18 +22,8 @@ import com.paypal.svcs.services.InvoiceService;
 import com.paypal.svcs.types.common.AckCode;
 import com.paypal.svcs.types.common.ErrorData;
 import com.paypal.svcs.types.common.RequestEnvelope;
-import com.paypal.svcs.types.pt.CancelInvoiceRequest;
-import com.paypal.svcs.types.pt.CancelInvoiceResponse;
-import com.paypal.svcs.types.pt.CreateAndSendInvoiceRequest;
-import com.paypal.svcs.types.pt.CreateAndSendInvoiceResponse;
-import com.paypal.svcs.types.pt.CreateInvoiceRequest;
-import com.paypal.svcs.types.pt.CreateInvoiceResponse;
 import com.paypal.svcs.types.pt.GetInvoiceDetailsRequest;
 import com.paypal.svcs.types.pt.GetInvoiceDetailsResponse;
-import com.paypal.svcs.types.pt.InvoiceItemListType;
-import com.paypal.svcs.types.pt.InvoiceItemType;
-import com.paypal.svcs.types.pt.InvoiceType;
-import com.paypal.svcs.types.pt.PaymentTermsType;
 
 /**
  * Servlet implementation class CreateInvoiceSerlvet
@@ -65,7 +56,11 @@ public class GetInvoiceDetailsServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		HttpSession session = request.getSession();
+		session.setAttribute("url", request.getRequestURI());
+		session.setAttribute(
+				"relatedUrl",
+				"<ul><li><a href='CreateInvoice'>CreateInvoice</a></li><li><a href='CreateInvoice'>CreateAndSendInvoice</a></li><li><a href='SendInvoice'>SendInvoice</a></li><li><a href='CancelInvoice'>CancelInvoice</a></li><li><a href='UpdateInvoice'>UpdateInvoice</a></li><li><a href='MarkInvoiceAsPaid'>MarkInvoiceAsPaid</a></li><li><a href='GetInvoiceDetails'>GetInvoiceDetails</a></li><li><a href='SearchInvoices'>SearchInvoices</a></li></ul>");
 		RequestEnvelope env = new RequestEnvelope("en_US");
 		GetInvoiceDetailsRequest req = new GetInvoiceDetailsRequest();
 		req.setRequestEnvelope(env);
@@ -83,24 +78,26 @@ public class GetInvoiceDetailsServlet extends HttpServlet {
 			}
 			response.setContentType("text/html");
 			GetInvoiceDetailsResponse resp = invoiceSrvc.getInvoiceDetails(req);
-			response.getWriter().println(
-					"Ack:" + resp.getResponseEnvelope().getAck());
-
-			if (resp.getResponseEnvelope().getAck().equals(AckCode.SUCCESS)) {
-				response.getWriter().println(
-						"<br/>Created By:"
-								+ resp.getInvoiceDetails().getCreatedBy());
-				response.getWriter().println(
-						"<br/>Payment thru PayPal:"
-								+ resp.getPaymentDetails().getViaPayPal());
-			} else {
-				Iterator iterator = resp.getError().iterator();
-				while (iterator.hasNext()) {
-					ErrorData error = (ErrorData) iterator.next();
-					response.getWriter().println("<br/>" + error.getMessage());
+			if (resp != null) {
+				session.setAttribute("lastReq", invoiceSrvc.getLastRequest());
+				session.setAttribute("lastResp", invoiceSrvc.getLastResponse());
+				if (resp.getResponseEnvelope().getAck().toString()
+						.equalsIgnoreCase("SUCCESS")) {
+					Map<Object, Object> map = new LinkedHashMap<Object, Object>();
+					map.put("Ack", resp.getResponseEnvelope().getAck());
+					map.put("Created By", resp.getInvoiceDetails()
+							.getCreatedBy());
+					map.put("ViaPayPal", resp.getPaymentDetails()
+							.getViaPayPal());
+					map.put("Invoice URL", resp.getInvoiceURL());
+					session.setAttribute("map", map);
+					response.sendRedirect("Response.jsp");
+				} else {
+					session.setAttribute("Error", resp.getError());
+					response.sendRedirect("Error.jsp");
 				}
 			}
-			response.getWriter().println("<br/><a href='index.html'>Home</a>");
+
 		} catch (SSLConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

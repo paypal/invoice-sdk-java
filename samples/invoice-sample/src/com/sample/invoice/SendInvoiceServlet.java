@@ -1,12 +1,14 @@
 package com.sample.invoice;
 
 import java.io.IOException;
-import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.paypal.exception.ClientActionRequiredException;
 import com.paypal.exception.HttpErrorException;
@@ -16,8 +18,6 @@ import com.paypal.exception.MissingCredentialException;
 import com.paypal.exception.SSLConfigurationException;
 import com.paypal.sdk.exceptions.OAuthException;
 import com.paypal.svcs.services.InvoiceService;
-import com.paypal.svcs.types.common.AckCode;
-import com.paypal.svcs.types.common.ErrorData;
 import com.paypal.svcs.types.common.RequestEnvelope;
 import com.paypal.svcs.types.pt.SendInvoiceRequest;
 import com.paypal.svcs.types.pt.SendInvoiceResponse;
@@ -53,7 +53,11 @@ public class SendInvoiceServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		HttpSession session = request.getSession();
+		session.setAttribute("url", request.getRequestURI());
+		session.setAttribute(
+				"relatedUrl",
+				"<ul><li><a href='CreateInvoice'>CreateInvoice</a></li><li><a href='CreateInvoice'>CreateAndSendInvoice</a></li><li><a href='SendInvoice'>SendInvoice</a></li><li><a href='CancelInvoice'>CancelInvoice</a></li><li><a href='UpdateInvoice'>UpdateInvoice</a></li><li><a href='MarkInvoiceAsPaid'>MarkInvoiceAsPaid</a></li><li><a href='GetInvoiceDetails'>GetInvoiceDetails</a></li><li><a href='SearchInvoices'>SearchInvoices</a></li></ul>");
 		try {
 			RequestEnvelope env = new RequestEnvelope("en_US");
 			SendInvoiceRequest sendInvoiceRequest = new SendInvoiceRequest(env,
@@ -69,21 +73,24 @@ public class SendInvoiceServlet extends HttpServlet {
 
 			}
 			response.setContentType("text/html");
-			SendInvoiceResponse sendResp = invoiceSrvc
+			SendInvoiceResponse resp = invoiceSrvc
 					.sendInvoice(sendInvoiceRequest);
-			response.getWriter().println(
-					"Ack:" + sendResp.getResponseEnvelope().getAck());
-			if (sendResp.getResponseEnvelope().getAck().equals(AckCode.SUCCESS)) {
-				response.getWriter().println(
-						"<br/>InvoiceID:" + sendResp.getInvoiceID());
-			} else {
-				Iterator iterator = sendResp.getError().iterator();
-				while (iterator.hasNext()) {
-					ErrorData error = (ErrorData) iterator.next();
-					response.getWriter().println("<br/>" + error.getMessage());
+			if (resp != null) {
+				session.setAttribute("lastReq", invoiceSrvc.getLastRequest());
+				session.setAttribute("lastResp", invoiceSrvc.getLastResponse());
+				if (resp.getResponseEnvelope().getAck().toString()
+						.equalsIgnoreCase("SUCCESS")) {
+					Map<Object, Object> map = new LinkedHashMap<Object, Object>();
+					map.put("Ack", resp.getResponseEnvelope().getAck());
+					map.put("Invoice ID", resp.getInvoiceID());
+					map.put("Invoice URL", resp.getInvoiceURL());
+					session.setAttribute("map", map);
+					response.sendRedirect("Response.jsp");
+				} else {
+					session.setAttribute("Error", resp.getError());
+					response.sendRedirect("Error.jsp");
 				}
 			}
-			response.getWriter().println("<br/><a href='index.html'>Home</a>");
 		} catch (SSLConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

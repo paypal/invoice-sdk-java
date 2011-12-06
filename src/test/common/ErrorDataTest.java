@@ -41,8 +41,8 @@ public class ErrorDataTest {
 		map.put("error.message",
 				"Authentication+failed.+API+credentials+are+incorrect");
 		map.put("error.exceptionId", "520003");
-		map.put("error.parameter(0).value", "API Credentials");
-		map.put("error.parameter(1).value", "Incorrect");
+		map.put("error.parameter(0).name", "API Credentials");
+		map.put("error.parameter(1).name", "Incorrect");
 		errData = new ErrorData(map, "error.");
 	}
 

@@ -2,13 +2,15 @@ package com.sample.invoice;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.paypal.exception.ClientActionRequiredException;
 import com.paypal.exception.HttpErrorException;
@@ -18,8 +20,6 @@ import com.paypal.exception.MissingCredentialException;
 import com.paypal.exception.SSLConfigurationException;
 import com.paypal.sdk.exceptions.OAuthException;
 import com.paypal.svcs.services.InvoiceService;
-import com.paypal.svcs.types.common.AckCode;
-import com.paypal.svcs.types.common.ErrorData;
 import com.paypal.svcs.types.common.RequestEnvelope;
 import com.paypal.svcs.types.pt.CreateAndSendInvoiceRequest;
 import com.paypal.svcs.types.pt.CreateAndSendInvoiceResponse;
@@ -61,7 +61,11 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		HttpSession session = request.getSession();
+		session.setAttribute("url", request.getRequestURI());
+		session.setAttribute(
+				"relatedUrl",
+				"<ul><li><a href='CreateInvoice'>CreateInvoice</a></li><li><a href='CreateInvoice'>CreateAndSendInvoice</a></li><li><a href='SendInvoice'>SendInvoice</a></li><li><a href='CancelInvoice'>CancelInvoice</a></li><li><a href='UpdateInvoice'>UpdateInvoice</a></li><li><a href='MarkInvoiceAsPaid'>MarkInvoiceAsPaid</a></li><li><a href='GetInvoiceDetails'>GetInvoiceDetails</a></li><li><a href='SearchInvoices'>SearchInvoices</a></li></ul>");
 		InvoiceType invoiceType = new InvoiceType();
 		invoiceType.setMerchantEmail(request.getParameter("merchantEmail"));
 		invoiceType.setPayerEmail(request.getParameter("payerEmail"));
@@ -77,7 +81,7 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 		invoiceType.setItemList(invoiceItem);
 
 		invoiceType.setCurrencyCode(request.getParameter("currencyCode"));
-		invoiceType.setPaymentTerms(PaymentTermsType.valueOf(request
+		invoiceType.setPaymentTerms(PaymentTermsType.fromValue(request
 				.getParameter("paymentTerms")));
 
 		RequestEnvelope env = new RequestEnvelope("en_US");
@@ -99,27 +103,26 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 								.getParameter("tokenSecret"));
 
 					}
-					CreateInvoiceResponse createResp = invoiceSrvc
+					CreateInvoiceResponse resp = invoiceSrvc
 							.createInvoice(createRequest);
 
-					response.getWriter()
-							.println(
-									"<br/>Ack:"
-											+ createResp.getResponseEnvelope()
-													.getAck());
-					if (createResp.getResponseEnvelope().getAck()
-							.equals(AckCode.SUCCESS)) {
-						response.getWriter().println(
-								"<br/>InvoiceID:" + createResp.getInvoiceID());
-						response.getWriter().println(
-								"<br/>InvoiceNumber:"
-										+ createResp.getInvoiceNumber());
-					} else {
-						Iterator iterator = createResp.getError().iterator();
-						while (iterator.hasNext()) {
-							ErrorData error = (ErrorData) iterator.next();
-							response.getWriter().println(
-									"<br/>" + error.getMessage());
+					if (resp != null) {
+						session.setAttribute("lastReq",
+								invoiceSrvc.getLastRequest());
+						session.setAttribute("lastResp",
+								invoiceSrvc.getLastResponse());
+						if (resp.getResponseEnvelope().getAck().toString()
+								.equalsIgnoreCase("SUCCESS")) {
+							Map<Object, Object> map = new LinkedHashMap<Object, Object>();
+							map.put("Ack", resp.getResponseEnvelope().getAck());
+							map.put("Invoice ID", resp.getInvoiceID());
+							map.put("Invoice Number", resp.getInvoiceNumber());
+							map.put("Invoice URL", resp.getInvoiceURL());
+							session.setAttribute("map", map);
+							response.sendRedirect("Response.jsp");
+						} else {
+							session.setAttribute("Error", resp.getError());
+							response.sendRedirect("Error.jsp");
 						}
 					}
 				} else if (request.getParameter("CreateBtn").equals(
@@ -130,26 +133,26 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 							.getServletContext().getRealPath("/")
 							+ "/WEB-INF/sdk_config.properties");
 
-					CreateAndSendInvoiceResponse createResp = invoiceSrvc
+					CreateAndSendInvoiceResponse resp = invoiceSrvc
 							.createAndSendInvoice(createRequest);
-					response.getWriter()
-							.println(
-									"<br/>Ack:"
-											+ createResp.getResponseEnvelope()
-													.getAck());
-					if (createResp.getResponseEnvelope().getAck()
-							.equals(AckCode.SUCCESS)) {
-						response.getWriter().println(
-								"<br/>InvoiceID:" + createResp.getInvoiceID());
-						response.getWriter().println(
-								"<br/>InvoiceNumber:"
-										+ createResp.getInvoiceNumber());
-					} else {
-						Iterator iterator = createResp.getError().iterator();
-						while (iterator.hasNext()) {
-							ErrorData error = (ErrorData) iterator.next();
-							response.getWriter().println(
-									"<br/>" + error.getMessage());
+
+					if (resp != null) {
+						session.setAttribute("lastReq",
+								invoiceSrvc.getLastRequest());
+						session.setAttribute("lastResp",
+								invoiceSrvc.getLastResponse());
+						if (resp.getResponseEnvelope().getAck().toString()
+								.equalsIgnoreCase("SUCCESS")) {
+							Map<Object, Object> map = new LinkedHashMap<Object, Object>();
+							map.put("Ack", resp.getResponseEnvelope().getAck());
+							map.put("Invoice ID", resp.getInvoiceID());
+							map.put("Invoice Number", resp.getInvoiceNumber());
+							map.put("Invoice URL", resp.getInvoiceURL());
+							session.setAttribute("map", map);
+							response.sendRedirect("Response.jsp");
+						} else {
+							session.setAttribute("Error", resp.getError());
+							response.sendRedirect("Error.jsp");
 						}
 					}
 				} else {
@@ -157,7 +160,7 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 							"Unknown request - click one of the buttons");
 				}
 			}
-			response.getWriter().println("<br/><a href='index.html'>Home</a>");
+
 		} catch (SSLConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
