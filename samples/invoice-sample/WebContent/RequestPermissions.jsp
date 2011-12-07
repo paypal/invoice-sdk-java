@@ -19,15 +19,17 @@
 	<form method="post">
 		<table>
 			<tr>
-				<td><h3>Step 1:</h3>
+				<td><h3>Step 1:</h3></td>
+				<td><h3>Requesting Permissions</h3>
 				</td>
-				<td><h3>Requesting Permissions</h3></td>
 
 			</tr>
 
 			<tr>
-				<td><font color="grey"><h3>Step 2:</h3> </font></td>
-				<td><font color="grey"><h3>Generate Access Token</h3> </font></td>
+				<td><font color="grey"><h3>Step 2:</h3> </font>
+				</td>
+				<td><font color="grey"><h3>Generate Access Token</h3> </font>
+				</td>
 			</tr>
 		</table>
 		<input type="text" id="callback" name="callback" size="60"
@@ -58,6 +60,9 @@
 		<input type="checkbox" name="api"
 			value="ACCOUNT_MANAGEMENT_PERMISSION" />ACCOUNT_MANAGEMENT_PERMISSION<br />
 		<input type="checkbox" name="api" value="INVOICING" />INVOICING<br />
+		<input type="checkbox" name="api" value="ACCESS_BASIC_PERSONAL_DATA" />ACCESS_BASIC_PERSONAL_DATA<br />
+		<input type="checkbox" name="api"
+			value="ACCESS_ADVANCED_PERSONAL_DATA" />ACCESS_ADVANCED_PERSONAL_DATA<br />
 
 		<input type="submit" name="PermissionBtn" value="RequestPermissions" />
 		<br /> <a href="index.html">Home</a>

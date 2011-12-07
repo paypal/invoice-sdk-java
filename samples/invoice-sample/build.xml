@@ -35,7 +35,11 @@
 
 	<target name="compile" depends="init,buildSDK">
 		<copy file="../../${dist.dir}/${jarfile}" todir="WebContent/WEB-INF/lib" />
-		<copy file="ext-lib/permissions.jar" todir="WebContent/WEB-INF/lib" />
+		<copy todir="WebContent/WEB-INF/lib">
+			<fileset dir="ext-lib">
+				<exclude name="servlet-api.jar" />
+			</fileset>
+		</copy>
 		<copy todir="WebContent/WEB-INF/lib">
 			<fileset dir="${parent.lib}">
 				<exclude name="testng.jar" />

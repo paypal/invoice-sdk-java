@@ -2,8 +2,9 @@ package com.sample.invoice;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +20,6 @@ import com.paypal.exception.MissingCredentialException;
 import com.paypal.exception.SSLConfigurationException;
 import com.paypal.sdk.exceptions.OAuthException;
 import com.paypal.svcs.services.PermissionsService;
-import com.paypal.svcs.types.common.AckCode;
-import com.paypal.svcs.types.common.ErrorData;
 import com.paypal.svcs.types.common.RequestEnvelope;
 import com.paypal.svcs.types.perm.RequestPermissionsRequest;
 import com.paypal.svcs.types.perm.RequestPermissionsResponse;
@@ -60,7 +59,11 @@ public class PermissionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		HttpSession session = request.getSession();
+		session.setAttribute("url", request.getRequestURI());
+		session.setAttribute(
+				"relatedUrl",
+				"<ul><li><a href='CreateInvoice'>CreateInvoice</a></li><li><a href='CreateInvoice'>CreateAndSendInvoice</a></li><li><a href='SendInvoice'>SendInvoice</a></li><li><a href='CancelInvoice'>CancelInvoice</a></li><li><a href='UpdateInvoice'>UpdateInvoice</a></li><li><a href='MarkInvoiceAsPaid'>MarkInvoiceAsPaid</a></li><li><a href='GetInvoiceDetails'>GetInvoiceDetails</a></li><li><a href='SearchInvoices'>SearchInvoices</a></li></ul>");
 		RequestEnvelope env = new RequestEnvelope("en_US");
 		List<String> scope = new ArrayList<String>();
 		String check[] = request.getParameterValues("api");
@@ -79,37 +82,32 @@ public class PermissionServlet extends HttpServlet {
 				PermissionsService perm = new PermissionsService(this
 						.getServletContext().getRealPath("/")
 						+ "/WEB-INF/sdk_config.properties");
-				RequestPermissionsResponse permResponse = perm
+				RequestPermissionsResponse resp = perm
 						.requestPermissions(permRequest);
 				response.getWriter()
 						.println(
 								"<table><tr><td><h3>Step 1:</h3></td><td><h3>Requesting Permissions</h3></td></tr><tr><td><font color=grey><h3>Step 2:</h3></font></td><td><font color=grey><h3>Generate Access Token</h3></font></td></tr></table>");
-				response.getWriter().println(
-						"Ack:" + permResponse.getResponseEnvelope().getAck()
-								+ "<br/>");
-				response.getWriter().println(
-						"RequestToken:" + permResponse.getToken() + "<br/>");
-
-				if (permResponse.getResponseEnvelope().getAck()
-						.equals(AckCode.SUCCESS)) {
-					String redirectURL = "https://www.sanbox.paypal.com/cgi-bin/webscr?cmd=_grant-permission&request_token="
-							+ permResponse.getToken();
-					response.getWriter()
-							.println(
-									"<a href=https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_grant-permission&request_token="
-											+ permResponse.getToken()
-											+ ">RedirectURL</a>");
-				} else {
-					Iterator iterator = permResponse.getError().iterator();
-					while (iterator.hasNext()) {
-						ErrorData error = (ErrorData) iterator.next();
-						response.getWriter().println(
-								"<br/>" + error.getMessage());
+				if (resp != null) {
+					session.setAttribute("lastReq", perm.getLastRequest());
+					session.setAttribute("lastResp", perm.getLastResponse());
+					if (resp.getResponseEnvelope().getAck().toString()
+							.equalsIgnoreCase("SUCCESS")) {
+						Map<Object, Object> map = new LinkedHashMap<Object, Object>();
+						map.put("Ack", resp.getResponseEnvelope().getAck());
+						map.put("RequestToken", resp.getToken());
+						map.put("Redirect URL",
+								"<a href=https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_grant-permission&request_token="
+										+ resp.getToken()
+										+ ">https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_grant-permission&request_token="
+										+ resp.getToken() + "</a>");
+						session.setAttribute("map", map);
+						response.sendRedirect("Response.jsp");
+					} else {
+						session.setAttribute("Error", resp.getError());
+						response.sendRedirect("Error.jsp");
 					}
 				}
 			}
-			response.getWriter().println("<br/><a href='index.html'>Home</a>");
-
 		} catch (OAuthException e) {
 			// TODO: handle exception
 			e.printStackTrace();
