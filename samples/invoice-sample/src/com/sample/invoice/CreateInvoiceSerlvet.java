@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -62,6 +63,7 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+
 		session.setAttribute("url", request.getRequestURI());
 		session.setAttribute(
 				"relatedUrl",
@@ -84,7 +86,7 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 		invoiceType.setPaymentTerms(PaymentTermsType.fromValue(request
 				.getParameter("paymentTerms")));
 
-		RequestEnvelope env = new RequestEnvelope("en_US");
+		RequestEnvelope env = new RequestEnvelope("da");
 		try {
 			response.setContentType("text/html");
 			if (request.getParameter("CreateBtn") != null) {
@@ -188,5 +190,4 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 		}
 
 	}
-
 }
