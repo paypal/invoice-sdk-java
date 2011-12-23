@@ -1,8 +1,10 @@
 package com.sample.invoice;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -19,13 +21,14 @@ import com.paypal.exception.MissingCredentialException;
 import com.paypal.exception.SSLConfigurationException;
 import com.paypal.sdk.exceptions.OAuthException;
 import com.paypal.svcs.services.InvoiceService;
-import com.paypal.svcs.types.common.AckCode;
-import com.paypal.svcs.types.common.ErrorData;
 import com.paypal.svcs.types.common.RequestEnvelope;
+import com.paypal.svcs.types.pt.DateRangeType;
 import com.paypal.svcs.types.pt.InvoiceSummaryType;
+import com.paypal.svcs.types.pt.OriginType;
 import com.paypal.svcs.types.pt.SearchInvoicesRequest;
 import com.paypal.svcs.types.pt.SearchInvoicesResponse;
 import com.paypal.svcs.types.pt.SearchParametersType;
+import com.paypal.svcs.types.pt.StatusType;
 
 /**
  * Servlet implementation class UpdateInvoiceSerlvet
@@ -70,7 +73,65 @@ public class SearchInvoicesServlet extends HttpServlet {
 		req.setPage(Integer.parseInt(request.getParameter("page")));
 		req.setPageSize(Integer.parseInt(request.getParameter("pageSize")));
 		SearchParametersType parameters = new SearchParametersType();
-		parameters.setEmail(request.getParameter("merchantEmail"));
+		if (request.getParameter("businessName") != "")
+			parameters.setBusinessName(request.getParameter("businessName"));
+		if (request.getParameter("startDate") != ""
+				&& request.getParameter("endDate") != "") {
+			DateRangeType dateRangeType = new DateRangeType();
+			dateRangeType.setStartDate(request.getParameter("startDate"
+					+ "T00:00:00.000Z"));
+			dateRangeType.setEndDate(request.getParameter("endDate"
+					+ "T23:59:59.000Z"));
+			parameters.setCreationDate(dateRangeType);
+		}
+		if (request.getParameter("currencyCode") != "")
+			parameters.setCurrencyCode(request.getParameter("currencyCode"));
+		if (request.getParameter("dueStartDate") != ""
+				&& request.getParameter("dueEndDate") != "") {
+			DateRangeType dueDate = new DateRangeType();
+			dueDate.setEndDate(request.getParameter("dueEndDate"
+					+ "T23:59:59.000Z"));
+			dueDate.setStartDate(request.getParameter("dueStartDate"
+					+ "T00:00:00.000Z"));
+			parameters.setDueDate(dueDate);
+		}
+		parameters.setEmail(request.getParameter("email"));
+		if (request.getParameter("invoiceStartDate") != ""
+				&& request.getParameter("invoiceEndDate") != "") {
+			DateRangeType invoiceDate = new DateRangeType();
+			invoiceDate.setEndDate(request.getParameter("invoiceEndDate"
+					+ "T23:59:59.000Z"));
+			invoiceDate.setStartDate(request.getParameter("invoiceStartDate"
+					+ "T00:00:00.000Z"));
+			parameters.setInvoiceDate(invoiceDate);
+		}
+		parameters.setInvoiceNumber(request.getParameter("invoiceNum"));
+		if (request.getParameter("lowerAmount") != "")
+			parameters.setLowerAmount(Double.parseDouble(request
+					.getParameter("lowerAmount")));
+		parameters.setMemo(request.getParameter("memo"));
+		parameters.setOrigin(OriginType.fromValue(request
+				.getParameter("originType")));
+		if (request.getParameter("paymentStartDate") != ""
+				&& request.getParameter("paymentEndDate") != "") {
+			DateRangeType paymentDate = new DateRangeType();
+			paymentDate.setEndDate(request.getParameter("paymentEndDate"
+					+ "T23:59:59.000Z"));
+			paymentDate.setStartDate(request.getParameter("paymentStartDate"
+					+ "T00:00:00.000Z"));
+			parameters.setPaymentDate(paymentDate);
+		}// if (request.getParameter("recipientName") != "")
+		parameters.setRecipientName(request.getParameter("recipientName"));
+		List<StatusType> statusList = new ArrayList<StatusType>();
+		if (request.getParameterValues("status") != null) {
+			String[] statusLst = request.getParameterValues("status");
+			for (int i = 0; i < statusLst.length; i++)
+				statusList.add(StatusType.fromValue(statusLst[i]));
+			parameters.setStatus(statusList);
+		}
+		if (request.getParameter("upperAmount") != "")
+			parameters.setUpperAmount(Double.parseDouble(request
+					.getParameter("upperAmount")));
 		req.setParameters(parameters);
 		try {
 
@@ -86,23 +147,30 @@ public class SearchInvoicesServlet extends HttpServlet {
 			}
 			response.setContentType("text/html");
 			SearchInvoicesResponse resp = invoiceSrvc.searchInvoices(req);
+			String lastReq = null;
 			if (resp != null) {
-				session.setAttribute("lastReq", invoiceSrvc.getLastRequest());
+				if (invoiceSrvc.getLastRequest().contains("&")) {
+					lastReq = invoiceSrvc.getLastRequest()
+							.replace("&", "&amp;");
+				}
+				session.setAttribute("lastReq", lastReq);
 				session.setAttribute("lastResp", invoiceSrvc.getLastResponse());
 				if (resp.getResponseEnvelope().getAck().toString()
 						.equalsIgnoreCase("SUCCESS")) {
 					Map<Object, Object> map = new LinkedHashMap<Object, Object>();
 					map.put("Ack", resp.getResponseEnvelope().getAck());
 					map.put("Page", resp.getPage());
-					Iterator<InvoiceSummaryType> iterator = resp
-							.getInvoiceList().getInvoice().iterator();
-					int index = 1;
-					while (iterator.hasNext()) {
-						InvoiceSummaryType invSummaryType = iterator.next();
-						map.put("Invoice ID" + index,
-								invSummaryType.getInvoiceID());
-						map.put("Merchant Email" + index,
-								invSummaryType.getMerchantEmail());
+					if (resp.getInvoiceList() != null) {
+						Iterator<InvoiceSummaryType> iterator = resp
+								.getInvoiceList().getInvoice().iterator();
+						int index = 1;
+						while (iterator.hasNext()) {
+							InvoiceSummaryType invSummaryType = iterator.next();
+							map.put("Invoice ID" + index,
+									invSummaryType.getInvoiceID());
+							map.put("Merchant Email" + index,
+									invSummaryType.getMerchantEmail());
+						}
 					}
 					session.setAttribute("map", map);
 					response.sendRedirect("Response.jsp");

@@ -1,7 +1,6 @@
 package com.sample.invoice;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -19,8 +18,6 @@ import com.paypal.exception.MissingCredentialException;
 import com.paypal.exception.SSLConfigurationException;
 import com.paypal.sdk.exceptions.OAuthException;
 import com.paypal.svcs.services.InvoiceService;
-import com.paypal.svcs.types.common.AckCode;
-import com.paypal.svcs.types.common.ErrorData;
 import com.paypal.svcs.types.common.RequestEnvelope;
 import com.paypal.svcs.types.pt.GetInvoiceDetailsRequest;
 import com.paypal.svcs.types.pt.GetInvoiceDetailsResponse;
