@@ -3,15 +3,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>PayPal SDK - SearchInvoices</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>PayPal Invoicing SDK - SearchInvoices</title>
+	<link rel="stylesheet" type="text/css" href="sdk.css"/> 
+	<script type="text/javascript" src="sdk.js"></script>
 </head>
 <body>
 	<div id="wrapper">
 		<div id="header">
 			<h3>SearchInvoices</h3>
-			<div id="apidetails">SearchInvoice API operation is used to
-				search an invoice.</div>
+			<div id="apidetails">The SearchInvoice API operation is used to search for invoices that 
+			match given search criteria.</div>
 		</div>
 		<form method="POST">
 			<div id="request_form">
@@ -27,7 +29,7 @@
 					</div>
 					<div class="param_name">PageSize</div>
 					<div class="param_value">
-						<input type="text" name="pageSize" value="1" size="50"
+						<input type="text" name="pageSize" value="10" size="50"
 							maxlength="260" />
 					</div>
 					<div class="section_header">Search Parameters</div>
@@ -80,7 +82,7 @@
 						</tr>
 					</table>
 					<div class="param_name">Status of the invoices to be
-						searched(More than one options can be selected)</div>
+						searched (Multiple options can be selected)</div>
 					<div class="param_value">
 						<select name="status" multiple="multiple">
 							<option value="Draft">Draft</option>
@@ -116,43 +118,16 @@
 					</div>
 
 
-					<input type="checkbox" name="authentication" />Using Permission
-					Credentials<br />
-
-					<div class="param_name">Access Token</div>
-					<div class="param_value">
-						<input type="text" name="accessToken"
-							<%if (request.getParameter("accessToken") == null) {%> value=""
-							<%} else {%> value="<%=request.getParameter("accessToken")%>"
-							<%}%> size="50" maxlength="260" />
-					</div>
-					<div class="param_name">Token Secret</div>
-					<div class="param_value">
-						<input type="text" name="accessToken"
-							<%if (request.getParameter("tokenSecret") == null) {%> value=""
-							<%} else {%> value="<%=request.getParameter("tokenSecret")%>"
-							<%}%> size="50" maxlength="260" />
-					</div>
+					<jsp:include page="permissions.jsp">
+						<jsp:param name="source" value="SearchInvoices"/>
+					</jsp:include>
 				</div>
 				<div class="submit">
 					<input type="submit" name="searchBtn" value="SearchInvoice" /> <br />
 				</div>
-				<a href="index.html">Home</a>
+				<a href="index.jsp">Home</a>
 			</div>
 		</form>
-		<div id="relatedcalls">
-			See also
-			<ul>
-				<li><a href='CreateInvoice'>CreateInvoice</a></li>
-				<li><a href='CreateInvoice'>CreateAndSendInvoice</a></li>
-				<li><a href='SendInvoice'>SendInvoice</a></li>
-				<li><a href='CancelInvoice'>CancelInvoice</a></li>
-				<li><a href='UpdateInvoice'>UpdateInvoice</a></li>
-				<li><a href='MarkInvoiceAsPaid'>MarkInvoiceAsPaid</a></li>
-				<li><a href='GetInvoiceDetails'>GetInvoiceDetails</a></li>
-				<li><a href='SearchInvoices'>SearchInvoices</a></li>
-			</ul>
-		</div>
 	</div>
 </body>
 </html>

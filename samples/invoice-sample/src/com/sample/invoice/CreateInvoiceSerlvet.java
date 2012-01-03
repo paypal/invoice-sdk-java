@@ -64,9 +64,6 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		session.setAttribute("url", request.getRequestURI());
-		session.setAttribute(
-				"relatedUrl",
-				"<ul><li><a href='CreateInvoice'>CreateInvoice</a></li><li><a href='CreateInvoice'>CreateAndSendInvoice</a></li><li><a href='SendInvoice'>SendInvoice</a></li><li><a href='CancelInvoice'>CancelInvoice</a></li><li><a href='UpdateInvoice'>UpdateInvoice</a></li><li><a href='MarkInvoiceAsPaid'>MarkInvoiceAsPaid</a></li><li><a href='GetInvoiceDetails'>GetInvoiceDetails</a></li><li><a href='SearchInvoices'>SearchInvoices</a></li></ul>");
 		InvoiceType invoiceType = new InvoiceType();
 		invoiceType.setMerchantEmail(request.getParameter("merchantEmail"));
 		invoiceType.setPayerEmail(request.getParameter("payerEmail"));
@@ -133,6 +130,14 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 					InvoiceService invoiceSrvc = new InvoiceService(this
 							.getServletContext().getRealPath("/")
 							+ "/WEB-INF/sdk_config.properties");
+					if (request.getParameter("accessToken") != null
+							&& request.getParameter("tokenSecret") != null) {
+						invoiceSrvc.setAccessToken(request
+								.getParameter("accessToken"));
+						invoiceSrvc.setTokenSecret(request
+								.getParameter("tokenSecret"));
+
+					}
 
 					CreateAndSendInvoiceResponse resp = invoiceSrvc
 							.createAndSendInvoice(createRequest);

@@ -55,9 +55,6 @@ public class GetInvoiceDetailsServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.setAttribute("url", request.getRequestURI());
-		session.setAttribute(
-				"relatedUrl",
-				"<ul><li><a href='CreateInvoice'>CreateInvoice</a></li><li><a href='CreateInvoice'>CreateAndSendInvoice</a></li><li><a href='SendInvoice'>SendInvoice</a></li><li><a href='CancelInvoice'>CancelInvoice</a></li><li><a href='UpdateInvoice'>UpdateInvoice</a></li><li><a href='MarkInvoiceAsPaid'>MarkInvoiceAsPaid</a></li><li><a href='GetInvoiceDetails'>GetInvoiceDetails</a></li><li><a href='SearchInvoices'>SearchInvoices</a></li></ul>");
 		RequestEnvelope env = new RequestEnvelope("en_US");
 		GetInvoiceDetailsRequest req = new GetInvoiceDetailsRequest();
 		req.setRequestEnvelope(env);
@@ -84,8 +81,10 @@ public class GetInvoiceDetailsServlet extends HttpServlet {
 					map.put("Ack", resp.getResponseEnvelope().getAck());
 					map.put("Created By", resp.getInvoiceDetails()
 							.getCreatedBy());
-					map.put("ViaPayPal", resp.getPaymentDetails()
+					if(resp.getPaymentDetails() != null) {
+						map.put("ViaPayPal", resp.getPaymentDetails()
 							.getViaPayPal());
+					}
 					map.put("Invoice URL", resp.getInvoiceURL());
 					session.setAttribute("map", map);
 					response.sendRedirect("Response.jsp");

@@ -1,6 +1,6 @@
 PayPal Java Invoicing API sample using the sdk
 ============================================
-	The invoicing-sample project is a API scratch pad application that allows you to test Invoicing APIs. This application is a handy complement to the API reference guides available on x.com. The samples also demonstrate how you can use the SDK to call the API methods in your own application.
+	The invoicing-sample project is a API scratch pad application that allows you to test Invoicing APIs. This application is a handy complement to the API reference guides available on cms.paypal.com and x.com. The samples also demonstrate how you can use the SDK to call the API methods in your own application.
 
 To build and run the invoicing-sample:
 ------------------------------------

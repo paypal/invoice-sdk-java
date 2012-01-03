@@ -61,9 +61,6 @@ public class PermissionServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.setAttribute("url", request.getRequestURI());
-		session.setAttribute(
-				"relatedUrl",
-				"<ul><li><a href='CreateInvoice'>CreateInvoice</a></li><li><a href='CreateInvoice'>CreateAndSendInvoice</a></li><li><a href='SendInvoice'>SendInvoice</a></li><li><a href='CancelInvoice'>CancelInvoice</a></li><li><a href='UpdateInvoice'>UpdateInvoice</a></li><li><a href='MarkInvoiceAsPaid'>MarkInvoiceAsPaid</a></li><li><a href='GetInvoiceDetails'>GetInvoiceDetails</a></li><li><a href='SearchInvoices'>SearchInvoices</a></li></ul>");
 		RequestEnvelope env = new RequestEnvelope("en_US");
 		List<String> scope = new ArrayList<String>();
 		String check[] = request.getParameterValues("api");

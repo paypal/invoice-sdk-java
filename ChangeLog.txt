@@ -2,6 +2,9 @@
 PayPal Invoicing SDK for JAVA
 
 ------------------------------------------------------------------------------------------------------
+Version 1.1.84 - December, 03 2012
+	Minor updates to samples
+------------------------------------------------------------------------------------------------------
 Version 1.0.84 - September 23, 2011
 	This release contains wrappers for the 5 new invoicing APIs - UpdateInvoice, GetInvoiceDetails,
 CancelInvoice, SearchInvoices & MarkInvoiceAsPaid

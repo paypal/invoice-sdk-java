@@ -61,9 +61,6 @@ public class UpdateInvoiceServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.setAttribute("url", request.getRequestURI());
-		session.setAttribute(
-				"relatedUrl",
-				"<ul><li><a href='CreateInvoice'>CreateInvoice</a></li><li><a href='CreateInvoice'>CreateAndSendInvoice</a></li><li><a href='SendInvoice'>SendInvoice</a></li><li><a href='CancelInvoice'>CancelInvoice</a></li><li><a href='UpdateInvoice'>UpdateInvoice</a></li><li><a href='MarkInvoiceAsPaid'>MarkInvoiceAsPaid</a></li><li><a href='GetInvoiceDetails'>GetInvoiceDetails</a></li><li><a href='SearchInvoices'>SearchInvoices</a></li></ul>");
 		InvoiceType invoiceType = new InvoiceType();
 		invoiceType.setMerchantEmail(request.getParameter("merchantEmail"));
 		invoiceType.setPayerEmail(request.getParameter("payerEmail"));

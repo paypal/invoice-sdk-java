@@ -47,12 +47,7 @@
 		</tr>
 	</table>
 
-	<a href="index.html">Home</a>
+	<a href="index.jsp">Home</a>
 	<a href="<%=session.getAttribute("url")%>">Back</a>
-	<div id="related_calls">
-		See also
-		<%=session.getAttribute("relatedUrl")%>
-	</div>
-
 </body>
 </html>

@@ -41,9 +41,6 @@ public class GenerateAccessTokenServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		session.setAttribute("url", request.getRequestURI());
-		session.setAttribute(
-				"relatedUrl",
-				"<ul><li><a href='CreateInvoice'>CreateInvoice</a></li><li><a href='CreateInvoice'>CreateAndSendInvoice</a></li><li><a href='SendInvoice'>SendInvoice</a></li><li><a href='CancelInvoice'>CancelInvoice</a></li><li><a href='UpdateInvoice'>UpdateInvoice</a></li><li><a href='MarkInvoiceAsPaid'>MarkInvoiceAsPaid</a></li><li><a href='GetInvoiceDetails'>GetInvoiceDetails</a></li><li><a href='SearchInvoices'>SearchInvoices</a></li></ul>");
 		response.setContentType("text/html");
 		try {
 			PermissionsService service = new PermissionsService(this
@@ -59,7 +56,7 @@ public class GenerateAccessTokenServlet extends HttpServlet {
 			GetAccessTokenResponse resp = service.getAccessToken(tokenReq);
 			response.getWriter()
 					.println(
-							"<table><tr><td><font color=grey><h3>Step 1:</h3></font></td><td><font color=grey><h3>Requesting Permissions</h3></font></td><td><img src=/invoice-sample/images/camera_test.png></img></td></tr><tr><td><font color=grey><h3>Step 2:</h3></font></td><td><font color=grey><h3>Generate Access Token</h3></font></td><td><img src=/invoice-sample/images/camera_test.png></img></td></tr></table>");
+							"<table><tr><td><font color=grey><h3>Step 1:</h3></font></td><td><font color=grey><h3>Requesting Permissions</h3></font></td><td><img src=/invoice-sample/images/tick.png></img></td></tr><tr><td><font color=grey><h3>Step 2:</h3></font></td><td><font color=grey><h3>Generate Access Token</h3></font></td><td><img src=/invoice-sample/images/camera_test.png></img></td></tr></table>");
 			if (resp != null) {
 				session.setAttribute("lastReq", service.getLastRequest());
 				session.setAttribute("lastResp", service.getLastResponse());
@@ -69,8 +66,10 @@ public class GenerateAccessTokenServlet extends HttpServlet {
 					map.put("Ack", resp.getResponseEnvelope().getAck());
 					map.put("AccessToken", resp.getToken());
 					map.put("TokenSecret", resp.getTokenSecret());
-					map.put("Return to CreateInvoice page",
-							"<a href=CreateInvoice?accessToken="
+					map.put("Return to Sample page",
+							"<a href=" 
+									+ (String) session.getAttribute("page")
+									+ "?accessToken="
 									+ resp.getToken() + "&tokenSecret="
 									+ resp.getTokenSecret() + ">Return</a");
 					session.setAttribute("map", map);
