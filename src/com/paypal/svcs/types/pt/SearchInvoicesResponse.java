@@ -127,11 +127,11 @@ public class SearchInvoicesResponse {
 		if( map.containsKey(prefix + "hasPreviousPage") ) {
 			this.hasPreviousPage = Boolean.valueOf(map.get(prefix + "hasPreviousPage"));
 		}
-int i=0;		while(true) {
+		for(int i=0; i<10; i++) {
 			if( map.containsKey(prefix + "error" + '(' + i + ')'+ ".errorId") ) {
 				String newPrefix = prefix + "error" + '(' + i + ')' + '.';
 				this.error.add(new ErrorData(map, newPrefix));
 			}
-else break;i++;		}
+		}
 	}
 }

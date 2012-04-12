@@ -248,6 +248,17 @@ public class InvoiceType {
 		this.logoUrl = value;
 	}
 
+	/**
+	 * BN code for tracking transactions with a particular partner. 
+	 */
+	private String referrerCode;
+	public String getReferrerCode() {
+		return referrerCode;
+	}
+	public void setReferrerCode(String value) {
+		this.referrerCode = value;
+	}
+
 
 	public InvoiceType(String merchantEmail, String payerEmail, InvoiceItemListType itemList, String currencyCode, PaymentTermsType paymentTerms) {
 		this.merchantEmail = merchantEmail;
@@ -345,6 +356,10 @@ public class InvoiceType {
 			sb.append(prefix).append("logoUrl=").append(NVPUtil.encodeUrl(logoUrl));
 			sb.append('&');
 		}
+		if( referrerCode != null ) {
+			sb.append(prefix).append("referrerCode=").append(NVPUtil.encodeUrl(referrerCode));
+			sb.append('&');
+		}
 		return sb.toString();
 	}
 
@@ -412,6 +427,9 @@ public class InvoiceType {
 		}
 		if( map.containsKey(prefix + "logoUrl") ) {
 			this.logoUrl = map.get(prefix + "logoUrl");
+		}
+		if( map.containsKey(prefix + "referrerCode") ) {
+			this.referrerCode = map.get(prefix + "referrerCode");
 		}
 	}
 }

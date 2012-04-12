@@ -199,7 +199,7 @@ public class SearchParametersType {
 		}
 		if( status != null ) {
 			for(int i=0; i<status.size(); i++) {
-				sb.append(prefix).append("status(").append(i).append(")=").append(status.get(i).getValue());
+				sb.append(prefix).append("status(").append(i).append(")=").append(status.get(i));
 				sb.append('&');
 			}
 		}

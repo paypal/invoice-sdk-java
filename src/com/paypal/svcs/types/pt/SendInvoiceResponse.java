@@ -79,11 +79,11 @@ public class SendInvoiceResponse {
 		if( map.containsKey(prefix + "invoiceURL") ) {
 			this.invoiceURL = map.get(prefix + "invoiceURL");
 		}
-int i=0;		while(true) {
+		for(int i=0; i<10; i++) {
 			if( map.containsKey(prefix + "error" + '(' + i + ')'+ ".errorId") ) {
 				String newPrefix = prefix + "error" + '(' + i + ')' + '.';
 				this.error.add(new ErrorData(map, newPrefix));
 			}
-else break;i++;		}
+		}
 	}
 }

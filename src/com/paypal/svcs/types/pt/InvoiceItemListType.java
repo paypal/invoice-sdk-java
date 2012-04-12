@@ -53,11 +53,11 @@ public class InvoiceItemListType {
 	}
 
 	public InvoiceItemListType(Map<String, String> map, String prefix) {
-int i=0;		while(true) {
+		for(int i=0; i<10; i++) {
 			if( map.containsKey(prefix + "item" + '(' + i + ')'+ ".name") ) {
 				String newPrefix = prefix + "item" + '(' + i + ')' + '.';
 				this.item.add(new InvoiceItemType(map, newPrefix));
 			}
-else break;i++;		}
+		}
 	}
 }

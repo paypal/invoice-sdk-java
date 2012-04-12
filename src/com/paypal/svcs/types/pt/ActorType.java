@@ -12,13 +12,13 @@ PAYER("Payer"),
 private String value;
 ActorType(String val){
 value=val;
-}public String getValue(){
-return value;
-}
-public static ActorType fromValue(String v) {
-		for (ActorType c : values())
-			if (c.value.equals(v))
-				return c;
-throw new IllegalArgumentException(v);
-}
+}		public String getValue(){
+			return value;
+		}
+		public static ActorType fromValue(String v) {
+			for (ActorType c : values())
+				if (c.value.equals(v))
+					return c;
+			throw new IllegalArgumentException(v);
+		}
 }

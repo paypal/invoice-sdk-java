@@ -30,11 +30,11 @@ public class InvoiceSummaryListType {
 	public InvoiceSummaryListType() {
 	}
 	public InvoiceSummaryListType(Map<String, String> map, String prefix) {
-int i=0;		while(true) {
+		for(int i=0; i<10; i++) {
 			if( map.containsKey(prefix + "invoice" + '(' + i + ')'+ ".invoiceID") ) {
 				String newPrefix = prefix + "invoice" + '(' + i + ')' + '.';
 				this.invoice.add(new InvoiceSummaryType(map, newPrefix));
 			}
-else break;i++;		}
+		}
 	}
 }

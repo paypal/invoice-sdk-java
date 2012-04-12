@@ -69,6 +69,19 @@ public class CreateAndSendInvoiceResponse {
 	}
 
 	/**
+	 * The total amount of the invoice (cost of items, shipping and tax, less any discount).
+	 *
+	 * @Required
+	 */
+	private Integer totalAmount;
+	public Integer getTotalAmount() {
+		return totalAmount;
+	}
+	public void setTotalAmount(Integer value) {
+		this.totalAmount = value;
+	}
+
+	/**
 	 */
 	private List<ErrorData> error = new ArrayList<ErrorData>();
 	public List<ErrorData> getError() {
@@ -95,11 +108,14 @@ public class CreateAndSendInvoiceResponse {
 		if( map.containsKey(prefix + "invoiceURL") ) {
 			this.invoiceURL = map.get(prefix + "invoiceURL");
 		}
-int i=0;		while(true) {
+		if( map.containsKey(prefix + "totalAmount") ) {
+			this.totalAmount = Integer.valueOf(map.get(prefix + "totalAmount"));
+		}
+		for(int i=0; i<10; i++) {
 			if( map.containsKey(prefix + "error" + '(' + i + ')'+ ".errorId") ) {
 				String newPrefix = prefix + "error" + '(' + i + ')' + '.';
 				this.error.add(new ErrorData(map, newPrefix));
 			}
-else break;i++;		}
+		}
 	}
 }
