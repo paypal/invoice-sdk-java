@@ -6,13 +6,13 @@ package com.paypal.svcs.types.pt;
 
 public enum ActorType {
 
-MERCHANT("Merchant"),
-PAYER("Payer"),
-	;
-private String value;
-ActorType(String val){
-value=val;
-}		public String getValue(){
+ 		MERCHANT("Merchant"),
+ 		PAYER("Payer"),
+		;
+		private String value;
+		ActorType(String val){
+			value=val;
+		}		public String getValue(){
 			return value;
 		}
 		public static ActorType fromValue(String v) {

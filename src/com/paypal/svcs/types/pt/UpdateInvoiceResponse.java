@@ -111,11 +111,14 @@ public class UpdateInvoiceResponse {
 		if( map.containsKey(prefix + "totalAmount") ) {
 			this.totalAmount = Integer.valueOf(map.get(prefix + "totalAmount"));
 		}
-		for(int i=0; i<10; i++) {
+		int i=0;
+		while(true) {
 			if( map.containsKey(prefix + "error" + '(' + i + ')'+ ".errorId") ) {
 				String newPrefix = prefix + "error" + '(' + i + ')' + '.';
 				this.error.add(new ErrorData(map, newPrefix));
 			}
+			else break;
+			i++;
 		}
 	}
 }
