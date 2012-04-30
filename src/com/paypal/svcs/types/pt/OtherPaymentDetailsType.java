@@ -75,6 +75,7 @@ public class OtherPaymentDetailsType {
 	}
 
 	public OtherPaymentDetailsType(Map<String, String> map, String prefix) {
+		int i=0; 
 		if( map.containsKey(prefix + "method") ) {
 			this.method = PaymentMethodsType.fromValue( map.get(prefix + "method") );
 		}

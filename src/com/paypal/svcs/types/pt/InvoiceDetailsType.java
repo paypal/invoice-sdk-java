@@ -181,6 +181,7 @@ public class InvoiceDetailsType {
 	public InvoiceDetailsType() {
 	}
 	public InvoiceDetailsType(Map<String, String> map, String prefix) {
+		int i=0; 
 		if( map.containsKey(prefix + "status") ) {
 			this.status = StatusType.fromValue( map.get(prefix + "status") );
 		}

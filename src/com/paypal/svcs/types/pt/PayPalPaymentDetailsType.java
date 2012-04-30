@@ -41,6 +41,7 @@ public class PayPalPaymentDetailsType {
 	public PayPalPaymentDetailsType() {
 	}
 	public PayPalPaymentDetailsType(Map<String, String> map, String prefix) {
+		int i=0; 
 		if( map.containsKey(prefix + "transactionID") ) {
 			this.transactionID = map.get(prefix + "transactionID");
 		}

@@ -364,6 +364,7 @@ public class InvoiceType {
 	}
 
 	public InvoiceType(Map<String, String> map, String prefix) {
+		int i=0; 
 		if( map.containsKey(prefix + "merchantEmail") ) {
 			this.merchantEmail = map.get(prefix + "merchantEmail");
 		}

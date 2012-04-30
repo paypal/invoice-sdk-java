@@ -95,6 +95,7 @@ public class UpdateInvoiceResponse {
 	public UpdateInvoiceResponse() {
 	}
 	public UpdateInvoiceResponse(Map<String, String> map, String prefix) {
+		int i=0; 
 		if( map.containsKey(prefix + "responseEnvelope" + ".timestamp") ) {
 			String newPrefix = prefix + "responseEnvelope" + '.';
 			this.responseEnvelope =  new ResponseEnvelope(map, newPrefix);
@@ -111,8 +112,8 @@ public class UpdateInvoiceResponse {
 		if( map.containsKey(prefix + "totalAmount") ) {
 			this.totalAmount = Integer.valueOf(map.get(prefix + "totalAmount"));
 		}
-		int i=0;
-		while(true) {
+		 i=0; 
+		 while(true) {
 			if( map.containsKey(prefix + "error" + '(' + i + ')'+ ".errorId") ) {
 				String newPrefix = prefix + "error" + '(' + i + ')' + '.';
 				this.error.add(new ErrorData(map, newPrefix));

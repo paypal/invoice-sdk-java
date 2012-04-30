@@ -82,6 +82,7 @@ public class MarkInvoiceAsPaidResponse {
 	public MarkInvoiceAsPaidResponse() {
 	}
 	public MarkInvoiceAsPaidResponse(Map<String, String> map, String prefix) {
+		int i=0; 
 		if( map.containsKey(prefix + "responseEnvelope" + ".timestamp") ) {
 			String newPrefix = prefix + "responseEnvelope" + '.';
 			this.responseEnvelope =  new ResponseEnvelope(map, newPrefix);
@@ -95,8 +96,8 @@ public class MarkInvoiceAsPaidResponse {
 		if( map.containsKey(prefix + "invoiceURL") ) {
 			this.invoiceURL = map.get(prefix + "invoiceURL");
 		}
-		int i=0;
-		while(true) {
+		 i=0; 
+		 while(true) {
 			if( map.containsKey(prefix + "error" + '(' + i + ')'+ ".errorId") ) {
 				String newPrefix = prefix + "error" + '(' + i + ')' + '.';
 				this.error.add(new ErrorData(map, newPrefix));

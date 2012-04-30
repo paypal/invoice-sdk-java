@@ -226,6 +226,7 @@ public class InvoiceSummaryType {
 	public InvoiceSummaryType() {
 	}
 	public InvoiceSummaryType(Map<String, String> map, String prefix) {
+		int i=0; 
 		if( map.containsKey(prefix + "invoiceID") ) {
 			this.invoiceID = map.get(prefix + "invoiceID");
 		}
