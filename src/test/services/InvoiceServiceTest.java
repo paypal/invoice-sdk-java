@@ -97,7 +97,7 @@ public class InvoiceServiceTest {
 		invType = new InvoiceType();
 		invType.setCurrencyCode("USD");
 
-		invType.setMerchantEmail("jb-us-seller2@paypal.com");
+		invType.setMerchantEmail(UnitTestConstants.THIRD_PARTY_MERCHANT);
 		invType.setPayerEmail("jbui-us-personal1@paypal.com");
 
 		lst.add(item);
