@@ -13,6 +13,7 @@ public enum StatusType {
  		CANCELED("Canceled"),
  		REFUNDED("Refunded"),
  		PARTIALLYREFUNDED("PartiallyRefunded"),
+ 		MARKEDASREFUNDED("MarkedAsRefunded"),
 		;
 		private String value;
 		StatusType(String val){

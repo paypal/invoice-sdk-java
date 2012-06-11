@@ -6,9 +6,9 @@ Using SDK:
 ----------
 SDK Integration:
 ----------------
-*	Download the project from github, build project using build.xml with default ant target, which will create 			    'invoicing-java-sdk-1.2.88.jar' inside 'dist' folder.
+*	Download the project from github, build project using build.xml with default ant target, which will create 			    'invoicing-java-sdk-1.2.90.jar' inside 'dist' folder.
 
-*	Copy 'invoicing-java-sdk-1.2.88.jar' inside 'dist' folder under SDK root, to your class path.
+*	Copy 'invoicing-java-sdk-1.2.90.jar' inside 'dist' folder under SDK root, to your class path.
 
 *	Copy the configuration file 'sdk_config.properties' in SDK 'resource' folder to your project.
 

@@ -40,7 +40,7 @@ public class PaymentDetailsType {
 	}
 
 	/**
-	 * PayPal payment details.
+	 * Other payment details.
 	 */
 	private OtherPaymentDetailsType otherPayment;
 	public OtherPaymentDetailsType getOtherPayment() {

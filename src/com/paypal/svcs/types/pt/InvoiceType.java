@@ -259,6 +259,30 @@ public class InvoiceType {
 		this.referrerCode = value;
 	}
 
+	/**
+	 * Label used to display custom amount value.
+	 * If a value is entered for customAmountLabel, then customAmountValue cannot be empty.
+	 */
+	private String customAmountLabel;
+	public String getCustomAmountLabel() {
+		return customAmountLabel;
+	}
+	public void setCustomAmountLabel(String value) {
+		this.customAmountLabel = value;
+	}
+
+	/**
+	 * Value of custom amount.
+	 * If a value is entered for customAmountValue, then customAmountLabel cannot be empty.
+	 */
+	private Double customAmountValue;
+	public Double getCustomAmountValue() {
+		return customAmountValue;
+	}
+	public void setCustomAmountValue(Double value) {
+		this.customAmountValue = value;
+	}
+
 
 	public InvoiceType(String merchantEmail, String payerEmail, InvoiceItemListType itemList, String currencyCode, PaymentTermsType paymentTerms) {
 		this.merchantEmail = merchantEmail;
@@ -360,6 +384,14 @@ public class InvoiceType {
 			sb.append(prefix).append("referrerCode=").append(NVPUtil.encodeUrl(referrerCode));
 			sb.append('&');
 		}
+		if( customAmountLabel != null ) {
+			sb.append(prefix).append("customAmountLabel=").append(NVPUtil.encodeUrl(customAmountLabel));
+			sb.append('&');
+		}
+		if( customAmountValue != null ) {
+			sb.append(prefix).append("customAmountValue=").append(customAmountValue);
+			sb.append('&');
+		}
 		return sb.toString();
 	}
 
@@ -431,6 +463,12 @@ public class InvoiceType {
 		}
 		if( map.containsKey(prefix + "referrerCode") ) {
 			this.referrerCode = map.get(prefix + "referrerCode");
+		}
+		if( map.containsKey(prefix + "customAmountLabel") ) {
+			this.customAmountLabel = map.get(prefix + "customAmountLabel");
+		}
+		if( map.containsKey(prefix + "customAmountValue") ) {
+			this.customAmountValue = Double.valueOf(map.get(prefix + "customAmountValue"));
 		}
 	}
 }

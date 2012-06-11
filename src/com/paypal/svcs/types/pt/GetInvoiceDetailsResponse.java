@@ -10,6 +10,7 @@ import com.paypal.svcs.types.common.ResponseEnvelope;
 import com.paypal.svcs.types.pt.InvoiceDetailsType;
 import com.paypal.svcs.types.pt.InvoiceType;
 import com.paypal.svcs.types.pt.PaymentDetailsType;
+import com.paypal.svcs.types.pt.PaymentRefundDetailsType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -70,6 +71,17 @@ public class GetInvoiceDetailsResponse {
 	}
 
 	/**
+	 * The requested invoice refund details.
+	 */
+	private PaymentRefundDetailsType refundDetails;
+	public PaymentRefundDetailsType getRefundDetails() {
+		return refundDetails;
+	}
+	public void setRefundDetails(PaymentRefundDetailsType value) {
+		this.refundDetails = value;
+	}
+
+	/**
 	 * The URL which lead merchant to view the invoice details on web.
 	 *
 	 * @Required
@@ -112,6 +124,10 @@ public class GetInvoiceDetailsResponse {
 		if( map.containsKey(prefix + "paymentDetails" + ".viaPayPal") ) {
 			String newPrefix = prefix + "paymentDetails" + '.';
 			this.paymentDetails =  new PaymentDetailsType(map, newPrefix);
+		}
+		if( map.containsKey(prefix + "refundDetails" + ".viaPayPal") ) {
+			String newPrefix = prefix + "refundDetails" + '.';
+			this.refundDetails =  new PaymentRefundDetailsType(map, newPrefix);
 		}
 		if( map.containsKey(prefix + "invoiceURL") ) {
 			this.invoiceURL = map.get(prefix + "invoiceURL");

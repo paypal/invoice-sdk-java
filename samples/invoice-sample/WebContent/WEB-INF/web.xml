@@ -12,6 +12,7 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+
 	<servlet>
 		<description></description>
 		<display-name>CreateInvoiceSerlvet</display-name>
@@ -22,6 +23,7 @@
 		<servlet-name>CreateInvoiceSerlvet</servlet-name>
 		<url-pattern>/CreateInvoice</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<description></description>
 		<display-name>SendInvoice</display-name>
@@ -32,6 +34,7 @@
 		<servlet-name>SendInvoice</servlet-name>
 		<url-pattern>/SendInvoice</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<description></description>
 		<display-name>UpdateInvoice</display-name>
@@ -42,6 +45,7 @@
 		<servlet-name>UpdateInvoice</servlet-name>
 		<url-pattern>/UpdateInvoice</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<description></description>
 		<display-name>SearchInvoices</display-name>
@@ -52,6 +56,7 @@
 		<servlet-name>SearchInvoices</servlet-name>
 		<url-pattern>/SearchInvoices</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<description></description>
 		<display-name>CancelInvoice</display-name>
@@ -62,6 +67,7 @@
 		<servlet-name>CancelInvoice</servlet-name>
 		<url-pattern>/CancelInvoice</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<description></description>
 		<display-name>MarkInvoiceAsPaid</display-name>
@@ -72,6 +78,29 @@
 		<servlet-name>MarkInvoiceAsPaid</servlet-name>
 		<url-pattern>/MarkInvoiceAsPaid</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<description></description>
+		<display-name>MarkInvoiceAsUnpaid</display-name>
+		<servlet-name>MarkInvoiceAsUnpaid</servlet-name>
+		<servlet-class>com.sample.invoice.MarkInvoiceAsUnpaidServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MarkInvoiceAsUnpaid</servlet-name>
+		<url-pattern>/MarkInvoiceAsUnpaid</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<description></description>
+		<display-name>MarkInvoiceAsRefunded</display-name>
+		<servlet-name>MarkInvoiceAsRefunded</servlet-name>
+		<servlet-class>com.sample.invoice.MarkInvoiceAsRefundedServlet</servlet-class>
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>MarkInvoiceAsRefunded</servlet-name>
+		<url-pattern>/MarkInvoiceAsRefunded</url-pattern>
+	</servlet-mapping>	
+
 	<servlet>
 		<description></description>
 		<display-name>GetInvoiceDetails</display-name>

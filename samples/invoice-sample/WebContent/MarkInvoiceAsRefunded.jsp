@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"  import="java.util.Date,java.text.SimpleDateFormat" %>
+	pageEncoding="ISO-8859-1" import="java.util.Date,java.text.SimpleDateFormat" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <% 
    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss");
@@ -7,16 +7,16 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>PayPal Invoicing SDK - MarkInvoiceAsPaid</title>
+	<title>PayPal Invoicing SDK - MarkInvoiceAsRefunded</title>
 	<link rel="stylesheet" type="text/css" href="sdk.css"/> 
 	<script type="text/javascript" src="sdk.js"></script>
 </head>
 <body>
 	<div id="wrapper">
 		<div id="header">
-			<h3>MarkInvoiceAsPaid</h3>
-			<div id="apidetails">The MarkInvoiceAsPaid API operation is used to
-				mark an invoice as paid.</div>
+			<h3>MarkInvoiceAsRefunded</h3>
+			<div id="apidetails">The MarkInvoiceAsRefunded API operation is used to
+				mark an invoice as refunded.</div>
 		</div>
 		<form method="POST">
 			<div id="request_form">
@@ -30,23 +30,7 @@
 							maxlength="260" />
 					</div>
 				</div>
-				<div class="section_header">Other Payment Details*</div>
-				<div class="params">
-					<div class="param_name">Payment Method used for offline
-						payment</div>
-					<div class="param_value">
-						<select name="paymentMethod">
-							<option value="BankTransfer">BankTransfer</option>
-							<option value="Cash">Cash</option>
-							<option value="Check">Check</option>
-							<option value="CreditCard">CreditCard</option>
-							<option value="DebitCard">DebitCard</option>
-							<option value="PayPal">PayPal</option>
-							<option value="WireTransfer">WireTransfer</option>
-							<option value="Other">Other</option>
-						</select>
-					</div>
-				</div>
+				<div class="section_header">Refund Details*</div>
 				<div class="params">
 					<div class="param_name">Note</div>
 					<div class="param_value">
@@ -54,17 +38,17 @@
 					</div>
 				</div>
 				<div class="params">
-					<div class="param_name">Date when the invoice as paid</div>
+					<div class="param_name">Date when the invoice as refunded</div>
 					<div class="param_value">
-						<input type="text" name="date" size="50" maxlength="260"  value='<%= dateFormat.format(new java.util.Date()) %>' />
+						<input type="text" name="date" size="50" maxlength="260" value='<%= dateFormat.format(new java.util.Date()) %>'/>
 					</div>
 				</div>
 				<jsp:include page="permissions.jsp">
-					<jsp:param name="source" value="MarkInvoiceAsPaid"/>
+					<jsp:param name="source" value="MarkInvoiceAsRefunded"/>
 				</jsp:include>				
 				<div class="submit">
 					<input type="submit" name="MarkInvoiceBtn"
-						value="MarkInvoiceAsPaid" /> <br />
+						value="MarkInvoiceAsRefunded" /> <br />
 				</div>
 				<a href="index.jsp">Home</a>
 			</div>

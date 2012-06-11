@@ -23,6 +23,10 @@ import com.paypal.svcs.types.pt.GetInvoiceDetailsRequest;
 import com.paypal.svcs.types.pt.GetInvoiceDetailsResponse;
 import com.paypal.svcs.types.pt.MarkInvoiceAsPaidRequest;
 import com.paypal.svcs.types.pt.MarkInvoiceAsPaidResponse;
+import com.paypal.svcs.types.pt.MarkInvoiceAsRefundedRequest;
+import com.paypal.svcs.types.pt.MarkInvoiceAsRefundedResponse;
+import com.paypal.svcs.types.pt.MarkInvoiceAsUnpaidRequest;
+import com.paypal.svcs.types.pt.MarkInvoiceAsUnpaidResponse;
 import com.paypal.svcs.types.pt.SearchInvoicesRequest;
 import com.paypal.svcs.types.pt.SearchInvoicesResponse;
 import com.paypal.svcs.types.pt.SendInvoiceRequest;
@@ -221,6 +225,48 @@ public class InvoiceService extends BaseService {
 
 	public MarkInvoiceAsPaidResponse markInvoiceAsPaid (MarkInvoiceAsPaidRequest MarkInvoiceAsPaidRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 		return markInvoiceAsPaid(MarkInvoiceAsPaidRequest, null);
+	}
+
+	/**
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	public MarkInvoiceAsUnpaidResponse markInvoiceAsUnpaid (MarkInvoiceAsUnpaidRequest MarkInvoiceAsUnpaidRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		String response = call("MarkInvoiceAsUnpaid", MarkInvoiceAsUnpaidRequest.toNVPString(), apiUsername);
+		return new MarkInvoiceAsUnpaidResponse(NVPUtil.decode(response), "");
+	}
+
+	public MarkInvoiceAsUnpaidResponse markInvoiceAsUnpaid (MarkInvoiceAsUnpaidRequest MarkInvoiceAsUnpaidRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		return markInvoiceAsUnpaid(MarkInvoiceAsUnpaidRequest, null);
+	}
+
+	/**
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	public MarkInvoiceAsRefundedResponse markInvoiceAsRefunded (MarkInvoiceAsRefundedRequest MarkInvoiceAsRefundedRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		String response = call("MarkInvoiceAsRefunded", MarkInvoiceAsRefundedRequest.toNVPString(), apiUsername);
+		return new MarkInvoiceAsRefundedResponse(NVPUtil.decode(response), "");
+	}
+
+	public MarkInvoiceAsRefundedResponse markInvoiceAsRefunded (MarkInvoiceAsRefundedRequest MarkInvoiceAsRefundedRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		return markInvoiceAsRefunded(MarkInvoiceAsRefundedRequest, null);
 	}
 
 }
