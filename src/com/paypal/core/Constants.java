@@ -7,5 +7,5 @@ public class Constants {
 	public static final String SANDBOX_EMAIL_ADDRESS = "Platform.sdk.seller@gmail.com";
 	public static final String SOAP = "SOAP";
 	public static final String SDK_NAME = "sdk-invoicing-java";
-	public static final String SDK_VERSION = "1.2.90";
+	public static final String SDK_VERSION = "1.3.90";
 }
