@@ -1,70 +1,95 @@
-
-/**
- * Auto generated code
- */
-
 package com.paypal.svcs.types.pt;
-
-import com.paypal.svcs.types.pt.OtherPaymentRefundDetailsType;
 import com.paypal.svcs.types.pt.PayPalPaymentRefundDetailsType;
+import com.paypal.svcs.types.pt.OtherPaymentRefundDetailsType;
 import java.util.Map;
 
-
 /**
- * Payment refund details about the invoice.
+ * Payment refund details about the invoice.  
  */
-public class PaymentRefundDetailsType {
+public class PaymentRefundDetailsType{
+
 
 	/**
-	 * True if the invoice was refunded using PayPal.
-	 *
-	 * @Required
-	 */
+	 * True if the invoice was refunded using PayPal.  	  
+	 *@Required	 
+	 */ 
 	private Boolean viaPayPal;
-	public Boolean getViaPayPal() {
-		return viaPayPal;
-	}
-	public void setViaPayPal(Boolean value) {
-		this.viaPayPal = value;
-	}
 
 	/**
-	 * Other payment refund details.
-	 */
+	 * Other payment refund details.  	 
+	 */ 
 	private PayPalPaymentRefundDetailsType paypalPayment;
-	public PayPalPaymentRefundDetailsType getPaypalPayment() {
-		return paypalPayment;
-	}
-	public void setPaypalPayment(PayPalPaymentRefundDetailsType value) {
-		this.paypalPayment = value;
-	}
 
 	/**
-	 * details.
-	 */
+	 * details.  	 
+	 */ 
 	private OtherPaymentRefundDetailsType otherPayment;
-	public OtherPaymentRefundDetailsType getOtherPayment() {
-		return otherPayment;
-	}
-	public void setOtherPayment(OtherPaymentRefundDetailsType value) {
-		this.otherPayment = value;
-	}
+
+	
+
+	/**
+	 * Default Constructor
+	 */
+	public PaymentRefundDetailsType (){
+	}	
+
+	/**
+	 * Getter for viaPayPal
+	 */
+	 public Boolean getViaPayPal() {
+	 	return viaPayPal;
+	 }
+	 
+	/**
+	 * Setter for viaPayPal
+	 */
+	 public void setViaPayPal(Boolean viaPayPal) {
+	 	this.viaPayPal = viaPayPal;
+	 }
+	 
+	/**
+	 * Getter for paypalPayment
+	 */
+	 public PayPalPaymentRefundDetailsType getPaypalPayment() {
+	 	return paypalPayment;
+	 }
+	 
+	/**
+	 * Setter for paypalPayment
+	 */
+	 public void setPaypalPayment(PayPalPaymentRefundDetailsType paypalPayment) {
+	 	this.paypalPayment = paypalPayment;
+	 }
+	 
+	/**
+	 * Getter for otherPayment
+	 */
+	 public OtherPaymentRefundDetailsType getOtherPayment() {
+	 	return otherPayment;
+	 }
+	 
+	/**
+	 * Setter for otherPayment
+	 */
+	 public void setOtherPayment(OtherPaymentRefundDetailsType otherPayment) {
+	 	this.otherPayment = otherPayment;
+	 }
+	 
 
 
-	public PaymentRefundDetailsType() {
-	}
 	public PaymentRefundDetailsType(Map<String, String> map, String prefix) {
-		int i=0; 
-		if( map.containsKey(prefix + "viaPayPal") ) {
+		int i = 0;
+		if(map.containsKey(prefix + "viaPayPal")){
 			this.viaPayPal = Boolean.valueOf(map.get(prefix + "viaPayPal"));
 		}
-		if( map.containsKey(prefix + "paypalPayment" + ".") ) {
-			String newPrefix = prefix + "paypalPayment" + '.';
+		if(map.containsKey(prefix + "paypalPayment")){
+			String newPrefix = prefix + "paypalPayment" + ".";
 			this.paypalPayment =  new PayPalPaymentRefundDetailsType(map, newPrefix);
 		}
-		if( map.containsKey(prefix + "otherPayment" + ".note") ) {
-			String newPrefix = prefix + "otherPayment" + '.';
+		if(map.containsKey(prefix + "otherPayment")){
+			String newPrefix = prefix + "otherPayment" + ".";
 			this.otherPayment =  new OtherPaymentRefundDetailsType(map, newPrefix);
 		}
 	}
+
 }

@@ -1,180 +1,246 @@
-
-/**
- * Auto generated code
- */
-
 package com.paypal.svcs.types.pt;
-
-import com.paypal.core.NVPUtil;
 import com.paypal.svcs.types.common.BaseAddress;
 import java.io.UnsupportedEncodingException;
+import com.paypal.core.NVPUtil;
 import java.util.Map;
 
-
 /**
- * Contact information for a company participating in the invoicing system.
+ * Contact information for a company participating in the
+ * invoicing system. 
  */
-public class BusinessInfoType {
+public class BusinessInfoType{
+
 
 	/**
-	 * First name of the company contact.
-	 */
+	 * First name of the company contact. 	 
+	 */ 
 	private String firstName;
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String value) {
-		this.firstName = value;
-	}
 
 	/**
-	 * Last name of the company contact.
-	 */
+	 * Last name of the company contact. 	 
+	 */ 
 	private String lastName;
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String value) {
-		this.lastName = value;
-	}
 
 	/**
-	 * Business name of the company.
-	 */
+	 * Business name of the company. 	 
+	 */ 
 	private String businessName;
-	public String getBusinessName() {
-		return businessName;
-	}
-	public void setBusinessName(String value) {
-		this.businessName = value;
-	}
 
 	/**
-	 * Phone number for contacting the company.
-	 */
+	 * Phone number for contacting the company. 	 
+	 */ 
 	private String phone;
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String value) {
-		this.phone = value;
-	}
 
 	/**
-	 * Fax number used by the company.
-	 */
+	 * Fax number used by the company. 	 
+	 */ 
 	private String fax;
-	public String getFax() {
-		return fax;
-	}
-	public void setFax(String value) {
-		this.fax = value;
-	}
 
 	/**
-	 * Website used by the company.
-	 */
+	 * Website used by the company. 	 
+	 */ 
 	private String website;
-	public String getWebsite() {
-		return website;
-	}
-	public void setWebsite(String value) {
-		this.website = value;
-	}
 
 	/**
-	 * Custom value to be displayed in the contact information details.
-	 */
+	 * Custom value to be displayed in the contact information
+	 * details. 	 
+	 */ 
 	private String customValue;
-	public String getCustomValue() {
-		return customValue;
-	}
-	public void setCustomValue(String value) {
-		this.customValue = value;
-	}
 
 	/**
-	 * Street address of the company.
-	 */
+	 * Street address of the company. 	 
+	 */ 
 	private BaseAddress address;
-	public BaseAddress getAddress() {
-		return address;
-	}
-	public void setAddress(BaseAddress value) {
-		this.address = value;
-	}
 
+	
 
-	public BusinessInfoType() {
-	}
+	/**
+	 * Default Constructor
+	 */
+	public BusinessInfoType (){
+	}	
+
+	/**
+	 * Getter for firstName
+	 */
+	 public String getFirstName() {
+	 	return firstName;
+	 }
+	 
+	/**
+	 * Setter for firstName
+	 */
+	 public void setFirstName(String firstName) {
+	 	this.firstName = firstName;
+	 }
+	 
+	/**
+	 * Getter for lastName
+	 */
+	 public String getLastName() {
+	 	return lastName;
+	 }
+	 
+	/**
+	 * Setter for lastName
+	 */
+	 public void setLastName(String lastName) {
+	 	this.lastName = lastName;
+	 }
+	 
+	/**
+	 * Getter for businessName
+	 */
+	 public String getBusinessName() {
+	 	return businessName;
+	 }
+	 
+	/**
+	 * Setter for businessName
+	 */
+	 public void setBusinessName(String businessName) {
+	 	this.businessName = businessName;
+	 }
+	 
+	/**
+	 * Getter for phone
+	 */
+	 public String getPhone() {
+	 	return phone;
+	 }
+	 
+	/**
+	 * Setter for phone
+	 */
+	 public void setPhone(String phone) {
+	 	this.phone = phone;
+	 }
+	 
+	/**
+	 * Getter for fax
+	 */
+	 public String getFax() {
+	 	return fax;
+	 }
+	 
+	/**
+	 * Setter for fax
+	 */
+	 public void setFax(String fax) {
+	 	this.fax = fax;
+	 }
+	 
+	/**
+	 * Getter for website
+	 */
+	 public String getWebsite() {
+	 	return website;
+	 }
+	 
+	/**
+	 * Setter for website
+	 */
+	 public void setWebsite(String website) {
+	 	this.website = website;
+	 }
+	 
+	/**
+	 * Getter for customValue
+	 */
+	 public String getCustomValue() {
+	 	return customValue;
+	 }
+	 
+	/**
+	 * Setter for customValue
+	 */
+	 public void setCustomValue(String customValue) {
+	 	this.customValue = customValue;
+	 }
+	 
+	/**
+	 * Getter for address
+	 */
+	 public BaseAddress getAddress() {
+	 	return address;
+	 }
+	 
+	/**
+	 * Setter for address
+	 */
+	 public void setAddress(BaseAddress address) {
+	 	this.address = address;
+	 }
+	 
+
 
 	public String toNVPString() throws UnsupportedEncodingException {
 		return toNVPString("");
 	}
-
+	
 	public String toNVPString(String prefix) throws UnsupportedEncodingException {
 		StringBuilder sb = new StringBuilder();
-		if( firstName != null ) {
+		if (firstName != null) {
 			sb.append(prefix).append("firstName=").append(NVPUtil.encodeUrl(firstName));
-			sb.append('&');
+			sb.append("&");
 		}
-		if( lastName != null ) {
+		if (lastName != null) {
 			sb.append(prefix).append("lastName=").append(NVPUtil.encodeUrl(lastName));
-			sb.append('&');
+			sb.append("&");
 		}
-		if( businessName != null ) {
+		if (businessName != null) {
 			sb.append(prefix).append("businessName=").append(NVPUtil.encodeUrl(businessName));
-			sb.append('&');
+			sb.append("&");
 		}
-		if( phone != null ) {
+		if (phone != null) {
 			sb.append(prefix).append("phone=").append(NVPUtil.encodeUrl(phone));
-			sb.append('&');
+			sb.append("&");
 		}
-		if( fax != null ) {
+		if (fax != null) {
 			sb.append(prefix).append("fax=").append(NVPUtil.encodeUrl(fax));
-			sb.append('&');
+			sb.append("&");
 		}
-		if( website != null ) {
+		if (website != null) {
 			sb.append(prefix).append("website=").append(NVPUtil.encodeUrl(website));
-			sb.append('&');
+			sb.append("&");
 		}
-		if( customValue != null ) {
+		if (customValue != null) {
 			sb.append(prefix).append("customValue=").append(NVPUtil.encodeUrl(customValue));
-			sb.append('&');
+			sb.append("&");
 		}
-		if( address != null ) {
+		if (address != null) {
 			String newPrefix = prefix + "address.";
 			sb.append(address.toNVPString(newPrefix));
 		}
 		return sb.toString();
 	}
-
 	public BusinessInfoType(Map<String, String> map, String prefix) {
-		int i=0; 
-		if( map.containsKey(prefix + "firstName") ) {
+		int i = 0;
+		if(map.containsKey(prefix + "firstName")){
 			this.firstName = map.get(prefix + "firstName");
 		}
-		if( map.containsKey(prefix + "lastName") ) {
+		if(map.containsKey(prefix + "lastName")){
 			this.lastName = map.get(prefix + "lastName");
 		}
-		if( map.containsKey(prefix + "businessName") ) {
+		if(map.containsKey(prefix + "businessName")){
 			this.businessName = map.get(prefix + "businessName");
 		}
-		if( map.containsKey(prefix + "phone") ) {
+		if(map.containsKey(prefix + "phone")){
 			this.phone = map.get(prefix + "phone");
 		}
-		if( map.containsKey(prefix + "fax") ) {
+		if(map.containsKey(prefix + "fax")){
 			this.fax = map.get(prefix + "fax");
 		}
-		if( map.containsKey(prefix + "website") ) {
+		if(map.containsKey(prefix + "website")){
 			this.website = map.get(prefix + "website");
 		}
-		if( map.containsKey(prefix + "customValue") ) {
+		if(map.containsKey(prefix + "customValue")){
 			this.customValue = map.get(prefix + "customValue");
 		}
-		if( map.containsKey(prefix + "address" + ".line1") ) {
-			String newPrefix = prefix + "address" + '.';
+		if(map.containsKey(prefix + "address" + ".line1")){
+			String newPrefix = prefix + "address" + ".";
 			this.address =  new BaseAddress(map, newPrefix);
 		}
 	}
+
 }

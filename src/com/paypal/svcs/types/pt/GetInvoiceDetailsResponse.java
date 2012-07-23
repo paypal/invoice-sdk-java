@@ -1,145 +1,203 @@
-
-/**
- * Auto generated code
- */
-
 package com.paypal.svcs.types.pt;
-
-import com.paypal.svcs.types.common.ErrorData;
 import com.paypal.svcs.types.common.ResponseEnvelope;
-import com.paypal.svcs.types.pt.InvoiceDetailsType;
 import com.paypal.svcs.types.pt.InvoiceType;
+import com.paypal.svcs.types.pt.InvoiceDetailsType;
 import com.paypal.svcs.types.pt.PaymentDetailsType;
 import com.paypal.svcs.types.pt.PaymentRefundDetailsType;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
+import com.paypal.svcs.types.common.ErrorData;
 import java.util.Map;
 
-
 /**
- * The response object for CreateInvoice.
+ * The response object for CreateInvoice. 
  */
-public class GetInvoiceDetailsResponse {
+public class GetInvoiceDetailsResponse{
+
 
 	/**
-	 *
-	 * @Required
-	 */
+	 * No Document Comments	  
+	 *@Required	 
+	 */ 
 	private ResponseEnvelope responseEnvelope;
-	public ResponseEnvelope getResponseEnvelope() {
-		return responseEnvelope;
-	}
-	public void setResponseEnvelope(ResponseEnvelope value) {
-		this.responseEnvelope = value;
-	}
 
 	/**
-	 * The requested invoice.
-	 *
-	 * @Required
-	 */
+	 * The requested invoice. 	  
+	 *@Required	 
+	 */ 
 	private InvoiceType invoice;
-	public InvoiceType getInvoice() {
-		return invoice;
-	}
-	public void setInvoice(InvoiceType value) {
-		this.invoice = value;
-	}
 
 	/**
-	 * The requested invoice details.
-	 *
-	 * @Required
-	 */
+	 * The requested invoice details. 	  
+	 *@Required	 
+	 */ 
 	private InvoiceDetailsType invoiceDetails;
-	public InvoiceDetailsType getInvoiceDetails() {
-		return invoiceDetails;
-	}
-	public void setInvoiceDetails(InvoiceDetailsType value) {
-		this.invoiceDetails = value;
-	}
 
 	/**
-	 * The requested invoice payment details.
-	 */
+	 * The requested invoice payment details. 	 
+	 */ 
 	private PaymentDetailsType paymentDetails;
-	public PaymentDetailsType getPaymentDetails() {
-		return paymentDetails;
-	}
-	public void setPaymentDetails(PaymentDetailsType value) {
-		this.paymentDetails = value;
-	}
 
 	/**
-	 * The requested invoice refund details.
-	 */
+	 * The requested invoice refund details. 	 
+	 */ 
 	private PaymentRefundDetailsType refundDetails;
-	public PaymentRefundDetailsType getRefundDetails() {
-		return refundDetails;
-	}
-	public void setRefundDetails(PaymentRefundDetailsType value) {
-		this.refundDetails = value;
-	}
 
 	/**
-	 * The URL which lead merchant to view the invoice details on web.
-	 *
-	 * @Required
-	 */
+	 * The URL which lead merchant to view the invoice details on
+	 * web. 	  
+	 *@Required	 
+	 */ 
 	private String invoiceURL;
-	public String getInvoiceURL() {
-		return invoiceURL;
-	}
-	public void setInvoiceURL(String value) {
-		this.invoiceURL = value;
-	}
 
 	/**
-	 */
+	 * No Document Comments	 
+	 */ 
 	private List<ErrorData> error = new ArrayList<ErrorData>();
-	public List<ErrorData> getError() {
-		return error;
-	}
-	public void setError(List<ErrorData> value) {
-		this.error = value;
-	}
+
+	
+
+	/**
+	 * Default Constructor
+	 */
+	public GetInvoiceDetailsResponse (){
+	}	
+
+	/**
+	 * Getter for responseEnvelope
+	 */
+	 public ResponseEnvelope getResponseEnvelope() {
+	 	return responseEnvelope;
+	 }
+	 
+	/**
+	 * Setter for responseEnvelope
+	 */
+	 public void setResponseEnvelope(ResponseEnvelope responseEnvelope) {
+	 	this.responseEnvelope = responseEnvelope;
+	 }
+	 
+	/**
+	 * Getter for invoice
+	 */
+	 public InvoiceType getInvoice() {
+	 	return invoice;
+	 }
+	 
+	/**
+	 * Setter for invoice
+	 */
+	 public void setInvoice(InvoiceType invoice) {
+	 	this.invoice = invoice;
+	 }
+	 
+	/**
+	 * Getter for invoiceDetails
+	 */
+	 public InvoiceDetailsType getInvoiceDetails() {
+	 	return invoiceDetails;
+	 }
+	 
+	/**
+	 * Setter for invoiceDetails
+	 */
+	 public void setInvoiceDetails(InvoiceDetailsType invoiceDetails) {
+	 	this.invoiceDetails = invoiceDetails;
+	 }
+	 
+	/**
+	 * Getter for paymentDetails
+	 */
+	 public PaymentDetailsType getPaymentDetails() {
+	 	return paymentDetails;
+	 }
+	 
+	/**
+	 * Setter for paymentDetails
+	 */
+	 public void setPaymentDetails(PaymentDetailsType paymentDetails) {
+	 	this.paymentDetails = paymentDetails;
+	 }
+	 
+	/**
+	 * Getter for refundDetails
+	 */
+	 public PaymentRefundDetailsType getRefundDetails() {
+	 	return refundDetails;
+	 }
+	 
+	/**
+	 * Setter for refundDetails
+	 */
+	 public void setRefundDetails(PaymentRefundDetailsType refundDetails) {
+	 	this.refundDetails = refundDetails;
+	 }
+	 
+	/**
+	 * Getter for invoiceURL
+	 */
+	 public String getInvoiceURL() {
+	 	return invoiceURL;
+	 }
+	 
+	/**
+	 * Setter for invoiceURL
+	 */
+	 public void setInvoiceURL(String invoiceURL) {
+	 	this.invoiceURL = invoiceURL;
+	 }
+	 
+	/**
+	 * Getter for error
+	 */
+	 public List<ErrorData> getError() {
+	 	return error;
+	 }
+	 
+	/**
+	 * Setter for error
+	 */
+	 public void setError(List<ErrorData> error) {
+	 	this.error = error;
+	 }
+	 
 
 
-	public GetInvoiceDetailsResponse() {
-	}
 	public GetInvoiceDetailsResponse(Map<String, String> map, String prefix) {
-		int i=0; 
-		if( map.containsKey(prefix + "responseEnvelope" + ".timestamp") ) {
-			String newPrefix = prefix + "responseEnvelope" + '.';
+		int i = 0;
+		if(map.containsKey(prefix + "responseEnvelope" + ".timestamp")){
+			String newPrefix = prefix + "responseEnvelope" + ".";
 			this.responseEnvelope =  new ResponseEnvelope(map, newPrefix);
 		}
-		if( map.containsKey(prefix + "invoice" + ".merchantEmail") ) {
-			String newPrefix = prefix + "invoice" + '.';
+		if(map.containsKey(prefix + "invoice" + ".merchantEmail")){
+			String newPrefix = prefix + "invoice" + ".";
 			this.invoice =  new InvoiceType(map, newPrefix);
 		}
-		if( map.containsKey(prefix + "invoiceDetails" + ".totalAmount") ) {
-			String newPrefix = prefix + "invoiceDetails" + '.';
+		if(map.containsKey(prefix + "invoiceDetails" + ".createdDate")){
+			String newPrefix = prefix + "invoiceDetails" + ".";
 			this.invoiceDetails =  new InvoiceDetailsType(map, newPrefix);
 		}
-		if( map.containsKey(prefix + "paymentDetails" + ".viaPayPal") ) {
-			String newPrefix = prefix + "paymentDetails" + '.';
+		if(map.containsKey(prefix + "paymentDetails" + ".viaPayPal")){
+			String newPrefix = prefix + "paymentDetails" + ".";
 			this.paymentDetails =  new PaymentDetailsType(map, newPrefix);
 		}
-		if( map.containsKey(prefix + "refundDetails" + ".viaPayPal") ) {
-			String newPrefix = prefix + "refundDetails" + '.';
+		if(map.containsKey(prefix + "refundDetails" + ".viaPayPal")){
+			String newPrefix = prefix + "refundDetails" + ".";
 			this.refundDetails =  new PaymentRefundDetailsType(map, newPrefix);
 		}
-		if( map.containsKey(prefix + "invoiceURL") ) {
+		if(map.containsKey(prefix + "invoiceURL")){
 			this.invoiceURL = map.get(prefix + "invoiceURL");
 		}
-		 i=0; 
-		 while(true) {
-			if( map.containsKey(prefix + "error" + '(' + i + ')'+ ".errorId") ) {
-				String newPrefix = prefix + "error" + '(' + i + ')' + '.';
+		i = 0;
+		while(true) {
+			if(map.containsKey(prefix + "error" + "(" + i + ")" + ".parameter(0)")){
+				String newPrefix = prefix + "error" + "(" + i + ")" + ".";
 				this.error.add(new ErrorData(map, newPrefix));
+			} else {
+				break;
 			}
-			else break;
 			i++;
 		}
 	}
+
 }

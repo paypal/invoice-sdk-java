@@ -1,65 +1,61 @@
-/**
- * InvoiceService wrapper class
- * Auto generated code
- */
 package com.paypal.svcs.services;
-
+import java.io.*;
 import com.paypal.core.BaseService;
+import com.paypal.exception.*;
 import com.paypal.core.NVPUtil;
-import com.paypal.exception.ClientActionRequiredException;
-import com.paypal.exception.HttpErrorException;
-import com.paypal.exception.InvalidCredentialException;
-import com.paypal.exception.InvalidResponseDataException;
-import com.paypal.exception.MissingCredentialException;
-import com.paypal.exception.SSLConfigurationException;
-import com.paypal.sdk.exceptions.OAuthException;
-import com.paypal.svcs.types.pt.CancelInvoiceRequest;
-import com.paypal.svcs.types.pt.CancelInvoiceResponse;
-import com.paypal.svcs.types.pt.CreateAndSendInvoiceRequest;
-import com.paypal.svcs.types.pt.CreateAndSendInvoiceResponse;
 import com.paypal.svcs.types.pt.CreateInvoiceRequest;
 import com.paypal.svcs.types.pt.CreateInvoiceResponse;
-import com.paypal.svcs.types.pt.GetInvoiceDetailsRequest;
-import com.paypal.svcs.types.pt.GetInvoiceDetailsResponse;
-import com.paypal.svcs.types.pt.MarkInvoiceAsPaidRequest;
-import com.paypal.svcs.types.pt.MarkInvoiceAsPaidResponse;
-import com.paypal.svcs.types.pt.MarkInvoiceAsRefundedRequest;
-import com.paypal.svcs.types.pt.MarkInvoiceAsRefundedResponse;
-import com.paypal.svcs.types.pt.MarkInvoiceAsUnpaidRequest;
-import com.paypal.svcs.types.pt.MarkInvoiceAsUnpaidResponse;
-import com.paypal.svcs.types.pt.SearchInvoicesRequest;
-import com.paypal.svcs.types.pt.SearchInvoicesResponse;
 import com.paypal.svcs.types.pt.SendInvoiceRequest;
 import com.paypal.svcs.types.pt.SendInvoiceResponse;
+import com.paypal.svcs.types.pt.CreateAndSendInvoiceRequest;
+import com.paypal.svcs.types.pt.CreateAndSendInvoiceResponse;
 import com.paypal.svcs.types.pt.UpdateInvoiceRequest;
 import com.paypal.svcs.types.pt.UpdateInvoiceResponse;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import com.paypal.svcs.types.pt.GetInvoiceDetailsRequest;
+import com.paypal.svcs.types.pt.GetInvoiceDetailsResponse;
+import com.paypal.svcs.types.pt.CancelInvoiceRequest;
+import com.paypal.svcs.types.pt.CancelInvoiceResponse;
+import com.paypal.svcs.types.pt.SearchInvoicesRequest;
+import com.paypal.svcs.types.pt.SearchInvoicesResponse;
+import com.paypal.svcs.types.pt.MarkInvoiceAsPaidRequest;
+import com.paypal.svcs.types.pt.MarkInvoiceAsPaidResponse;
+import com.paypal.svcs.types.pt.MarkInvoiceAsUnpaidRequest;
+import com.paypal.svcs.types.pt.MarkInvoiceAsUnpaidResponse;
+import com.paypal.svcs.types.pt.MarkInvoiceAsRefundedRequest;
+import com.paypal.svcs.types.pt.MarkInvoiceAsRefundedResponse;
+import com.paypal.sdk.exceptions.OAuthException;
+
+public class InvoiceService extends BaseService{
 
 
-public class InvoiceService extends BaseService {
+	// Service Version
+	public static final String SERVICE_VERSION = "1.6.0";
 
-	private static final String SERVICE_VERSION = "1.6.0";
-	private static final String SERVICE_NAME = "Invoice";
+	// Service Name
+	public static final String SERVICE_NAME = "Invoice";
 
+	
 	public InvoiceService(File configFile) throws IOException, FileNotFoundException {
 		super(SERVICE_NAME, SERVICE_VERSION);
 		initConfig(configFile);
-	}
+	}		
+
 	public InvoiceService(InputStream config) throws IOException, FileNotFoundException {
 		super(SERVICE_NAME, SERVICE_VERSION);
 		initConfig(config);
 	}
+
 	public InvoiceService(String configFilePath) throws IOException, FileNotFoundException {
 		super(SERVICE_NAME, SERVICE_VERSION);
 		initConfig(configFilePath);
+	}
+
+
+
 		
-	}
-
-	/**
+	/**	
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -71,16 +67,14 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	public CreateInvoiceResponse createInvoice (CreateInvoiceRequest CreateInvoiceRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		String response = call("CreateInvoice", CreateInvoiceRequest.toNVPString(), apiUsername);
+	 public CreateInvoiceResponse createInvoice(CreateInvoiceRequest createInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	String response = call("CreateInvoice", createInvoiceRequest.toNVPString(), apiUsername);
 		return new CreateInvoiceResponse(NVPUtil.decode(response), "");
-	}
-
-	public CreateInvoiceResponse createInvoice (CreateInvoiceRequest CreateInvoiceRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		return createInvoice(CreateInvoiceRequest, null);
-	}
-
-	/**
+	 }
+	 
+	/** 
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -92,16 +86,32 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	public SendInvoiceResponse sendInvoice (SendInvoiceRequest SendInvoiceRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		String response = call("SendInvoice", SendInvoiceRequest.toNVPString(), apiUsername);
+	 public CreateInvoiceResponse createInvoice(CreateInvoiceRequest createInvoiceRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return createInvoice(createInvoiceRequest, null);
+	 }
+		
+	/**	
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public SendInvoiceResponse sendInvoice(SendInvoiceRequest sendInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	String response = call("SendInvoice", sendInvoiceRequest.toNVPString(), apiUsername);
 		return new SendInvoiceResponse(NVPUtil.decode(response), "");
-	}
-
-	public SendInvoiceResponse sendInvoice (SendInvoiceRequest SendInvoiceRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		return sendInvoice(SendInvoiceRequest, null);
-	}
-
-	/**
+	 }
+	 
+	/** 
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -113,16 +123,32 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	public CreateAndSendInvoiceResponse createAndSendInvoice (CreateAndSendInvoiceRequest CreateAndSendInvoiceRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		String response = call("CreateAndSendInvoice", CreateAndSendInvoiceRequest.toNVPString(), apiUsername);
+	 public SendInvoiceResponse sendInvoice(SendInvoiceRequest sendInvoiceRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return sendInvoice(sendInvoiceRequest, null);
+	 }
+		
+	/**	
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public CreateAndSendInvoiceResponse createAndSendInvoice(CreateAndSendInvoiceRequest createAndSendInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	String response = call("CreateAndSendInvoice", createAndSendInvoiceRequest.toNVPString(), apiUsername);
 		return new CreateAndSendInvoiceResponse(NVPUtil.decode(response), "");
-	}
-
-	public CreateAndSendInvoiceResponse createAndSendInvoice (CreateAndSendInvoiceRequest CreateAndSendInvoiceRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		return createAndSendInvoice(CreateAndSendInvoiceRequest, null);
-	}
-
-	/**
+	 }
+	 
+	/** 
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -134,16 +160,32 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	public UpdateInvoiceResponse updateInvoice (UpdateInvoiceRequest UpdateInvoiceRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		String response = call("UpdateInvoice", UpdateInvoiceRequest.toNVPString(), apiUsername);
+	 public CreateAndSendInvoiceResponse createAndSendInvoice(CreateAndSendInvoiceRequest createAndSendInvoiceRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return createAndSendInvoice(createAndSendInvoiceRequest, null);
+	 }
+		
+	/**	
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public UpdateInvoiceResponse updateInvoice(UpdateInvoiceRequest updateInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	String response = call("UpdateInvoice", updateInvoiceRequest.toNVPString(), apiUsername);
 		return new UpdateInvoiceResponse(NVPUtil.decode(response), "");
-	}
-
-	public UpdateInvoiceResponse updateInvoice (UpdateInvoiceRequest UpdateInvoiceRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		return updateInvoice(UpdateInvoiceRequest, null);
-	}
-
-	/**
+	 }
+	 
+	/** 
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -155,16 +197,32 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	public GetInvoiceDetailsResponse getInvoiceDetails (GetInvoiceDetailsRequest GetInvoiceDetailsRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		String response = call("GetInvoiceDetails", GetInvoiceDetailsRequest.toNVPString(), apiUsername);
+	 public UpdateInvoiceResponse updateInvoice(UpdateInvoiceRequest updateInvoiceRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return updateInvoice(updateInvoiceRequest, null);
+	 }
+		
+	/**	
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public GetInvoiceDetailsResponse getInvoiceDetails(GetInvoiceDetailsRequest getInvoiceDetailsRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	String response = call("GetInvoiceDetails", getInvoiceDetailsRequest.toNVPString(), apiUsername);
 		return new GetInvoiceDetailsResponse(NVPUtil.decode(response), "");
-	}
-
-	public GetInvoiceDetailsResponse getInvoiceDetails (GetInvoiceDetailsRequest GetInvoiceDetailsRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		return getInvoiceDetails(GetInvoiceDetailsRequest, null);
-	}
-
-	/**
+	 }
+	 
+	/** 
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -176,16 +234,32 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	public CancelInvoiceResponse cancelInvoice (CancelInvoiceRequest CancelInvoiceRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		String response = call("CancelInvoice", CancelInvoiceRequest.toNVPString(), apiUsername);
+	 public GetInvoiceDetailsResponse getInvoiceDetails(GetInvoiceDetailsRequest getInvoiceDetailsRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return getInvoiceDetails(getInvoiceDetailsRequest, null);
+	 }
+		
+	/**	
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public CancelInvoiceResponse cancelInvoice(CancelInvoiceRequest cancelInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	String response = call("CancelInvoice", cancelInvoiceRequest.toNVPString(), apiUsername);
 		return new CancelInvoiceResponse(NVPUtil.decode(response), "");
-	}
-
-	public CancelInvoiceResponse cancelInvoice (CancelInvoiceRequest CancelInvoiceRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		return cancelInvoice(CancelInvoiceRequest, null);
-	}
-
-	/**
+	 }
+	 
+	/** 
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -197,16 +271,32 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	public SearchInvoicesResponse searchInvoices (SearchInvoicesRequest SearchInvoicesRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		String response = call("SearchInvoices", SearchInvoicesRequest.toNVPString(), apiUsername);
+	 public CancelInvoiceResponse cancelInvoice(CancelInvoiceRequest cancelInvoiceRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return cancelInvoice(cancelInvoiceRequest, null);
+	 }
+		
+	/**	
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public SearchInvoicesResponse searchInvoices(SearchInvoicesRequest searchInvoicesRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	String response = call("SearchInvoices", searchInvoicesRequest.toNVPString(), apiUsername);
 		return new SearchInvoicesResponse(NVPUtil.decode(response), "");
-	}
-
-	public SearchInvoicesResponse searchInvoices (SearchInvoicesRequest SearchInvoicesRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		return searchInvoices(SearchInvoicesRequest, null);
-	}
-
-	/**
+	 }
+	 
+	/** 
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -218,16 +308,32 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	public MarkInvoiceAsPaidResponse markInvoiceAsPaid (MarkInvoiceAsPaidRequest MarkInvoiceAsPaidRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		String response = call("MarkInvoiceAsPaid", MarkInvoiceAsPaidRequest.toNVPString(), apiUsername);
+	 public SearchInvoicesResponse searchInvoices(SearchInvoicesRequest searchInvoicesRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return searchInvoices(searchInvoicesRequest, null);
+	 }
+		
+	/**	
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public MarkInvoiceAsPaidResponse markInvoiceAsPaid(MarkInvoiceAsPaidRequest markInvoiceAsPaidRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	String response = call("MarkInvoiceAsPaid", markInvoiceAsPaidRequest.toNVPString(), apiUsername);
 		return new MarkInvoiceAsPaidResponse(NVPUtil.decode(response), "");
-	}
-
-	public MarkInvoiceAsPaidResponse markInvoiceAsPaid (MarkInvoiceAsPaidRequest MarkInvoiceAsPaidRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		return markInvoiceAsPaid(MarkInvoiceAsPaidRequest, null);
-	}
-
-	/**
+	 }
+	 
+	/** 
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -239,16 +345,32 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	public MarkInvoiceAsUnpaidResponse markInvoiceAsUnpaid (MarkInvoiceAsUnpaidRequest MarkInvoiceAsUnpaidRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		String response = call("MarkInvoiceAsUnpaid", MarkInvoiceAsUnpaidRequest.toNVPString(), apiUsername);
+	 public MarkInvoiceAsPaidResponse markInvoiceAsPaid(MarkInvoiceAsPaidRequest markInvoiceAsPaidRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return markInvoiceAsPaid(markInvoiceAsPaidRequest, null);
+	 }
+		
+	/**	
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public MarkInvoiceAsUnpaidResponse markInvoiceAsUnpaid(MarkInvoiceAsUnpaidRequest markInvoiceAsUnpaidRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	String response = call("MarkInvoiceAsUnpaid", markInvoiceAsUnpaidRequest.toNVPString(), apiUsername);
 		return new MarkInvoiceAsUnpaidResponse(NVPUtil.decode(response), "");
-	}
-
-	public MarkInvoiceAsUnpaidResponse markInvoiceAsUnpaid (MarkInvoiceAsUnpaidRequest MarkInvoiceAsUnpaidRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		return markInvoiceAsUnpaid(MarkInvoiceAsUnpaidRequest, null);
-	}
-
-	/**
+	 }
+	 
+	/** 
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -260,13 +382,46 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	public MarkInvoiceAsRefundedResponse markInvoiceAsRefunded (MarkInvoiceAsRefundedRequest MarkInvoiceAsRefundedRequest,  String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		String response = call("MarkInvoiceAsRefunded", MarkInvoiceAsRefundedRequest.toNVPString(), apiUsername);
+	 public MarkInvoiceAsUnpaidResponse markInvoiceAsUnpaid(MarkInvoiceAsUnpaidRequest markInvoiceAsUnpaidRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return markInvoiceAsUnpaid(markInvoiceAsUnpaidRequest, null);
+	 }
+		
+	/**	
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public MarkInvoiceAsRefundedResponse markInvoiceAsRefunded(MarkInvoiceAsRefundedRequest markInvoiceAsRefundedRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	String response = call("MarkInvoiceAsRefunded", markInvoiceAsRefundedRequest.toNVPString(), apiUsername);
 		return new MarkInvoiceAsRefundedResponse(NVPUtil.decode(response), "");
-	}
+	 }
+	 
+	/** 
+	 * The Method does not have any comments, this is
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public MarkInvoiceAsRefundedResponse markInvoiceAsRefunded(MarkInvoiceAsRefundedRequest markInvoiceAsRefundedRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return markInvoiceAsRefunded(markInvoiceAsRefundedRequest, null);
+	 }
 
-	public MarkInvoiceAsRefundedResponse markInvoiceAsRefunded (MarkInvoiceAsRefundedRequest MarkInvoiceAsRefundedRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-		return markInvoiceAsRefunded(MarkInvoiceAsRefundedRequest, null);
-	}
 
 }
