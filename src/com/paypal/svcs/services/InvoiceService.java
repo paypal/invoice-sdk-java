@@ -54,7 +54,6 @@ public class InvoiceService extends BaseService{
 
 		
 	/**	
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -73,7 +72,6 @@ public class InvoiceService extends BaseService{
 	 }
 	 
 	/** 
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -91,7 +89,6 @@ public class InvoiceService extends BaseService{
 	 }
 		
 	/**	
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -110,7 +107,6 @@ public class InvoiceService extends BaseService{
 	 }
 	 
 	/** 
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -128,7 +124,6 @@ public class InvoiceService extends BaseService{
 	 }
 		
 	/**	
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -147,7 +142,6 @@ public class InvoiceService extends BaseService{
 	 }
 	 
 	/** 
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -165,7 +159,6 @@ public class InvoiceService extends BaseService{
 	 }
 		
 	/**	
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -184,7 +177,6 @@ public class InvoiceService extends BaseService{
 	 }
 	 
 	/** 
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -202,7 +194,6 @@ public class InvoiceService extends BaseService{
 	 }
 		
 	/**	
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -221,7 +212,6 @@ public class InvoiceService extends BaseService{
 	 }
 	 
 	/** 
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -239,7 +229,6 @@ public class InvoiceService extends BaseService{
 	 }
 		
 	/**	
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -258,7 +247,6 @@ public class InvoiceService extends BaseService{
 	 }
 	 
 	/** 
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -276,7 +264,6 @@ public class InvoiceService extends BaseService{
 	 }
 		
 	/**	
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -295,7 +282,6 @@ public class InvoiceService extends BaseService{
 	 }
 	 
 	/** 
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -313,7 +299,6 @@ public class InvoiceService extends BaseService{
 	 }
 		
 	/**	
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -332,7 +317,6 @@ public class InvoiceService extends BaseService{
 	 }
 	 
 	/** 
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -350,7 +334,6 @@ public class InvoiceService extends BaseService{
 	 }
 		
 	/**	
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -369,7 +352,6 @@ public class InvoiceService extends BaseService{
 	 }
 	 
 	/** 
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -387,7 +369,6 @@ public class InvoiceService extends BaseService{
 	 }
 		
 	/**	
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
@@ -406,7 +387,6 @@ public class InvoiceService extends BaseService{
 	 }
 	 
 	/** 
-	 * The Method does not have any comments, this is
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException

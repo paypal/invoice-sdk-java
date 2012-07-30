@@ -11,7 +11,7 @@ public class MarkInvoiceAsPaidRequest{
 
 
 	/**
-	 * No Document Comments	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private RequestEnvelope requestEnvelope;

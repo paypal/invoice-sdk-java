@@ -10,7 +10,7 @@ public class SendInvoiceRequest{
 
 
 	/**
-	 * No Document Comments	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private RequestEnvelope requestEnvelope;

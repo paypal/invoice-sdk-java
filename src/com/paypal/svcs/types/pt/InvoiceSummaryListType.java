@@ -11,7 +11,7 @@ public class InvoiceSummaryListType{
 
 
 	/**
-	 * No Document Comments	 
+	 * 	 
 	 */ 
 	private List<InvoiceSummaryType> invoice = new ArrayList<InvoiceSummaryType>();
 

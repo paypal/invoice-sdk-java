@@ -11,7 +11,7 @@ public class SearchInvoicesRequest{
 
 
 	/**
-	 * No Document Comments	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private RequestEnvelope requestEnvelope;

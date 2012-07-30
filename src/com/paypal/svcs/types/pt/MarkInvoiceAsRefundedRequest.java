@@ -11,7 +11,7 @@ public class MarkInvoiceAsRefundedRequest{
 
 
 	/**
-	 * No Document Comments	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private RequestEnvelope requestEnvelope;

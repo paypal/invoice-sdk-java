@@ -11,7 +11,7 @@ public class CreateAndSendInvoiceRequest{
 
 
 	/**
-	 * No Document Comments	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private RequestEnvelope requestEnvelope;

@@ -86,10 +86,11 @@ public class PaymentRefundDetailsType{
 			String newPrefix = prefix + "paypalPayment" + ".";
 			this.paypalPayment =  new PayPalPaymentRefundDetailsType(map, newPrefix);
 		}
-		if(map.containsKey(prefix + "otherPayment")){
+		if(map.containsKey(prefix + "otherPayment.note") || map.containsKey(prefix + "otherPayment.date")){
 			String newPrefix = prefix + "otherPayment" + ".";
 			this.otherPayment =  new OtherPaymentRefundDetailsType(map, newPrefix);
 		}
+       
 	}
 
 }

@@ -13,7 +13,7 @@ public class InvoiceItemListType{
 
 
 	/**
-	 * No Document Comments	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private List<InvoiceItemType> item = new ArrayList<InvoiceItemType>();
