@@ -73,6 +73,7 @@ public class SendInvoiceServlet extends HttpServlet {
 			SendInvoiceResponse resp = invoiceSrvc
 					.sendInvoice(sendInvoiceRequest);
 			if (resp != null) {
+				session.setAttribute("RESPONSE_OBJECT", resp);
 				session.setAttribute("lastReq", invoiceSrvc.getLastRequest());
 				session.setAttribute("lastResp", invoiceSrvc.getLastResponse());
 				if (resp.getResponseEnvelope().getAck().toString()

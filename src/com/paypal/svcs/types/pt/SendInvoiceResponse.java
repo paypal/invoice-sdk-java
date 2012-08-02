@@ -101,28 +101,45 @@ public class SendInvoiceResponse{
 	 
 
 
-	public SendInvoiceResponse(Map<String, String> map, String prefix) {
+	
+	public static SendInvoiceResponse createInstance(Map<String, String> map, String prefix, int index) {
+		SendInvoiceResponse sendInvoiceResponse = null;
 		int i = 0;
-		if(map.containsKey(prefix + "responseEnvelope" + ".timestamp")){
-			String newPrefix = prefix + "responseEnvelope" + ".";
-			this.responseEnvelope =  new ResponseEnvelope(map, newPrefix);
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
 		}
-		if(map.containsKey(prefix + "invoiceID")){
-			this.invoiceID = map.get(prefix + "invoiceID");
+			
+		ResponseEnvelope responseEnvelope =  ResponseEnvelope.createInstance(map, prefix + "responseEnvelope", -1);
+		if (responseEnvelope != null) {
+			sendInvoiceResponse = (sendInvoiceResponse == null) ? new SendInvoiceResponse() : sendInvoiceResponse;
+			sendInvoiceResponse.setResponseEnvelope(responseEnvelope);
 		}
-		if(map.containsKey(prefix + "invoiceURL")){
-			this.invoiceURL = map.get(prefix + "invoiceURL");
+		if (map.containsKey(prefix + "invoiceID")) {
+				sendInvoiceResponse = (sendInvoiceResponse == null) ? new SendInvoiceResponse() : sendInvoiceResponse;
+				sendInvoiceResponse.setInvoiceID(map.get(prefix + "invoiceID"));
+		}
+		if (map.containsKey(prefix + "invoiceURL")) {
+				sendInvoiceResponse = (sendInvoiceResponse == null) ? new SendInvoiceResponse() : sendInvoiceResponse;
+				sendInvoiceResponse.setInvoiceURL(map.get(prefix + "invoiceURL"));
 		}
 		i = 0;
 		while(true) {
-			if(map.containsKey(prefix + "error" + "(" + i + ")" + ".errorId")){
-				String newPrefix = prefix + "error" + "(" + i + ")" + ".";
-				this.error.add(new ErrorData(map, newPrefix));
+			ErrorData error =  ErrorData.createInstance(map, prefix + "error", i);
+			if (error != null) {
+				sendInvoiceResponse = (sendInvoiceResponse == null) ? new SendInvoiceResponse() : sendInvoiceResponse;
+				sendInvoiceResponse.getError().add(error);
+				i++;
 			} else {
 				break;
 			}
-			i++;
 		}
+		return sendInvoiceResponse;
 	}
-
+ 
 }

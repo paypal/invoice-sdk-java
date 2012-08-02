@@ -27,7 +27,7 @@ public class SendInvoiceResponseTest {
 		map.put("invoiceID", "INV2-GEKM-LTFQ-7NWN-9YDL");
 		map.put("invoiceURL",
 				"https%3A%2F%2Fwww.stage2sc5376.qa.paypal.com%2Fus%2Fcgi-bin%2F%3Fcmd%3D_inv-details%26id%3DINV2-GEKM-LTFQ-7NWN-9YDL");
-		response = new SendInvoiceResponse(map, "");
+		response = SendInvoiceResponse.createInstance(map, "", -1);
 	}
 
 	@AfterClass

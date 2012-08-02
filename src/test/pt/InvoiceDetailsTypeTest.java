@@ -38,7 +38,7 @@ public class InvoiceDetailsTypeTest {
 		map.put("invoiceDetails.canceledBy", "jb-us-seller1%40paypal.com");
 		map.put("invoiceDetails.paidDate",
 				"2011-06-22T23%3A40%3A47.000-07%3A00");
-		invDetails = new InvoiceDetailsType(map, "invoiceDetails.");
+		invDetails = InvoiceDetailsType.createInstance(map, "invoiceDetails", -1);
 	}
 
 	@AfterClass

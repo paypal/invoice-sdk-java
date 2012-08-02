@@ -98,6 +98,7 @@ public class UpdateInvoiceServlet extends HttpServlet {
 			response.setContentType("text/html");
 			UpdateInvoiceResponse resp = invoiceSrvc.updateInvoice(req);
 			if (resp != null) {
+				session.setAttribute("RESPONSE_OBJECT", resp);
 				session.setAttribute("lastReq", invoiceSrvc.getLastRequest());
 				session.setAttribute("lastResp", invoiceSrvc.getLastResponse());
 				if (resp.getResponseEnvelope().getAck().toString()

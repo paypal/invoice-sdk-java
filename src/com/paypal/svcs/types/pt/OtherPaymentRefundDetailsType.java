@@ -76,14 +76,29 @@ public class OtherPaymentRefundDetailsType{
 		}
 		return sb.toString();
 	}
-	public OtherPaymentRefundDetailsType(Map<String, String> map, String prefix) {
+	
+	public static OtherPaymentRefundDetailsType createInstance(Map<String, String> map, String prefix, int index) {
+		OtherPaymentRefundDetailsType otherPaymentRefundDetailsType = null;
 		int i = 0;
-		if(map.containsKey(prefix + "note")){
-			this.note = map.get(prefix + "note");
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
 		}
-		if(map.containsKey(prefix + "date")){
-			this.date = map.get(prefix + "date");
+			
+		if (map.containsKey(prefix + "note")) {
+				otherPaymentRefundDetailsType = (otherPaymentRefundDetailsType == null) ? new OtherPaymentRefundDetailsType() : otherPaymentRefundDetailsType;
+				otherPaymentRefundDetailsType.setNote(map.get(prefix + "note"));
 		}
+		if (map.containsKey(prefix + "date")) {
+				otherPaymentRefundDetailsType = (otherPaymentRefundDetailsType == null) ? new OtherPaymentRefundDetailsType() : otherPaymentRefundDetailsType;
+				otherPaymentRefundDetailsType.setDate(map.get(prefix + "date"));
+		}
+		return otherPaymentRefundDetailsType;
 	}
-
+ 
 }

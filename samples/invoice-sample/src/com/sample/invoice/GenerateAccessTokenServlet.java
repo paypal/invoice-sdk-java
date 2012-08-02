@@ -58,6 +58,7 @@ public class GenerateAccessTokenServlet extends HttpServlet {
 					.println(
 							"<table><tr><td><font color=grey><h3>Step 1:</h3></font></td><td><font color=grey><h3>Requesting Permissions</h3></font></td><td><img src=/invoice-sample/images/tick.png></img></td></tr><tr><td><font color=grey><h3>Step 2:</h3></font></td><td><font color=grey><h3>Generate Access Token</h3></font></td><td><img src=/invoice-sample/images/camera_test.png></img></td></tr></table>");
 			if (resp != null) {
+				session.setAttribute("RESPONSE_OBJECT", resp);
 				session.setAttribute("lastReq", service.getLastRequest());
 				session.setAttribute("lastResp", service.getLastResponse());
 				if (resp.getResponseEnvelope().getAck().toString()

@@ -36,9 +36,25 @@ public class PayPalPaymentRefundDetailsType{
 	 
 
 
-	public PayPalPaymentRefundDetailsType(Map<String, String> map, String prefix) {
-		prefix = prefix.substring(0, prefix.length() - 1);
-		this.date = map.get(prefix + "date");
+	
+	public static PayPalPaymentRefundDetailsType createInstance(Map<String, String> map, String prefix, int index) {
+		PayPalPaymentRefundDetailsType payPalPaymentRefundDetailsType = null;
+		int i = 0;
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
+		}
+			
+		if (map.containsKey(prefix + "date")) {
+				payPalPaymentRefundDetailsType = (payPalPaymentRefundDetailsType == null) ? new PayPalPaymentRefundDetailsType() : payPalPaymentRefundDetailsType;
+				payPalPaymentRefundDetailsType.setDate(map.get(prefix + "date"));
+		}
+		return payPalPaymentRefundDetailsType;
 	}
-
+ 
 }

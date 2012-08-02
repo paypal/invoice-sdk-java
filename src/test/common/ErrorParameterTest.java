@@ -23,8 +23,8 @@ public class ErrorParameterTest {
 
 	@BeforeClass
 	public void beforeClass() {
-		map.put("parameter.value", "UserName");
-		errParam = new ErrorParameter(map, "parameter.");
+		map.put("parameter(0)", "UserName");
+		errParam = ErrorParameter.createInstance(map, "parameter", 0);
 	}
 
 	@AfterClass

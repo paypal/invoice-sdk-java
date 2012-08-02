@@ -142,34 +142,53 @@ public class CreateInvoiceResponse{
 	 
 
 
-	public CreateInvoiceResponse(Map<String, String> map, String prefix) {
+	
+	public static CreateInvoiceResponse createInstance(Map<String, String> map, String prefix, int index) {
+		CreateInvoiceResponse createInvoiceResponse = null;
 		int i = 0;
-		if(map.containsKey(prefix + "responseEnvelope" + ".timestamp")){
-			String newPrefix = prefix + "responseEnvelope" + ".";
-			this.responseEnvelope =  new ResponseEnvelope(map, newPrefix);
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
 		}
-		if(map.containsKey(prefix + "invoiceID")){
-			this.invoiceID = map.get(prefix + "invoiceID");
+			
+		ResponseEnvelope responseEnvelope =  ResponseEnvelope.createInstance(map, prefix + "responseEnvelope", -1);
+		if (responseEnvelope != null) {
+			createInvoiceResponse = (createInvoiceResponse == null) ? new CreateInvoiceResponse() : createInvoiceResponse;
+			createInvoiceResponse.setResponseEnvelope(responseEnvelope);
 		}
-		if(map.containsKey(prefix + "invoiceNumber")){
-			this.invoiceNumber = map.get(prefix + "invoiceNumber");
+		if (map.containsKey(prefix + "invoiceID")) {
+				createInvoiceResponse = (createInvoiceResponse == null) ? new CreateInvoiceResponse() : createInvoiceResponse;
+				createInvoiceResponse.setInvoiceID(map.get(prefix + "invoiceID"));
 		}
-		if(map.containsKey(prefix + "invoiceURL")){
-			this.invoiceURL = map.get(prefix + "invoiceURL");
+		if (map.containsKey(prefix + "invoiceNumber")) {
+				createInvoiceResponse = (createInvoiceResponse == null) ? new CreateInvoiceResponse() : createInvoiceResponse;
+				createInvoiceResponse.setInvoiceNumber(map.get(prefix + "invoiceNumber"));
 		}
-		if(map.containsKey(prefix + "totalAmount")){
-			this.totalAmount = Integer.valueOf(map.get(prefix + "totalAmount"));
+		if (map.containsKey(prefix + "invoiceURL")) {
+				createInvoiceResponse = (createInvoiceResponse == null) ? new CreateInvoiceResponse() : createInvoiceResponse;
+				createInvoiceResponse.setInvoiceURL(map.get(prefix + "invoiceURL"));
+		}
+		if (map.containsKey(prefix + "totalAmount")) {
+				createInvoiceResponse = (createInvoiceResponse == null) ? new CreateInvoiceResponse() : createInvoiceResponse;
+				createInvoiceResponse.setTotalAmount(Integer.valueOf(map.get(prefix + "totalAmount")));
 		}
 		i = 0;
 		while(true) {
-			if(map.containsKey(prefix + "error" + "(" + i + ")" + ".errorId")){
-				String newPrefix = prefix + "error" + "(" + i + ")" + ".";
-				this.error.add(new ErrorData(map, newPrefix));
+			ErrorData error =  ErrorData.createInstance(map, prefix + "error", i);
+			if (error != null) {
+				createInvoiceResponse = (createInvoiceResponse == null) ? new CreateInvoiceResponse() : createInvoiceResponse;
+				createInvoiceResponse.getError().add(error);
+				i++;
 			} else {
 				break;
 			}
-			i++;
 		}
+		return createInvoiceResponse;
 	}
-
+ 
 }

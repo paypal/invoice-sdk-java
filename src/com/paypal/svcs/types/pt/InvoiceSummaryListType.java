@@ -39,18 +39,32 @@ public class InvoiceSummaryListType{
 	 
 
 
-	public InvoiceSummaryListType(Map<String, String> map, String prefix) {
+	
+	public static InvoiceSummaryListType createInstance(Map<String, String> map, String prefix, int index) {
+		InvoiceSummaryListType invoiceSummaryListType = null;
 		int i = 0;
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
+		}
+			
 		i = 0;
 		while(true) {
-			if(map.containsKey(prefix + "invoice" + "(" + i + ")" + ".invoiceID")){
-				String newPrefix = prefix + "invoice" + "(" + i + ")" + ".";
-				this.invoice.add(new InvoiceSummaryType(map, newPrefix));
+			InvoiceSummaryType invoice =  InvoiceSummaryType.createInstance(map, prefix + "invoice", i);
+			if (invoice != null) {
+				invoiceSummaryListType = (invoiceSummaryListType == null) ? new InvoiceSummaryListType() : invoiceSummaryListType;
+				invoiceSummaryListType.getInvoice().add(invoice);
+				i++;
 			} else {
 				break;
 			}
-			i++;
 		}
+		return invoiceSummaryListType;
 	}
-
+ 
 }

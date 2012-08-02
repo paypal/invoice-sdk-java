@@ -73,6 +73,7 @@ public class GetInvoiceDetailsServlet extends HttpServlet {
 			response.setContentType("text/html");
 			GetInvoiceDetailsResponse resp = invoiceSrvc.getInvoiceDetails(req);
 			if (resp != null) {
+				session.setAttribute("RESPONSE_OBJECT", resp);
 				session.setAttribute("lastReq", invoiceSrvc.getLastRequest());
 				session.setAttribute("lastResp", invoiceSrvc.getLastResponse());
 				if (resp.getResponseEnvelope().getAck().toString()

@@ -582,81 +582,117 @@ public class InvoiceType{
 		}
 		return sb.toString();
 	}
-	public InvoiceType(Map<String, String> map, String prefix) {
+	
+	public static InvoiceType createInstance(Map<String, String> map, String prefix, int index) {
+		InvoiceType invoiceType = null;
 		int i = 0;
-		if(map.containsKey(prefix + "merchantEmail")){
-			this.merchantEmail = map.get(prefix + "merchantEmail");
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
 		}
-		if(map.containsKey(prefix + "payerEmail")){
-			this.payerEmail = map.get(prefix + "payerEmail");
+			
+		if (map.containsKey(prefix + "merchantEmail")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setMerchantEmail(map.get(prefix + "merchantEmail"));
 		}
-		if(map.containsKey(prefix + "number")){
-			this.number = map.get(prefix + "number");
+		if (map.containsKey(prefix + "payerEmail")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setPayerEmail(map.get(prefix + "payerEmail"));
 		}
-		if(map.containsKey(prefix + "merchantInfo" + ".address.line1")){
-			String newPrefix = prefix + "merchantInfo" + ".";
-			this.merchantInfo =  new BusinessInfoType(map, newPrefix);
+		if (map.containsKey(prefix + "number")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setNumber(map.get(prefix + "number"));
 		}
-		if(map.containsKey(prefix + "itemList" + ".item(0).name")){
-			String newPrefix = prefix + "itemList" + ".";
-			this.itemList =  new InvoiceItemListType(map, newPrefix);
+		BusinessInfoType merchantInfo =  BusinessInfoType.createInstance(map, prefix + "merchantInfo", -1);
+		if (merchantInfo != null) {
+			invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+			invoiceType.setMerchantInfo(merchantInfo);
 		}
-		if(map.containsKey(prefix + "currencyCode")){
-			this.currencyCode = map.get(prefix + "currencyCode");
+		InvoiceItemListType itemList =  InvoiceItemListType.createInstance(map, prefix + "itemList", -1);
+		if (itemList != null) {
+			invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+			invoiceType.setItemList(itemList);
 		}
-		if(map.containsKey(prefix + "invoiceDate")){
-			this.invoiceDate = map.get(prefix + "invoiceDate");
+		if (map.containsKey(prefix + "currencyCode")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setCurrencyCode(map.get(prefix + "currencyCode"));
 		}
-		if(map.containsKey(prefix + "dueDate")){
-			this.dueDate = map.get(prefix + "dueDate");
+		if (map.containsKey(prefix + "invoiceDate")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setInvoiceDate(map.get(prefix + "invoiceDate"));
 		}
-		if(map.containsKey(prefix + "paymentTerms")){
-			this.paymentTerms = PaymentTermsType.fromValue(map.get(prefix + "paymentTerms"));
+		if (map.containsKey(prefix + "dueDate")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setDueDate(map.get(prefix + "dueDate"));
 		}
-		if(map.containsKey(prefix + "discountPercent")){
-			this.discountPercent = Double.valueOf(map.get(prefix + "discountPercent"));
+		if (map.containsKey(prefix + "paymentTerms")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setPaymentTerms(PaymentTermsType.fromValue(map.get(prefix + "paymentTerms")));
 		}
-		if(map.containsKey(prefix + "discountAmount")){
-			this.discountAmount = Double.valueOf(map.get(prefix + "discountAmount"));
+		if (map.containsKey(prefix + "discountPercent")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setDiscountPercent(Double.valueOf(map.get(prefix + "discountPercent")));
 		}
-		if(map.containsKey(prefix + "terms")){
-			this.terms = map.get(prefix + "terms");
+		if (map.containsKey(prefix + "discountAmount")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setDiscountAmount(Double.valueOf(map.get(prefix + "discountAmount")));
 		}
-		if(map.containsKey(prefix + "note")){
-			this.note = map.get(prefix + "note");
+		if (map.containsKey(prefix + "terms")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setTerms(map.get(prefix + "terms"));
 		}
-		if(map.containsKey(prefix + "merchantMemo")){
-			this.merchantMemo = map.get(prefix + "merchantMemo");
+		if (map.containsKey(prefix + "note")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setNote(map.get(prefix + "note"));
 		}
-		if(map.containsKey(prefix + "billingInfo" + ".address.line1")){
-			String newPrefix = prefix + "billingInfo" + ".";
-			this.billingInfo =  new BusinessInfoType(map, newPrefix);
+		if (map.containsKey(prefix + "merchantMemo")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setMerchantMemo(map.get(prefix + "merchantMemo"));
 		}
-		if(map.containsKey(prefix + "shippingInfo" + ".address.line1")){
-			String newPrefix = prefix + "shippingInfo" + ".";
-			this.shippingInfo =  new BusinessInfoType(map, newPrefix);
+		BusinessInfoType billingInfo =  BusinessInfoType.createInstance(map, prefix + "billingInfo", -1);
+		if (billingInfo != null) {
+			invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+			invoiceType.setBillingInfo(billingInfo);
 		}
-		if(map.containsKey(prefix + "shippingAmount")){
-			this.shippingAmount = Double.valueOf(map.get(prefix + "shippingAmount"));
+		BusinessInfoType shippingInfo =  BusinessInfoType.createInstance(map, prefix + "shippingInfo", -1);
+		if (shippingInfo != null) {
+			invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+			invoiceType.setShippingInfo(shippingInfo);
 		}
-		if(map.containsKey(prefix + "shippingTaxName")){
-			this.shippingTaxName = map.get(prefix + "shippingTaxName");
+		if (map.containsKey(prefix + "shippingAmount")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setShippingAmount(Double.valueOf(map.get(prefix + "shippingAmount")));
 		}
-		if(map.containsKey(prefix + "shippingTaxRate")){
-			this.shippingTaxRate = Double.valueOf(map.get(prefix + "shippingTaxRate"));
+		if (map.containsKey(prefix + "shippingTaxName")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setShippingTaxName(map.get(prefix + "shippingTaxName"));
 		}
-		if(map.containsKey(prefix + "logoUrl")){
-			this.logoUrl = map.get(prefix + "logoUrl");
+		if (map.containsKey(prefix + "shippingTaxRate")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setShippingTaxRate(Double.valueOf(map.get(prefix + "shippingTaxRate")));
 		}
-		if(map.containsKey(prefix + "referrerCode")){
-			this.referrerCode = map.get(prefix + "referrerCode");
+		if (map.containsKey(prefix + "logoUrl")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setLogoUrl(map.get(prefix + "logoUrl"));
 		}
-		if(map.containsKey(prefix + "customAmountLabel")){
-			this.customAmountLabel = map.get(prefix + "customAmountLabel");
+		if (map.containsKey(prefix + "referrerCode")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setReferrerCode(map.get(prefix + "referrerCode"));
 		}
-		if(map.containsKey(prefix + "customAmountValue")){
-			this.customAmountValue = Double.valueOf(map.get(prefix + "customAmountValue"));
+		if (map.containsKey(prefix + "customAmountLabel")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setCustomAmountLabel(map.get(prefix + "customAmountLabel"));
 		}
+		if (map.containsKey(prefix + "customAmountValue")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setCustomAmountValue(Double.valueOf(map.get(prefix + "customAmountValue")));
+		}
+		return invoiceType;
 	}
-
+ 
 }

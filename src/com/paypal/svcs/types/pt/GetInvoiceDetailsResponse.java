@@ -163,41 +163,61 @@ public class GetInvoiceDetailsResponse{
 	 
 
 
-	public GetInvoiceDetailsResponse(Map<String, String> map, String prefix) {
+	
+	public static GetInvoiceDetailsResponse createInstance(Map<String, String> map, String prefix, int index) {
+		GetInvoiceDetailsResponse getInvoiceDetailsResponse = null;
 		int i = 0;
-		if(map.containsKey(prefix + "responseEnvelope" + ".timestamp")){
-			String newPrefix = prefix + "responseEnvelope" + ".";
-			this.responseEnvelope =  new ResponseEnvelope(map, newPrefix);
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
 		}
-		if(map.containsKey(prefix + "invoice" + ".merchantEmail")){
-			String newPrefix = prefix + "invoice" + ".";
-			this.invoice =  new InvoiceType(map, newPrefix);
+			
+		ResponseEnvelope responseEnvelope =  ResponseEnvelope.createInstance(map, prefix + "responseEnvelope", -1);
+		if (responseEnvelope != null) {
+			getInvoiceDetailsResponse = (getInvoiceDetailsResponse == null) ? new GetInvoiceDetailsResponse() : getInvoiceDetailsResponse;
+			getInvoiceDetailsResponse.setResponseEnvelope(responseEnvelope);
 		}
-		if(map.containsKey(prefix + "invoiceDetails" + ".createdDate")){
-			String newPrefix = prefix + "invoiceDetails" + ".";
-			this.invoiceDetails =  new InvoiceDetailsType(map, newPrefix);
+		InvoiceType invoice =  InvoiceType.createInstance(map, prefix + "invoice", -1);
+		if (invoice != null) {
+			getInvoiceDetailsResponse = (getInvoiceDetailsResponse == null) ? new GetInvoiceDetailsResponse() : getInvoiceDetailsResponse;
+			getInvoiceDetailsResponse.setInvoice(invoice);
 		}
-		if(map.containsKey(prefix + "paymentDetails" + ".viaPayPal")){
-			String newPrefix = prefix + "paymentDetails" + ".";
-			this.paymentDetails =  new PaymentDetailsType(map, newPrefix);
+		InvoiceDetailsType invoiceDetails =  InvoiceDetailsType.createInstance(map, prefix + "invoiceDetails", -1);
+		if (invoiceDetails != null) {
+			getInvoiceDetailsResponse = (getInvoiceDetailsResponse == null) ? new GetInvoiceDetailsResponse() : getInvoiceDetailsResponse;
+			getInvoiceDetailsResponse.setInvoiceDetails(invoiceDetails);
 		}
-		if(map.containsKey(prefix + "refundDetails" + ".viaPayPal")){
-			String newPrefix = prefix + "refundDetails" + ".";
-			this.refundDetails =  new PaymentRefundDetailsType(map, newPrefix);
+		PaymentDetailsType paymentDetails =  PaymentDetailsType.createInstance(map, prefix + "paymentDetails", -1);
+		if (paymentDetails != null) {
+			getInvoiceDetailsResponse = (getInvoiceDetailsResponse == null) ? new GetInvoiceDetailsResponse() : getInvoiceDetailsResponse;
+			getInvoiceDetailsResponse.setPaymentDetails(paymentDetails);
 		}
-		if(map.containsKey(prefix + "invoiceURL")){
-			this.invoiceURL = map.get(prefix + "invoiceURL");
+		PaymentRefundDetailsType refundDetails =  PaymentRefundDetailsType.createInstance(map, prefix + "refundDetails", -1);
+		if (refundDetails != null) {
+			getInvoiceDetailsResponse = (getInvoiceDetailsResponse == null) ? new GetInvoiceDetailsResponse() : getInvoiceDetailsResponse;
+			getInvoiceDetailsResponse.setRefundDetails(refundDetails);
+		}
+		if (map.containsKey(prefix + "invoiceURL")) {
+				getInvoiceDetailsResponse = (getInvoiceDetailsResponse == null) ? new GetInvoiceDetailsResponse() : getInvoiceDetailsResponse;
+				getInvoiceDetailsResponse.setInvoiceURL(map.get(prefix + "invoiceURL"));
 		}
 		i = 0;
 		while(true) {
-			if(map.containsKey(prefix + "error" + "(" + i + ")" + ".errorId")){
-				String newPrefix = prefix + "error" + "(" + i + ")" + ".";
-				this.error.add(new ErrorData(map, newPrefix));
+			ErrorData error =  ErrorData.createInstance(map, prefix + "error", i);
+			if (error != null) {
+				getInvoiceDetailsResponse = (getInvoiceDetailsResponse == null) ? new GetInvoiceDetailsResponse() : getInvoiceDetailsResponse;
+				getInvoiceDetailsResponse.getError().add(error);
+				i++;
 			} else {
 				break;
 			}
-			i++;
 		}
+		return getInvoiceDetailsResponse;
 	}
-
+ 
 }

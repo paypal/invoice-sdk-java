@@ -156,6 +156,7 @@ public class SearchInvoicesServlet extends HttpServlet {
 			SearchInvoicesResponse resp = invoiceSrvc.searchInvoices(req);
 			String lastReq = null;
 			if (resp != null) {
+				session.setAttribute("RESPONSE_OBJECT", resp);
 				if (invoiceSrvc.getLastRequest().contains("&")) {
 					lastReq = invoiceSrvc.getLastRequest()
 							.replace("&", "&amp;");

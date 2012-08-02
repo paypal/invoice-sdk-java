@@ -76,6 +76,7 @@ public class MarkInvoiceAsUnpaidServlet extends HttpServlet {
 			response.setContentType("text/html");
 			MarkInvoiceAsUnpaidResponse resp = invoiceSrvc.markInvoiceAsUnpaid(req);
 			if (resp != null) {
+				session.setAttribute("RESPONSE_OBJECT", resp);
 				session.setAttribute("lastReq", invoiceSrvc.getLastRequest());
 				session.setAttribute("lastResp", invoiceSrvc.getLastResponse());
 				if (resp.getResponseEnvelope().getAck().toString()

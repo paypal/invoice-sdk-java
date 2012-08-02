@@ -80,6 +80,7 @@ public class MarkInvoiceAsRefundedServlet extends HttpServlet {
 			response.setContentType("text/html");
 			MarkInvoiceAsRefundedResponse resp = invoiceSrvc.markInvoiceAsRefunded(req);
 			if (resp != null) {
+				session.setAttribute("RESPONSE_OBJECT", resp);
 				session.setAttribute("lastReq", invoiceSrvc.getLastRequest());
 				session.setAttribute("lastResp", invoiceSrvc.getLastResponse());
 				if (resp.getResponseEnvelope().getAck().toString()

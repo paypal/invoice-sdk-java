@@ -72,6 +72,7 @@ public class CancelInvoiceServlet extends HttpServlet {
 			response.setContentType("text/html");
 			CancelInvoiceResponse resp = invoiceSrvc.cancelInvoice(req);
 			if (resp != null) {
+				session.setAttribute("RESPONSE_OBJECT", resp);
 				session.setAttribute("lastReq", invoiceSrvc.getLastRequest());
 				session.setAttribute("lastResp", invoiceSrvc.getLastResponse());
 				if (resp.getResponseEnvelope().getAck().toString()

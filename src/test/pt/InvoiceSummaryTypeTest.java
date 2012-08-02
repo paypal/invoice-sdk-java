@@ -29,7 +29,7 @@ public class InvoiceSummaryTypeTest {
 		map.put("dueDate", "2011-06-22T12%3A00%3A00.000-07%3A00");
 		map.put("origin", "API");
 		map.put("status", "Sent");
-		invSummary = new InvoiceSummaryType(map, "");
+		invSummary = InvoiceSummaryType.createInstance(map, "", -1);
 
 	}
 

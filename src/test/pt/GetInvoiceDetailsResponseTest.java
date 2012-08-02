@@ -53,7 +53,7 @@ public class GetInvoiceDetailsResponseTest {
 				"2011-06-22T23%3A40%3A47.000-07%3A00");
 		map.put("invoiceURL",
 				"https%3A%2F%2Fwww.stage2sc5376.qa.paypal.com%2Fus%2Fcgi-bin%2F%3Fcmd%3D_inv-details%26id%3DINV2-25W4-DYND-677H-3UK6");
-		response = new GetInvoiceDetailsResponse(map, "");
+		response = GetInvoiceDetailsResponse.createInstance(map, "", -1);
 	}
 
 	@AfterClass

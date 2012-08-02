@@ -202,29 +202,49 @@ public class InvoiceItemType{
 		}
 		return sb.toString();
 	}
-	public InvoiceItemType(Map<String, String> map, String prefix) {
+	
+	public static InvoiceItemType createInstance(Map<String, String> map, String prefix, int index) {
+		InvoiceItemType invoiceItemType = null;
 		int i = 0;
-		if(map.containsKey(prefix + "name")){
-			this.name = map.get(prefix + "name");
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
 		}
-		if(map.containsKey(prefix + "description")){
-			this.description = map.get(prefix + "description");
+			
+		if (map.containsKey(prefix + "name")) {
+				invoiceItemType = (invoiceItemType == null) ? new InvoiceItemType() : invoiceItemType;
+				invoiceItemType.setName(map.get(prefix + "name"));
 		}
-		if(map.containsKey(prefix + "date")){
-			this.date = map.get(prefix + "date");
+		if (map.containsKey(prefix + "description")) {
+				invoiceItemType = (invoiceItemType == null) ? new InvoiceItemType() : invoiceItemType;
+				invoiceItemType.setDescription(map.get(prefix + "description"));
 		}
-		if(map.containsKey(prefix + "quantity")){
-			this.quantity = Double.valueOf(map.get(prefix + "quantity"));
+		if (map.containsKey(prefix + "date")) {
+				invoiceItemType = (invoiceItemType == null) ? new InvoiceItemType() : invoiceItemType;
+				invoiceItemType.setDate(map.get(prefix + "date"));
 		}
-		if(map.containsKey(prefix + "unitPrice")){
-			this.unitPrice = Double.valueOf(map.get(prefix + "unitPrice"));
+		if (map.containsKey(prefix + "quantity")) {
+				invoiceItemType = (invoiceItemType == null) ? new InvoiceItemType() : invoiceItemType;
+				invoiceItemType.setQuantity(Double.valueOf(map.get(prefix + "quantity")));
 		}
-		if(map.containsKey(prefix + "taxName")){
-			this.taxName = map.get(prefix + "taxName");
+		if (map.containsKey(prefix + "unitPrice")) {
+				invoiceItemType = (invoiceItemType == null) ? new InvoiceItemType() : invoiceItemType;
+				invoiceItemType.setUnitPrice(Double.valueOf(map.get(prefix + "unitPrice")));
 		}
-		if(map.containsKey(prefix + "taxRate")){
-			this.taxRate = Double.valueOf(map.get(prefix + "taxRate"));
+		if (map.containsKey(prefix + "taxName")) {
+				invoiceItemType = (invoiceItemType == null) ? new InvoiceItemType() : invoiceItemType;
+				invoiceItemType.setTaxName(map.get(prefix + "taxName"));
 		}
+		if (map.containsKey(prefix + "taxRate")) {
+				invoiceItemType = (invoiceItemType == null) ? new InvoiceItemType() : invoiceItemType;
+				invoiceItemType.setTaxRate(Double.valueOf(map.get(prefix + "taxRate")));
+		}
+		return invoiceItemType;
 	}
-
+ 
 }

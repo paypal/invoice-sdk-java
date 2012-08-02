@@ -160,38 +160,58 @@ public class SearchInvoicesResponse{
 	 
 
 
-	public SearchInvoicesResponse(Map<String, String> map, String prefix) {
+	
+	public static SearchInvoicesResponse createInstance(Map<String, String> map, String prefix, int index) {
+		SearchInvoicesResponse searchInvoicesResponse = null;
 		int i = 0;
-		if(map.containsKey(prefix + "responseEnvelope" + ".timestamp")){
-			String newPrefix = prefix + "responseEnvelope" + ".";
-			this.responseEnvelope =  new ResponseEnvelope(map, newPrefix);
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
 		}
-		if(map.containsKey(prefix + "count")){
-			this.count = Integer.valueOf(map.get(prefix + "count"));
+			
+		ResponseEnvelope responseEnvelope =  ResponseEnvelope.createInstance(map, prefix + "responseEnvelope", -1);
+		if (responseEnvelope != null) {
+			searchInvoicesResponse = (searchInvoicesResponse == null) ? new SearchInvoicesResponse() : searchInvoicesResponse;
+			searchInvoicesResponse.setResponseEnvelope(responseEnvelope);
 		}
-		if(map.containsKey(prefix + "invoiceList" + ".invoice(0).invoiceID")){
-			String newPrefix = prefix + "invoiceList" + ".";
-			this.invoiceList =  new InvoiceSummaryListType(map, newPrefix);
+		if (map.containsKey(prefix + "count")) {
+				searchInvoicesResponse = (searchInvoicesResponse == null) ? new SearchInvoicesResponse() : searchInvoicesResponse;
+				searchInvoicesResponse.setCount(Integer.valueOf(map.get(prefix + "count")));
 		}
-		if(map.containsKey(prefix + "page")){
-			this.page = Integer.valueOf(map.get(prefix + "page"));
+		InvoiceSummaryListType invoiceList =  InvoiceSummaryListType.createInstance(map, prefix + "invoiceList", -1);
+		if (invoiceList != null) {
+			searchInvoicesResponse = (searchInvoicesResponse == null) ? new SearchInvoicesResponse() : searchInvoicesResponse;
+			searchInvoicesResponse.setInvoiceList(invoiceList);
 		}
-		if(map.containsKey(prefix + "hasNextPage")){
-			this.hasNextPage = Boolean.valueOf(map.get(prefix + "hasNextPage"));
+		if (map.containsKey(prefix + "page")) {
+				searchInvoicesResponse = (searchInvoicesResponse == null) ? new SearchInvoicesResponse() : searchInvoicesResponse;
+				searchInvoicesResponse.setPage(Integer.valueOf(map.get(prefix + "page")));
 		}
-		if(map.containsKey(prefix + "hasPreviousPage")){
-			this.hasPreviousPage = Boolean.valueOf(map.get(prefix + "hasPreviousPage"));
+		if (map.containsKey(prefix + "hasNextPage")) {
+				searchInvoicesResponse = (searchInvoicesResponse == null) ? new SearchInvoicesResponse() : searchInvoicesResponse;
+				searchInvoicesResponse.setHasNextPage(Boolean.valueOf(map.get(prefix + "hasNextPage")));
+		}
+		if (map.containsKey(prefix + "hasPreviousPage")) {
+				searchInvoicesResponse = (searchInvoicesResponse == null) ? new SearchInvoicesResponse() : searchInvoicesResponse;
+				searchInvoicesResponse.setHasPreviousPage(Boolean.valueOf(map.get(prefix + "hasPreviousPage")));
 		}
 		i = 0;
 		while(true) {
-			if(map.containsKey(prefix + "error" + "(" + i + ")" + ".errorId")){
-				String newPrefix = prefix + "error" + "(" + i + ")" + ".";
-				this.error.add(new ErrorData(map, newPrefix));
+			ErrorData error =  ErrorData.createInstance(map, prefix + "error", i);
+			if (error != null) {
+				searchInvoicesResponse = (searchInvoicesResponse == null) ? new SearchInvoicesResponse() : searchInvoicesResponse;
+				searchInvoicesResponse.getError().add(error);
+				i++;
 			} else {
 				break;
 			}
-			i++;
 		}
+		return searchInvoicesResponse;
 	}
-
+ 
 }

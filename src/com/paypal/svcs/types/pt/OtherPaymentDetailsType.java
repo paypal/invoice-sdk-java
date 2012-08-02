@@ -97,17 +97,33 @@ public class OtherPaymentDetailsType{
 		}
 		return sb.toString();
 	}
-	public OtherPaymentDetailsType(Map<String, String> map, String prefix) {
+	
+	public static OtherPaymentDetailsType createInstance(Map<String, String> map, String prefix, int index) {
+		OtherPaymentDetailsType otherPaymentDetailsType = null;
 		int i = 0;
-		if(map.containsKey(prefix + "method")){
-			this.method = PaymentMethodsType.fromValue(map.get(prefix + "method"));
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
 		}
-		if(map.containsKey(prefix + "note")){
-			this.note = map.get(prefix + "note");
+			
+		if (map.containsKey(prefix + "method")) {
+				otherPaymentDetailsType = (otherPaymentDetailsType == null) ? new OtherPaymentDetailsType() : otherPaymentDetailsType;
+				otherPaymentDetailsType.setMethod(PaymentMethodsType.fromValue(map.get(prefix + "method")));
 		}
-		if(map.containsKey(prefix + "date")){
-			this.date = map.get(prefix + "date");
+		if (map.containsKey(prefix + "note")) {
+				otherPaymentDetailsType = (otherPaymentDetailsType == null) ? new OtherPaymentDetailsType() : otherPaymentDetailsType;
+				otherPaymentDetailsType.setNote(map.get(prefix + "note"));
 		}
+		if (map.containsKey(prefix + "date")) {
+				otherPaymentDetailsType = (otherPaymentDetailsType == null) ? new OtherPaymentDetailsType() : otherPaymentDetailsType;
+				otherPaymentDetailsType.setDate(map.get(prefix + "date"));
+		}
+		return otherPaymentDetailsType;
 	}
-
+ 
 }

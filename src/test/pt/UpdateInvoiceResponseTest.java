@@ -27,7 +27,7 @@ public class UpdateInvoiceResponseTest {
 		map.put("invoiceNumber", "xuan135");
 		map.put("invoiceURL",
 				"https%3A%2F%2Fwww.stage2sc5376.qa.paypal.com%2Fus%2Fcgi-bin%2F%3Fcmd%3D_inv-details%26id%3DINV2-25W4-DYND-677H-3UK6");
-		response = new UpdateInvoiceResponse(map, "");
+		response = UpdateInvoiceResponse.createInstance(map, "", -1);
 
 	}
 

@@ -105,6 +105,7 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 							.createInvoice(createRequest);
 
 					if (resp != null) {
+						session.setAttribute("RESPONSE_OBJECT", resp);
 						session.setAttribute("lastReq",
 								invoiceSrvc.getLastRequest());
 						session.setAttribute("lastResp",
@@ -143,6 +144,7 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 							.createAndSendInvoice(createRequest);
 
 					if (resp != null) {
+						session.setAttribute("RESPONSE_OBJECT", resp);
 						session.setAttribute("lastReq",
 								invoiceSrvc.getLastRequest());
 						session.setAttribute("lastResp",
