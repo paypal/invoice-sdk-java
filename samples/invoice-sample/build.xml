@@ -1,6 +1,11 @@
 <?xml version="1.0" ?>
 <project name="invoice-sample" default="war">
 
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+		<classpath>
+			<pathelement location="ext-lib/ant-contrib-1.0b3.jar" />
+		</classpath>
+	</taskdef>
 	<property environment="env" />
 	<property file="../../build.properties" />
 	<property name="parent.lib" value="../../lib" />
@@ -11,7 +16,7 @@
 			<include name="*.jar" />
 		</fileset>
 		<fileset dir="ext-lib">
-			<include name="*.jar" />
+			<include name="servlet-api.jar" />
 		</fileset>
 	</path>
 
@@ -38,6 +43,7 @@
 		<copy todir="WebContent/WEB-INF/lib">
 			<fileset dir="ext-lib">
 				<exclude name="servlet-api.jar" />
+				<exclude name="ant-contrib-1.0b3.jar" />
 			</fileset>
 		</copy>
 		<copy todir="WebContent/WEB-INF/lib">
@@ -51,11 +57,23 @@
 	</target>
 
 	<target name="war" depends="compile">
+		<if>
+			<isset property="env.DIST_MODE" />
+			<then>
+				<property name="dist.mode" value="${env.DIST_MODE}" />
+			</then>
+			<else>
+				<echo message="environment variable DIST_MODE(development/production) not set; defaulting to production" />
+				<property name="dist.mode" value="production" />
+			</else>
+		</if>
+		<echo message="distribution mode set to ${dist.mode}" />
+		<copy overwrite="true" file="resources/${dist.mode}/web.xml" todir="WebContent/WEB-INF/" />
 		<war destfile="dist/invoice-sample.war" webxml="WebContent/WEB-INF/web.xml">
 			<fileset dir="WebContent" />
 			<classes dir="build/classes" />
 		</war>
-        <delete dir="build" />
+		<delete dir="build" />
 	</target>
 
 	<target name="clean">
