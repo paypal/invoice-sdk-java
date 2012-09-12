@@ -96,8 +96,7 @@ public class PermissionServlet extends HttpServlet {
 						map.put("Redirect URL",
 								"<a href=https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_grant-permission&request_token="
 										+ resp.getToken()
-										+ ">https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_grant-permission&request_token="
-										+ resp.getToken() + "</a>");
+										+ ">Redirect To PayPal</a>");
 						session.setAttribute("map", map);
 						response.sendRedirect("Response.jsp");
 					} else {
