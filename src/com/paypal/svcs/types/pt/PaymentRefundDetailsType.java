@@ -77,20 +77,35 @@ public class PaymentRefundDetailsType{
 	 
 
 
-	public PaymentRefundDetailsType(Map<String, String> map, String prefix) {
+	
+	public static PaymentRefundDetailsType createInstance(Map<String, String> map, String prefix, int index) {
+		PaymentRefundDetailsType paymentRefundDetailsType = null;
 		int i = 0;
-		if(map.containsKey(prefix + "viaPayPal")){
-			this.viaPayPal = Boolean.valueOf(map.get(prefix + "viaPayPal"));
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
 		}
-		if(map.containsKey(prefix + "paypalPayment")){
-			String newPrefix = prefix + "paypalPayment" + ".";
-			this.paypalPayment =  new PayPalPaymentRefundDetailsType(map, newPrefix);
+			
+		if (map.containsKey(prefix + "viaPayPal")) {
+				paymentRefundDetailsType = (paymentRefundDetailsType == null) ? new PaymentRefundDetailsType() : paymentRefundDetailsType;
+				paymentRefundDetailsType.setViaPayPal(Boolean.valueOf(map.get(prefix + "viaPayPal")));
 		}
-		if(map.containsKey(prefix + "otherPayment.note") || map.containsKey(prefix + "otherPayment.date")){
-			String newPrefix = prefix + "otherPayment" + ".";
-			this.otherPayment =  new OtherPaymentRefundDetailsType(map, newPrefix);
+		PayPalPaymentRefundDetailsType paypalPayment =  PayPalPaymentRefundDetailsType.createInstance(map, prefix + "paypalPayment", -1);
+		if (paypalPayment != null) {
+			paymentRefundDetailsType = (paymentRefundDetailsType == null) ? new PaymentRefundDetailsType() : paymentRefundDetailsType;
+			paymentRefundDetailsType.setPaypalPayment(paypalPayment);
 		}
-       
+		OtherPaymentRefundDetailsType otherPayment =  OtherPaymentRefundDetailsType.createInstance(map, prefix + "otherPayment", -1);
+		if (otherPayment != null) {
+			paymentRefundDetailsType = (paymentRefundDetailsType == null) ? new PaymentRefundDetailsType() : paymentRefundDetailsType;
+			paymentRefundDetailsType.setOtherPayment(otherPayment);
+		}
+		return paymentRefundDetailsType;
 	}
-
+ 
 }

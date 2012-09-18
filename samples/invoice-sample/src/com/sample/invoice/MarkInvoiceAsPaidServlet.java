@@ -84,6 +84,7 @@ public class MarkInvoiceAsPaidServlet extends HttpServlet {
 			response.setContentType("text/html");
 			MarkInvoiceAsPaidResponse resp = invoiceSrvc.markInvoiceAsPaid(req);
 			if (resp != null) {
+				session.setAttribute("RESPONSE_OBJECT", resp);
 				session.setAttribute("lastReq", invoiceSrvc.getLastRequest());
 				session.setAttribute("lastResp", invoiceSrvc.getLastResponse());
 				if (resp.getResponseEnvelope().getAck().toString()

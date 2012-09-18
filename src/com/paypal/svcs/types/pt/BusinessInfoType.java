@@ -214,33 +214,54 @@ public class BusinessInfoType{
 		}
 		return sb.toString();
 	}
-	public BusinessInfoType(Map<String, String> map, String prefix) {
+	
+	public static BusinessInfoType createInstance(Map<String, String> map, String prefix, int index) {
+		BusinessInfoType businessInfoType = null;
 		int i = 0;
-		if(map.containsKey(prefix + "firstName")){
-			this.firstName = map.get(prefix + "firstName");
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
 		}
-		if(map.containsKey(prefix + "lastName")){
-			this.lastName = map.get(prefix + "lastName");
+			
+		if (map.containsKey(prefix + "firstName")) {
+				businessInfoType = (businessInfoType == null) ? new BusinessInfoType() : businessInfoType;
+				businessInfoType.setFirstName(map.get(prefix + "firstName"));
 		}
-		if(map.containsKey(prefix + "businessName")){
-			this.businessName = map.get(prefix + "businessName");
+		if (map.containsKey(prefix + "lastName")) {
+				businessInfoType = (businessInfoType == null) ? new BusinessInfoType() : businessInfoType;
+				businessInfoType.setLastName(map.get(prefix + "lastName"));
 		}
-		if(map.containsKey(prefix + "phone")){
-			this.phone = map.get(prefix + "phone");
+		if (map.containsKey(prefix + "businessName")) {
+				businessInfoType = (businessInfoType == null) ? new BusinessInfoType() : businessInfoType;
+				businessInfoType.setBusinessName(map.get(prefix + "businessName"));
 		}
-		if(map.containsKey(prefix + "fax")){
-			this.fax = map.get(prefix + "fax");
+		if (map.containsKey(prefix + "phone")) {
+				businessInfoType = (businessInfoType == null) ? new BusinessInfoType() : businessInfoType;
+				businessInfoType.setPhone(map.get(prefix + "phone"));
 		}
-		if(map.containsKey(prefix + "website")){
-			this.website = map.get(prefix + "website");
+		if (map.containsKey(prefix + "fax")) {
+				businessInfoType = (businessInfoType == null) ? new BusinessInfoType() : businessInfoType;
+				businessInfoType.setFax(map.get(prefix + "fax"));
 		}
-		if(map.containsKey(prefix + "customValue")){
-			this.customValue = map.get(prefix + "customValue");
+		if (map.containsKey(prefix + "website")) {
+				businessInfoType = (businessInfoType == null) ? new BusinessInfoType() : businessInfoType;
+				businessInfoType.setWebsite(map.get(prefix + "website"));
 		}
-		if(map.containsKey(prefix + "address" + ".line1")){
-			String newPrefix = prefix + "address" + ".";
-			this.address =  new BaseAddress(map, newPrefix);
+		if (map.containsKey(prefix + "customValue")) {
+				businessInfoType = (businessInfoType == null) ? new BusinessInfoType() : businessInfoType;
+				businessInfoType.setCustomValue(map.get(prefix + "customValue"));
 		}
+		BaseAddress address =  BaseAddress.createInstance(map, prefix + "address", -1);
+		if (address != null) {
+			businessInfoType = (businessInfoType == null) ? new BusinessInfoType() : businessInfoType;
+			businessInfoType.setAddress(address);
+		}
+		return businessInfoType;
 	}
-
+ 
 }

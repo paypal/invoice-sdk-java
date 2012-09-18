@@ -77,21 +77,35 @@ public class PaymentDetailsType{
 	 
 
 
-	public PaymentDetailsType(Map<String, String> map, String prefix) {
+	
+	public static PaymentDetailsType createInstance(Map<String, String> map, String prefix, int index) {
+		PaymentDetailsType paymentDetailsType = null;
 		int i = 0;
-		if(map.containsKey(prefix + "viaPayPal")){
-			this.viaPayPal = Boolean.valueOf(map.get(prefix + "viaPayPal"));
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
 		}
-		if(map.containsKey(prefix + "paypalPayment" + ".transactionID")){
-			String newPrefix = prefix + "paypalPayment" + ".";
-			this.paypalPayment =  new PayPalPaymentDetailsType(map, newPrefix);
+			
+		if (map.containsKey(prefix + "viaPayPal")) {
+				paymentDetailsType = (paymentDetailsType == null) ? new PaymentDetailsType() : paymentDetailsType;
+				paymentDetailsType.setViaPayPal(Boolean.valueOf(map.get(prefix + "viaPayPal")));
 		}
-		if(map.containsKey(prefix + "otherPayment.method") || map.containsKey(prefix + "otherPayment.note") || map.containsKey(prefix + "otherPayment.date")){
-			String newPrefix = prefix + "otherPayment" + ".";
-			this.otherPayment =  new OtherPaymentDetailsType(map, newPrefix);
+		PayPalPaymentDetailsType paypalPayment =  PayPalPaymentDetailsType.createInstance(map, prefix + "paypalPayment", -1);
+		if (paypalPayment != null) {
+			paymentDetailsType = (paymentDetailsType == null) ? new PaymentDetailsType() : paymentDetailsType;
+			paymentDetailsType.setPaypalPayment(paypalPayment);
 		}
-        
-
+		OtherPaymentDetailsType otherPayment =  OtherPaymentDetailsType.createInstance(map, prefix + "otherPayment", -1);
+		if (otherPayment != null) {
+			paymentDetailsType = (paymentDetailsType == null) ? new PaymentDetailsType() : paymentDetailsType;
+			paymentDetailsType.setOtherPayment(otherPayment);
+		}
+		return paymentDetailsType;
 	}
-
+ 
 }

@@ -40,7 +40,7 @@ public class SearchInvoicesResponseTest {
 		map.put("page", "1");
 		map.put("hasNextPage", "false");
 		map.put("hasPreviousPage", "false");
-		response = new SearchInvoicesResponse(map, "");
+		response = SearchInvoicesResponse.createInstance(map, "", -1);
 	}
 
 	@AfterClass

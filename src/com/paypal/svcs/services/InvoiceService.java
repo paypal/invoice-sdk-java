@@ -68,7 +68,7 @@ public class InvoiceService extends BaseService{
 	 */
 	 public CreateInvoiceResponse createInvoice(CreateInvoiceRequest createInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 	 	String response = call("CreateInvoice", createInvoiceRequest.toNVPString(), apiUsername);
-		return new CreateInvoiceResponse(NVPUtil.decode(response), "");
+		return CreateInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 	 
 	/** 
@@ -103,7 +103,7 @@ public class InvoiceService extends BaseService{
 	 */
 	 public SendInvoiceResponse sendInvoice(SendInvoiceRequest sendInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 	 	String response = call("SendInvoice", sendInvoiceRequest.toNVPString(), apiUsername);
-		return new SendInvoiceResponse(NVPUtil.decode(response), "");
+		return SendInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 	 
 	/** 
@@ -138,7 +138,7 @@ public class InvoiceService extends BaseService{
 	 */
 	 public CreateAndSendInvoiceResponse createAndSendInvoice(CreateAndSendInvoiceRequest createAndSendInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 	 	String response = call("CreateAndSendInvoice", createAndSendInvoiceRequest.toNVPString(), apiUsername);
-		return new CreateAndSendInvoiceResponse(NVPUtil.decode(response), "");
+		return CreateAndSendInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 	 
 	/** 
@@ -173,7 +173,7 @@ public class InvoiceService extends BaseService{
 	 */
 	 public UpdateInvoiceResponse updateInvoice(UpdateInvoiceRequest updateInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 	 	String response = call("UpdateInvoice", updateInvoiceRequest.toNVPString(), apiUsername);
-		return new UpdateInvoiceResponse(NVPUtil.decode(response), "");
+		return UpdateInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 	 
 	/** 
@@ -208,7 +208,7 @@ public class InvoiceService extends BaseService{
 	 */
 	 public GetInvoiceDetailsResponse getInvoiceDetails(GetInvoiceDetailsRequest getInvoiceDetailsRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 	 	String response = call("GetInvoiceDetails", getInvoiceDetailsRequest.toNVPString(), apiUsername);
-		return new GetInvoiceDetailsResponse(NVPUtil.decode(response), "");
+		return GetInvoiceDetailsResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 	 
 	/** 
@@ -243,7 +243,7 @@ public class InvoiceService extends BaseService{
 	 */
 	 public CancelInvoiceResponse cancelInvoice(CancelInvoiceRequest cancelInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 	 	String response = call("CancelInvoice", cancelInvoiceRequest.toNVPString(), apiUsername);
-		return new CancelInvoiceResponse(NVPUtil.decode(response), "");
+		return CancelInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 	 
 	/** 
@@ -278,7 +278,7 @@ public class InvoiceService extends BaseService{
 	 */
 	 public SearchInvoicesResponse searchInvoices(SearchInvoicesRequest searchInvoicesRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 	 	String response = call("SearchInvoices", searchInvoicesRequest.toNVPString(), apiUsername);
-		return new SearchInvoicesResponse(NVPUtil.decode(response), "");
+		return SearchInvoicesResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 	 
 	/** 
@@ -313,7 +313,7 @@ public class InvoiceService extends BaseService{
 	 */
 	 public MarkInvoiceAsPaidResponse markInvoiceAsPaid(MarkInvoiceAsPaidRequest markInvoiceAsPaidRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 	 	String response = call("MarkInvoiceAsPaid", markInvoiceAsPaidRequest.toNVPString(), apiUsername);
-		return new MarkInvoiceAsPaidResponse(NVPUtil.decode(response), "");
+		return MarkInvoiceAsPaidResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 	 
 	/** 
@@ -348,7 +348,7 @@ public class InvoiceService extends BaseService{
 	 */
 	 public MarkInvoiceAsUnpaidResponse markInvoiceAsUnpaid(MarkInvoiceAsUnpaidRequest markInvoiceAsUnpaidRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 	 	String response = call("MarkInvoiceAsUnpaid", markInvoiceAsUnpaidRequest.toNVPString(), apiUsername);
-		return new MarkInvoiceAsUnpaidResponse(NVPUtil.decode(response), "");
+		return MarkInvoiceAsUnpaidResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 	 
 	/** 
@@ -383,7 +383,7 @@ public class InvoiceService extends BaseService{
 	 */
 	 public MarkInvoiceAsRefundedResponse markInvoiceAsRefunded(MarkInvoiceAsRefundedRequest markInvoiceAsRefundedRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
 	 	String response = call("MarkInvoiceAsRefunded", markInvoiceAsRefundedRequest.toNVPString(), apiUsername);
-		return new MarkInvoiceAsRefundedResponse(NVPUtil.decode(response), "");
+		return MarkInvoiceAsRefundedResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 	 
 	/** 

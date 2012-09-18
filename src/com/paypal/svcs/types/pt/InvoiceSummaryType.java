@@ -354,59 +354,89 @@ public class InvoiceSummaryType{
 	 
 
 
-	public InvoiceSummaryType(Map<String, String> map, String prefix) {
+	
+	public static InvoiceSummaryType createInstance(Map<String, String> map, String prefix, int index) {
+		InvoiceSummaryType invoiceSummaryType = null;
 		int i = 0;
-		if(map.containsKey(prefix + "invoiceID")){
-			this.invoiceID = map.get(prefix + "invoiceID");
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
 		}
-		if(map.containsKey(prefix + "merchantEmail")){
-			this.merchantEmail = map.get(prefix + "merchantEmail");
+			
+		if (map.containsKey(prefix + "invoiceID")) {
+				invoiceSummaryType = (invoiceSummaryType == null) ? new InvoiceSummaryType() : invoiceSummaryType;
+				invoiceSummaryType.setInvoiceID(map.get(prefix + "invoiceID"));
 		}
-		if(map.containsKey(prefix + "payerEmail")){
-			this.payerEmail = map.get(prefix + "payerEmail");
+		if (map.containsKey(prefix + "merchantEmail")) {
+				invoiceSummaryType = (invoiceSummaryType == null) ? new InvoiceSummaryType() : invoiceSummaryType;
+				invoiceSummaryType.setMerchantEmail(map.get(prefix + "merchantEmail"));
 		}
-		if(map.containsKey(prefix + "number")){
-			this.number = map.get(prefix + "number");
+		if (map.containsKey(prefix + "payerEmail")) {
+				invoiceSummaryType = (invoiceSummaryType == null) ? new InvoiceSummaryType() : invoiceSummaryType;
+				invoiceSummaryType.setPayerEmail(map.get(prefix + "payerEmail"));
 		}
-		if(map.containsKey(prefix + "billingBusinessName")){
-			this.billingBusinessName = map.get(prefix + "billingBusinessName");
+		if (map.containsKey(prefix + "number")) {
+				invoiceSummaryType = (invoiceSummaryType == null) ? new InvoiceSummaryType() : invoiceSummaryType;
+				invoiceSummaryType.setNumber(map.get(prefix + "number"));
 		}
-		if(map.containsKey(prefix + "billingFirstName")){
-			this.billingFirstName = map.get(prefix + "billingFirstName");
+		if (map.containsKey(prefix + "billingBusinessName")) {
+				invoiceSummaryType = (invoiceSummaryType == null) ? new InvoiceSummaryType() : invoiceSummaryType;
+				invoiceSummaryType.setBillingBusinessName(map.get(prefix + "billingBusinessName"));
 		}
-		if(map.containsKey(prefix + "billingLastName")){
-			this.billingLastName = map.get(prefix + "billingLastName");
+		if (map.containsKey(prefix + "billingFirstName")) {
+				invoiceSummaryType = (invoiceSummaryType == null) ? new InvoiceSummaryType() : invoiceSummaryType;
+				invoiceSummaryType.setBillingFirstName(map.get(prefix + "billingFirstName"));
 		}
-		if(map.containsKey(prefix + "shippingBusinessName")){
-			this.shippingBusinessName = map.get(prefix + "shippingBusinessName");
+		if (map.containsKey(prefix + "billingLastName")) {
+				invoiceSummaryType = (invoiceSummaryType == null) ? new InvoiceSummaryType() : invoiceSummaryType;
+				invoiceSummaryType.setBillingLastName(map.get(prefix + "billingLastName"));
 		}
-		if(map.containsKey(prefix + "shippingFirstName")){
-			this.shippingFirstName = map.get(prefix + "shippingFirstName");
+		if (map.containsKey(prefix + "shippingBusinessName")) {
+				invoiceSummaryType = (invoiceSummaryType == null) ? new InvoiceSummaryType() : invoiceSummaryType;
+				invoiceSummaryType.setShippingBusinessName(map.get(prefix + "shippingBusinessName"));
 		}
-		if(map.containsKey(prefix + "shippingLastName")){
-			this.shippingLastName = map.get(prefix + "shippingLastName");
+		if (map.containsKey(prefix + "shippingFirstName")) {
+				invoiceSummaryType = (invoiceSummaryType == null) ? new InvoiceSummaryType() : invoiceSummaryType;
+				invoiceSummaryType.setShippingFirstName(map.get(prefix + "shippingFirstName"));
 		}
-		if(map.containsKey(prefix + "totalAmount")){
-			this.totalAmount = Double.valueOf(map.get(prefix + "totalAmount"));
+		if (map.containsKey(prefix + "shippingLastName")) {
+				invoiceSummaryType = (invoiceSummaryType == null) ? new InvoiceSummaryType() : invoiceSummaryType;
+				invoiceSummaryType.setShippingLastName(map.get(prefix + "shippingLastName"));
 		}
-		if(map.containsKey(prefix + "currencyCode")){
-			this.currencyCode = map.get(prefix + "currencyCode");
+		if (map.containsKey(prefix + "totalAmount")) {
+				invoiceSummaryType = (invoiceSummaryType == null) ? new InvoiceSummaryType() : invoiceSummaryType;
+				invoiceSummaryType.setTotalAmount(Double.valueOf(map.get(prefix + "totalAmount")));
 		}
-		if(map.containsKey(prefix + "invoiceDate")){
-			this.invoiceDate = map.get(prefix + "invoiceDate");
+		if (map.containsKey(prefix + "currencyCode")) {
+				invoiceSummaryType = (invoiceSummaryType == null) ? new InvoiceSummaryType() : invoiceSummaryType;
+				invoiceSummaryType.setCurrencyCode(map.get(prefix + "currencyCode"));
 		}
-		if(map.containsKey(prefix + "dueDate")){
-			this.dueDate = map.get(prefix + "dueDate");
+		if (map.containsKey(prefix + "invoiceDate")) {
+				invoiceSummaryType = (invoiceSummaryType == null) ? new InvoiceSummaryType() : invoiceSummaryType;
+				invoiceSummaryType.setInvoiceDate(map.get(prefix + "invoiceDate"));
 		}
-		if(map.containsKey(prefix + "status")){
-			this.status = StatusType.fromValue(map.get(prefix + "status"));
+		if (map.containsKey(prefix + "dueDate")) {
+				invoiceSummaryType = (invoiceSummaryType == null) ? new InvoiceSummaryType() : invoiceSummaryType;
+				invoiceSummaryType.setDueDate(map.get(prefix + "dueDate"));
 		}
-		if(map.containsKey(prefix + "origin")){
-			this.origin = OriginType.fromValue(map.get(prefix + "origin"));
+		if (map.containsKey(prefix + "status")) {
+				invoiceSummaryType = (invoiceSummaryType == null) ? new InvoiceSummaryType() : invoiceSummaryType;
+				invoiceSummaryType.setStatus(StatusType.fromValue(map.get(prefix + "status")));
 		}
-		if(map.containsKey(prefix + "referrerCode")){
-			this.referrerCode = map.get(prefix + "referrerCode");
+		if (map.containsKey(prefix + "origin")) {
+				invoiceSummaryType = (invoiceSummaryType == null) ? new InvoiceSummaryType() : invoiceSummaryType;
+				invoiceSummaryType.setOrigin(OriginType.fromValue(map.get(prefix + "origin")));
 		}
+		if (map.containsKey(prefix + "referrerCode")) {
+				invoiceSummaryType = (invoiceSummaryType == null) ? new InvoiceSummaryType() : invoiceSummaryType;
+				invoiceSummaryType.setReferrerCode(map.get(prefix + "referrerCode"));
+		}
+		return invoiceSummaryType;
 	}
-
+ 
 }

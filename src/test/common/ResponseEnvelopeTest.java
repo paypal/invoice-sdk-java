@@ -24,7 +24,7 @@ public class ResponseEnvelopeTest {
 				"2011-05-29T23%3A58%3A46.879-07%3A00");
 		map.put("responseEnvelope.correlationId", "2eba4859262a9");
 		map.put("responseEnvelope.build", "1917403");
-		resp = new ResponseEnvelope(map, "responseEnvelope.");
+		resp = ResponseEnvelope.createInstance(map, "responseEnvelope", -1);
 	}
 
 	@Test

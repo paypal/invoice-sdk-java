@@ -122,31 +122,49 @@ public class MarkInvoiceAsRefundedResponse{
 	 
 
 
-	public MarkInvoiceAsRefundedResponse(Map<String, String> map, String prefix) {
+	
+	public static MarkInvoiceAsRefundedResponse createInstance(Map<String, String> map, String prefix, int index) {
+		MarkInvoiceAsRefundedResponse markInvoiceAsRefundedResponse = null;
 		int i = 0;
-		if(map.containsKey(prefix + "responseEnvelope" + ".timestamp")){
-			String newPrefix = prefix + "responseEnvelope" + ".";
-			this.responseEnvelope =  new ResponseEnvelope(map, newPrefix);
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
 		}
-		if(map.containsKey(prefix + "invoiceID")){
-			this.invoiceID = map.get(prefix + "invoiceID");
+			
+		ResponseEnvelope responseEnvelope =  ResponseEnvelope.createInstance(map, prefix + "responseEnvelope", -1);
+		if (responseEnvelope != null) {
+			markInvoiceAsRefundedResponse = (markInvoiceAsRefundedResponse == null) ? new MarkInvoiceAsRefundedResponse() : markInvoiceAsRefundedResponse;
+			markInvoiceAsRefundedResponse.setResponseEnvelope(responseEnvelope);
 		}
-		if(map.containsKey(prefix + "invoiceNumber")){
-			this.invoiceNumber = map.get(prefix + "invoiceNumber");
+		if (map.containsKey(prefix + "invoiceID")) {
+				markInvoiceAsRefundedResponse = (markInvoiceAsRefundedResponse == null) ? new MarkInvoiceAsRefundedResponse() : markInvoiceAsRefundedResponse;
+				markInvoiceAsRefundedResponse.setInvoiceID(map.get(prefix + "invoiceID"));
 		}
-		if(map.containsKey(prefix + "invoiceURL")){
-			this.invoiceURL = map.get(prefix + "invoiceURL");
+		if (map.containsKey(prefix + "invoiceNumber")) {
+				markInvoiceAsRefundedResponse = (markInvoiceAsRefundedResponse == null) ? new MarkInvoiceAsRefundedResponse() : markInvoiceAsRefundedResponse;
+				markInvoiceAsRefundedResponse.setInvoiceNumber(map.get(prefix + "invoiceNumber"));
+		}
+		if (map.containsKey(prefix + "invoiceURL")) {
+				markInvoiceAsRefundedResponse = (markInvoiceAsRefundedResponse == null) ? new MarkInvoiceAsRefundedResponse() : markInvoiceAsRefundedResponse;
+				markInvoiceAsRefundedResponse.setInvoiceURL(map.get(prefix + "invoiceURL"));
 		}
 		i = 0;
 		while(true) {
-			if(map.containsKey(prefix + "error" + "(" + i + ")" + ".errorId")){
-				String newPrefix = prefix + "error" + "(" + i + ")" + ".";
-				this.error.add(new ErrorData(map, newPrefix));
+			ErrorData error =  ErrorData.createInstance(map, prefix + "error", i);
+			if (error != null) {
+				markInvoiceAsRefundedResponse = (markInvoiceAsRefundedResponse == null) ? new MarkInvoiceAsRefundedResponse() : markInvoiceAsRefundedResponse;
+				markInvoiceAsRefundedResponse.getError().add(error);
+				i++;
 			} else {
 				break;
 			}
-			i++;
 		}
+		return markInvoiceAsRefundedResponse;
 	}
-
+ 
 }

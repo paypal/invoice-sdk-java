@@ -20,7 +20,7 @@ public class PaymentDetailsTypeTest {
 		map.put("viaPayPal", "true");
 		map.put("paypalPayment.transactionID", "383768938");
 		map.put("paypalPayment.date", "2021-06-31");
-		type = new PaymentDetailsType(map, "");
+		type = PaymentDetailsType.createInstance(map, "", -1);
 	}
 
 	@AfterClass

@@ -63,18 +63,32 @@ public class InvoiceItemListType{
 		}
 		return sb.toString();
 	}
-	public InvoiceItemListType(Map<String, String> map, String prefix) {
+	
+	public static InvoiceItemListType createInstance(Map<String, String> map, String prefix, int index) {
+		InvoiceItemListType invoiceItemListType = null;
 		int i = 0;
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
+		}
+			
 		i = 0;
 		while(true) {
-			if(map.containsKey(prefix + "item" + "(" + i + ")" + ".name")){
-				String newPrefix = prefix + "item" + "(" + i + ")" + ".";
-				this.item.add(new InvoiceItemType(map, newPrefix));
+			InvoiceItemType item =  InvoiceItemType.createInstance(map, prefix + "item", i);
+			if (item != null) {
+				invoiceItemListType = (invoiceItemListType == null) ? new InvoiceItemListType() : invoiceItemListType;
+				invoiceItemListType.getItem().add(item);
+				i++;
 			} else {
 				break;
 			}
-			i++;
 		}
+		return invoiceItemListType;
 	}
-
+ 
 }

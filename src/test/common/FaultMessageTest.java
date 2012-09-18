@@ -55,7 +55,7 @@ public class FaultMessageTest {
 				"Invalid+request+parameter%3A+shippingTaxName+cannot+be+null");
 		map.put("error(1).parameter(0)", "shippingTaxName");
 		map.put("error(1).parameter(1)", "null");
-		faultMsg = new FaultMessage(map, "");
+		faultMsg = FaultMessage.createInstance(map, "", -1);
 	}
 
 	@AfterClass

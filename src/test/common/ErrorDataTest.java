@@ -43,7 +43,8 @@ public class ErrorDataTest {
 		map.put("error.exceptionId", "520003");
 		map.put("error.parameter(0).name", "API Credentials");
 		map.put("error.parameter(1).name", "Incorrect");
-		errData = new ErrorData(map, "error.");
+//		errData = new ErrorData(map, "error.");
+		errData = ErrorData.createInstance(map, "error", -1);
 	}
 
 	@AfterClass

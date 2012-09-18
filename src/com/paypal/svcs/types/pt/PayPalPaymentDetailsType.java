@@ -56,14 +56,29 @@ public class PayPalPaymentDetailsType{
 	 
 
 
-	public PayPalPaymentDetailsType(Map<String, String> map, String prefix) {
+	
+	public static PayPalPaymentDetailsType createInstance(Map<String, String> map, String prefix, int index) {
+		PayPalPaymentDetailsType payPalPaymentDetailsType = null;
 		int i = 0;
-		if(map.containsKey(prefix + "transactionID")){
-			this.transactionID = map.get(prefix + "transactionID");
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
 		}
-		if(map.containsKey(prefix + "date")){
-			this.date = map.get(prefix + "date");
+			
+		if (map.containsKey(prefix + "transactionID")) {
+				payPalPaymentDetailsType = (payPalPaymentDetailsType == null) ? new PayPalPaymentDetailsType() : payPalPaymentDetailsType;
+				payPalPaymentDetailsType.setTransactionID(map.get(prefix + "transactionID"));
 		}
+		if (map.containsKey(prefix + "date")) {
+				payPalPaymentDetailsType = (payPalPaymentDetailsType == null) ? new PayPalPaymentDetailsType() : payPalPaymentDetailsType;
+				payPalPaymentDetailsType.setDate(map.get(prefix + "date"));
+		}
+		return payPalPaymentDetailsType;
 	}
-
+ 
 }

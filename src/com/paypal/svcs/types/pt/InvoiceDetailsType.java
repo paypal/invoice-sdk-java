@@ -293,50 +293,77 @@ public class InvoiceDetailsType{
 	 
 
 
-	public InvoiceDetailsType(Map<String, String> map, String prefix) {
+	
+	public static InvoiceDetailsType createInstance(Map<String, String> map, String prefix, int index) {
+		InvoiceDetailsType invoiceDetailsType = null;
 		int i = 0;
-		if(map.containsKey(prefix + "status")){
-			this.status = StatusType.fromValue(map.get(prefix + "status"));
+		if (index != -1) {
+				if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+					prefix = prefix + "(" + index + ").";
+				}
+		} else {
+			if (!prefix.isEmpty() && !prefix.endsWith(".")) {
+				prefix = prefix + ".";
+			}
 		}
-		if(map.containsKey(prefix + "totalAmount")){
-			this.totalAmount = Double.valueOf(map.get(prefix + "totalAmount"));
+			
+		if (map.containsKey(prefix + "status")) {
+				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
+				invoiceDetailsType.setStatus(StatusType.fromValue(map.get(prefix + "status")));
 		}
-		if(map.containsKey(prefix + "origin")){
-			this.origin = OriginType.fromValue(map.get(prefix + "origin"));
+		if (map.containsKey(prefix + "totalAmount")) {
+				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
+				invoiceDetailsType.setTotalAmount(Double.valueOf(map.get(prefix + "totalAmount")));
 		}
-		if(map.containsKey(prefix + "createdDate")){
-			this.createdDate = map.get(prefix + "createdDate");
+		if (map.containsKey(prefix + "origin")) {
+				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
+				invoiceDetailsType.setOrigin(OriginType.fromValue(map.get(prefix + "origin")));
 		}
-		if(map.containsKey(prefix + "createdBy")){
-			this.createdBy = map.get(prefix + "createdBy");
+		if (map.containsKey(prefix + "createdDate")) {
+				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
+				invoiceDetailsType.setCreatedDate(map.get(prefix + "createdDate"));
 		}
-		if(map.containsKey(prefix + "canceledDate")){
-			this.canceledDate = map.get(prefix + "canceledDate");
+		if (map.containsKey(prefix + "createdBy")) {
+				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
+				invoiceDetailsType.setCreatedBy(map.get(prefix + "createdBy"));
 		}
-		if(map.containsKey(prefix + "canceledByActor")){
-			this.canceledByActor = ActorType.fromValue(map.get(prefix + "canceledByActor"));
+		if (map.containsKey(prefix + "canceledDate")) {
+				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
+				invoiceDetailsType.setCanceledDate(map.get(prefix + "canceledDate"));
 		}
-		if(map.containsKey(prefix + "canceledBy")){
-			this.canceledBy = map.get(prefix + "canceledBy");
+		if (map.containsKey(prefix + "canceledByActor")) {
+				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
+				invoiceDetailsType.setCanceledByActor(ActorType.fromValue(map.get(prefix + "canceledByActor")));
 		}
-		if(map.containsKey(prefix + "lastUpdatedDate")){
-			this.lastUpdatedDate = map.get(prefix + "lastUpdatedDate");
+		if (map.containsKey(prefix + "canceledBy")) {
+				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
+				invoiceDetailsType.setCanceledBy(map.get(prefix + "canceledBy"));
 		}
-		if(map.containsKey(prefix + "lastUpdatedBy")){
-			this.lastUpdatedBy = map.get(prefix + "lastUpdatedBy");
+		if (map.containsKey(prefix + "lastUpdatedDate")) {
+				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
+				invoiceDetailsType.setLastUpdatedDate(map.get(prefix + "lastUpdatedDate"));
 		}
-		if(map.containsKey(prefix + "firstSentDate")){
-			this.firstSentDate = map.get(prefix + "firstSentDate");
+		if (map.containsKey(prefix + "lastUpdatedBy")) {
+				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
+				invoiceDetailsType.setLastUpdatedBy(map.get(prefix + "lastUpdatedBy"));
 		}
-		if(map.containsKey(prefix + "lastSentDate")){
-			this.lastSentDate = map.get(prefix + "lastSentDate");
+		if (map.containsKey(prefix + "firstSentDate")) {
+				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
+				invoiceDetailsType.setFirstSentDate(map.get(prefix + "firstSentDate"));
 		}
-		if(map.containsKey(prefix + "lastSentBy")){
-			this.lastSentBy = map.get(prefix + "lastSentBy");
+		if (map.containsKey(prefix + "lastSentDate")) {
+				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
+				invoiceDetailsType.setLastSentDate(map.get(prefix + "lastSentDate"));
 		}
-		if(map.containsKey(prefix + "paidDate")){
-			this.paidDate = map.get(prefix + "paidDate");
+		if (map.containsKey(prefix + "lastSentBy")) {
+				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
+				invoiceDetailsType.setLastSentBy(map.get(prefix + "lastSentBy"));
 		}
+		if (map.containsKey(prefix + "paidDate")) {
+				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
+				invoiceDetailsType.setPaidDate(map.get(prefix + "paidDate"));
+		}
+		return invoiceDetailsType;
 	}
-
+ 
 }
