@@ -50,8 +50,7 @@ public class AuthenticationService {
 					httpConfiguration.getEndPointUrl());
 			headers.put("X-PAYPAL-AUTHORIZATION", authString);
 			connection.setDefaultSSL(true);
-			connection.setupClientSSL(null, null,
-					httpConfiguration.isTrustAll());
+			connection.setupClientSSL(null, null);
 		} else if (apiCred instanceof SignatureCredential) {
 			headers.put("X-PAYPAL-SECURITY-USERID",
 					((SignatureCredential) apiCred).getUserName());
@@ -60,8 +59,7 @@ public class AuthenticationService {
 			headers.put("X-PAYPAL-SECURITY-SIGNATURE",
 					((SignatureCredential) apiCred).getSignature());
 			connection.setDefaultSSL(true);
-			connection.setupClientSSL(null, null,
-					httpConfiguration.isTrustAll());
+			connection.setupClientSSL(null, null);
 		} else if (apiCred instanceof CertificateCredential) {
 			connection.setDefaultSSL(false);
 			headers.put("X-PAYPAL-SECURITY-USERID",
@@ -70,8 +68,7 @@ public class AuthenticationService {
 					((CertificateCredential) apiCred).getPassword());
 			connection.setupClientSSL(
 					((CertificateCredential) apiCred).getCertificatePath(),
-					((CertificateCredential) apiCred).getCertificateKey(),
-					httpConfiguration.isTrustAll());
+					((CertificateCredential) apiCred).getCertificateKey());
 		}
 
 		/* Add other headers */
@@ -84,6 +81,7 @@ public class AuthenticationService {
 				httpConfiguration.getIpAddress());
 		headers.put("X-PAYPAL-REQUEST-SOURCE", Constants.SDK_NAME + "-"
 				+ Constants.SDK_VERSION);
+
 		if (httpConfiguration.getEndPointUrl().contains("sandbox")) {
 			headers.put("X-PAYPAL-SANDBOX-EMAIL-ADDRESS",
 					Constants.SANDBOX_EMAIL_ADDRESS);
