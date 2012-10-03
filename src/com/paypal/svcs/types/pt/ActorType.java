@@ -22,9 +22,11 @@ public enum  ActorType {
 	}
 	
 	public static ActorType fromValue(String v) {
-		for (ActorType c : values())
-			if (c.value.equals(v))
+		for (ActorType c : values()) {
+			if (c.value.equals(v)) {
 				return c;
+			}
+		}
 		throw new IllegalArgumentException(v);
 	}
 

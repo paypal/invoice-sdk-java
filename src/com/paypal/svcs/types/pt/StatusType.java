@@ -34,9 +34,11 @@ public enum  StatusType {
 	}
 	
 	public static StatusType fromValue(String v) {
-		for (StatusType c : values())
-			if (c.value.equals(v))
+		for (StatusType c : values()) {
+			if (c.value.equals(v)) {
 				return c;
+			}
+		}
 		throw new IllegalArgumentException(v);
 	}
 
