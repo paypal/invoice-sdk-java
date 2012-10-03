@@ -22,9 +22,11 @@ public enum  OriginType {
 	}
 	
 	public static OriginType fromValue(String v) {
-		for (OriginType c : values())
-			if (c.value.equals(v))
+		for (OriginType c : values()) {
+			if (c.value.equals(v)) {
 				return c;
+			}
+		}
 		throw new IllegalArgumentException(v);
 	}
 

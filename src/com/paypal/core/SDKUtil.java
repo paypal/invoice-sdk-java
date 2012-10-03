@@ -16,7 +16,7 @@ public class SDKUtil {
 	private static final Pattern AMPERSAND_REPLACE = Pattern
 			.compile("&(?!([amp;[lt;[gt;[apos;[quot;]]]]]))");
 
-/**
+    /**
 	 * Pattern for replacing Lesser-than '<' character
 	 */
 	private static final Pattern LESSERTHAN_REPLACE = Pattern.compile("<");
@@ -35,6 +35,16 @@ public class SDKUtil {
 	 * Pattern for replacing Apostrophe ''' character
 	 */
 	private static final Pattern APOSTROPHE_REPLACE = Pattern.compile("'");
+
+	private static final String AMPERSAND = "&amp;";
+
+	private static final String GREATERTHAN = "&gt;";
+
+	private static final String LESSERTHAN = "&lt;";
+
+	private static final String QUOT = "&quot;";
+
+	private static final String APOSTROPHE = "&apos;";
 
 	/**
 	 * Method replaces invalid XML entities with proper escapes, this method
@@ -65,19 +75,19 @@ public class SDKUtil {
 								&& textContent.charAt(i + 4) != 't') {
 							stringBuilder.append(ch);
 						} else {
-							stringBuilder.append("&amp;");
+							stringBuilder.append(AMPERSAND);
 						}
 					} else {
-						stringBuilder.append("&amp;");
+						stringBuilder.append(AMPERSAND);
 					}
 				} else if (ch == '<') {
-					stringBuilder.append("&lt;");
+					stringBuilder.append(LESSERTHAN);
 				} else if (ch == '>') {
-					stringBuilder.append("&gt;");
+					stringBuilder.append(GREATERTHAN);
 				} else if (ch == '"') {
-					stringBuilder.append("&quot;");
+					stringBuilder.append(QUOT);
 				} else if (ch == '\'') {
-					stringBuilder.append("&apos;");
+					stringBuilder.append(APOSTROPHE);
 				} else {
 					stringBuilder.append(ch);
 				}
@@ -96,7 +106,7 @@ public class SDKUtil {
 	 * @return Replaced text
 	 */
 	public static String escapeInvalidXmlCharsRegex(String textContent) {
-		String response = null;
+		String response = "";
 		if (textContent != null && !textContent.isEmpty()) {
 			response = APOSTROPHE_REPLACE.matcher(
 					QUOT_REPLACE.matcher(
@@ -104,12 +114,10 @@ public class SDKUtil {
 									LESSERTHAN_REPLACE.matcher(
 											AMPERSAND_REPLACE.matcher(
 													textContent).replaceAll(
-													"&amp;"))
-											.replaceAll("&lt;")).replaceAll(
-									"&gt;")).replaceAll("&quot;")).replaceAll(
-					"&apos;");
-		} else {
-			response = textContent;
+													AMPERSAND)).replaceAll(
+											LESSERTHAN))
+									.replaceAll(GREATERTHAN)).replaceAll(QUOT))
+					.replaceAll(APOSTROPHE);
 		}
 		return response;
 	}
@@ -127,18 +135,7 @@ public class SDKUtil {
 		String textContent = null;
 		if (intContent != null) {
 			textContent = intContent.toString();
-			response = APOSTROPHE_REPLACE.matcher(
-					QUOT_REPLACE.matcher(
-							GREATERTHAN_REPLACE.matcher(
-									LESSERTHAN_REPLACE.matcher(
-											AMPERSAND_REPLACE.matcher(
-													textContent).replaceAll(
-													"&amp;"))
-											.replaceAll("&lt;")).replaceAll(
-									"&gt;")).replaceAll("&quot;")).replaceAll(
-					"&apos;");
-		} else {
-			response = textContent;
+			response = escapeInvalidXmlCharsRegex(textContent);
 		}
 		return response;
 	}
@@ -156,18 +153,7 @@ public class SDKUtil {
 		String textContent = null;
 		if (boolContent != null) {
 			textContent = boolContent.toString();
-			response = APOSTROPHE_REPLACE.matcher(
-					QUOT_REPLACE.matcher(
-							GREATERTHAN_REPLACE.matcher(
-									LESSERTHAN_REPLACE.matcher(
-											AMPERSAND_REPLACE.matcher(
-													textContent).replaceAll(
-													"&amp;"))
-											.replaceAll("&lt;")).replaceAll(
-									"&gt;")).replaceAll("&quot;")).replaceAll(
-					"&apos;");
-		} else {
-			response = textContent;
+			response = escapeInvalidXmlCharsRegex(textContent);
 		}
 		return response;
 	}
@@ -185,19 +171,8 @@ public class SDKUtil {
 		String textContent = null;
 		if (doubleContent != null) {
 			textContent = doubleContent.toString();
-			response = APOSTROPHE_REPLACE.matcher(
-					QUOT_REPLACE.matcher(
-							GREATERTHAN_REPLACE.matcher(
-									LESSERTHAN_REPLACE.matcher(
-											AMPERSAND_REPLACE.matcher(
-													textContent).replaceAll(
-													"&amp;"))
-											.replaceAll("&lt;")).replaceAll(
-									"&gt;")).replaceAll("&quot;")).replaceAll(
-					"&apos;");
-		} else {
-			response = textContent;
-		}
+			response = escapeInvalidXmlCharsRegex(textContent);
+		} 
 		return response;
 	}
 

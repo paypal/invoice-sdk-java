@@ -30,9 +30,11 @@ public enum  PaymentTermsType {
 	}
 	
 	public static PaymentTermsType fromValue(String v) {
-		for (PaymentTermsType c : values())
-			if (c.value.equals(v))
+		for (PaymentTermsType c : values()) {
+			if (c.value.equals(v)) {
 				return c;
+			}
+		}
 		throw new IllegalArgumentException(v);
 	}
 

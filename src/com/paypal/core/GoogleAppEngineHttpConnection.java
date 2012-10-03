@@ -2,38 +2,34 @@ package com.paypal.core;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.Proxy;
 import java.net.URL;
-import java.net.UnknownHostException;
 
 import com.paypal.exception.SSLConfigurationException;
 
 /**
  * A special HttpConnection for use on Google App Engine.
  * 
- * In order to activate this feature, set 'http.GoogleAppEngine = true' in the SDK config file.
+ * In order to activate this feature, set 'http.GoogleAppEngine = true' in the
+ * SDK config file.
  * 
  * @author Benjamin Possolo
  */
 public class GoogleAppEngineHttpConnection extends HttpConnection {
 
 	@Override
-	public void setupClientSSL(String certPath, String certKey, boolean trustAll) throws SSLConfigurationException {
+	public void setupClientSSL(String certPath, String certKey) throws SSLConfigurationException {
 		
 		if( certPath != null || certKey != null )
 			LoggingManager.warn(GoogleAppEngineHttpConnection.class, "The PayPal SDK cannot be used with client SSL on Google App Engine; configure the SDK to use a PayPal API Signature instead");
-		
-		if( trustAll )
-			LoggingManager.warn(GoogleAppEngineHttpConnection.class, "The PayPal SDK cannot be configured to trust all certificates when used on Google App Engine. The 'http.TrustAllConnection' config property will be ignored");
 	}
 
 	@Override
-	public void CreateAndconfigureHttpConnection(HttpConfiguration clientConfiguration)
-			throws MalformedURLException, UnknownHostException, IOException {
-		
+	public void createAndconfigureHttpConnection(
+			HttpConfiguration clientConfiguration) throws IOException {
+
 		this.config = clientConfiguration;
-		
+
 		URL url = new URL(this.config.getEndPointUrl());
 		
 		//Google App Engine does not support the javax.net.ssl.HttpsURLConnection class.
@@ -43,10 +39,6 @@ public class GoogleAppEngineHttpConnection extends HttpConnection {
 		
 		//Google App Engine does not require any proxy settings so we can skip  
 		//that configuration entirely.
-		
-		//As of GAE 1.6.5, SSL behaviour can't really be configured, therefore we cannot
-		//use SSLUtil to install the custom trust manager that relaxes verification of 
-		//server certificates.
 		
 		//Other Google issues that can be starred to add better support:
 		//   http://code.google.com/p/googleappengine/issues/detail?id=1036

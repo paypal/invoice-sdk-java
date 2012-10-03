@@ -35,17 +35,17 @@ public class InvoiceService extends BaseService{
 	public static final String SERVICE_NAME = "Invoice";
 
 	
-	public InvoiceService(File configFile) throws IOException, FileNotFoundException {
+	public InvoiceService(File configFile) throws IOException {
 		super(SERVICE_NAME, SERVICE_VERSION);
 		initConfig(configFile);
 	}		
 
-	public InvoiceService(InputStream config) throws IOException, FileNotFoundException {
+	public InvoiceService(InputStream config) throws IOException {
 		super(SERVICE_NAME, SERVICE_VERSION);
 		initConfig(config);
 	}
 
-	public InvoiceService(String configFilePath) throws IOException, FileNotFoundException {
+	public InvoiceService(String configFilePath) throws IOException {
 		super(SERVICE_NAME, SERVICE_VERSION);
 		initConfig(configFilePath);
 	}

@@ -3,10 +3,11 @@ package com.paypal.core;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.HashMap;
 
 /**
  * 
@@ -14,7 +15,7 @@ import java.util.Set;
  * classes
  * 
  */
-public class ConfigManager {
+public final class ConfigManager {
 	private static ConfigManager conf;
 	private Enumeration<Object> em;
 	private Properties properties;
@@ -67,8 +68,7 @@ public class ConfigManager {
 	 * @return String value
 	 */
 	public String getValue(String key) {
-		String value = properties.getProperty(key);
-		return value;
+		return properties.getProperty(key);
 	}
 
 	/**
@@ -76,9 +76,9 @@ public class ConfigManager {
 	 * (eg: acct)
 	 * 
 	 * @param category
-	 * @return HashMap
+	 * @return Map
 	 */
-	public HashMap<String, String> getValuesByCategory(String category) {
+	public Map<String, String> getValuesByCategory(String category) {
 		loadKeys();
 		String key = Constants.EMPTY_STRING;
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -104,7 +104,7 @@ public class ConfigManager {
 		while (em.hasMoreElements()) {
 			key = (String) em.nextElement();
 			if (userName.equalsIgnoreCase(properties.getProperty(key))) {
-				int pos = key.indexOf(".");
+				int pos = key.indexOf('.');
 				acct = key.substring(0, pos);
 			}
 		}
@@ -124,7 +124,7 @@ public class ConfigManager {
 		while (em.hasMoreElements()) {
 			key = (String) em.nextElement();
 			if (key.contains("acct")) {
-				int pos = key.indexOf(".");
+				int pos = key.indexOf('.');
 				String acct = key.substring(0, pos);
 				set.add(acct);
 			}

@@ -38,9 +38,6 @@ public class APIService {
 		config = ConfigManager.getInstance();
 		endPoint = config.getValue("service.EndPoint");
 		serviceBinding = config.getValue("service.Binding");
-		httpConfiguration.setTrustAll(Boolean.parseBoolean(config
-				.getValue("http.TrustAllConnection")));
-
 		httpConfiguration.setGoogleAppEngine(Boolean.parseBoolean(config.getValue("http.GoogleAppEngine")));
 		
 		try {
@@ -113,7 +110,7 @@ public class APIService {
 
 			headers = auth.getPayPalHeaders(apiUsername, connection,
 					accessToken, tokenSecret, httpConfiguration);
-			connection.CreateAndconfigureHttpConnection(httpConfiguration);
+			connection.createAndconfigureHttpConnection(httpConfiguration);
 
 		} catch (SSLConfigurationException ssl) {
 			LoggingManager.severe(APIService.class, ssl.getMessage());
