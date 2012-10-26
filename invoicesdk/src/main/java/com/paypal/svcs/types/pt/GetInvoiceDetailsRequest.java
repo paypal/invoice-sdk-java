@@ -8,6 +8,8 @@ import com.paypal.core.NVPUtil;
  */
 public class GetInvoiceDetailsRequest{
 
+	private static final String nameSpace="com.paypal.svcs.types.pt";
+	private static final String preferredPrefix="";
 
 	/**
 	 * 	  

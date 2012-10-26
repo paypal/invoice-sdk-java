@@ -10,6 +10,8 @@ import java.util.Map;
  */
 public class BusinessInfoType{
 
+	private static final String nameSpace="com.paypal.svcs.types.pt";
+	private static final String preferredPrefix="";
 
 	/**
 	 * First name of the company contact. 	 

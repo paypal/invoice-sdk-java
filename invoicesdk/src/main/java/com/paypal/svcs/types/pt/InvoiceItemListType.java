@@ -11,6 +11,8 @@ import java.util.Map;
  */
 public class InvoiceItemListType{
 
+	private static final String nameSpace="com.paypal.svcs.types.pt";
+	private static final String preferredPrefix="";
 
 	/**
 	 * 	  
