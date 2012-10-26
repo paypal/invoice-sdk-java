@@ -77,8 +77,7 @@ public class PermissionServlet extends HttpServlet {
 						scope, callback);
 				permRequest.setRequestEnvelope(env);
 				PermissionsService perm = new PermissionsService(this
-						.getServletContext().getRealPath("/")
-						+ "/WEB-INF/sdk_config.properties");
+						.getClass().getResourceAsStream("/sdk_config.properties"));
 				RequestPermissionsResponse resp = perm
 						.requestPermissions(permRequest);
 				response.getWriter()

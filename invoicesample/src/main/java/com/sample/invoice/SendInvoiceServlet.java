@@ -60,8 +60,7 @@ public class SendInvoiceServlet extends HttpServlet {
 			SendInvoiceRequest sendInvoiceRequest = new SendInvoiceRequest(env,
 					request.getParameter("invoiceID"));
 			InvoiceService invoiceSrvc = new InvoiceService(this
-					.getServletContext().getRealPath("/")
-					+ "/WEB-INF/sdk_config.properties");
+					.getClass().getResourceAsStream("/sdk_config.properties"));
 
 			if (request.getParameter("accessToken") != null
 					&& request.getParameter("tokenSecret") != null) {

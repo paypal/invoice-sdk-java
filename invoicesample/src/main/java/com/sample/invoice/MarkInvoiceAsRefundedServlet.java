@@ -69,8 +69,7 @@ public class MarkInvoiceAsRefundedServlet extends HttpServlet {
 		try {
 
 			InvoiceService invoiceSrvc = new InvoiceService(this
-					.getServletContext().getRealPath("/")
-					+ "/WEB-INF/sdk_config.properties");
+					.getClass().getResourceAsStream("/sdk_config.properties"));
 
 			if (request.getParameter("accessToken") != null
 					&& request.getParameter("tokenSecret") != null) {

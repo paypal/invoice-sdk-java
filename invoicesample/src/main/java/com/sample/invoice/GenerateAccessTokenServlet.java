@@ -44,8 +44,7 @@ public class GenerateAccessTokenServlet extends HttpServlet {
 		response.setContentType("text/html");
 		try {
 			PermissionsService service = new PermissionsService(this
-					.getServletContext().getRealPath("/")
-					+ "/WEB-INF/sdk_config.properties");
+					.getClass().getResourceAsStream("/sdk_config.properties"));
 			GetAccessTokenRequest tokenReq = new GetAccessTokenRequest();
 			RequestEnvelope env = new RequestEnvelope("en_US");
 			tokenReq.setRequestEnvelope(env);
