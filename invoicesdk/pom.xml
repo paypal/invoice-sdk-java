@@ -2,19 +2,13 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.paypal.sdk</groupId>
   <artifactId>invoicesdk</artifactId>
-  <version>1.5.95-SNAPSHOT</version>
+  <version>1.5.95</version>
   <name>InvoiceSDK</name>
-  <parent>
-  	<groupId>com.paypal.sdk</groupId>
-  	<artifactId>invoice</artifactId>
-  	<version>1.5.95-SNAPSHOT</version>
-  	<relativePath>../pom.xml</relativePath>
-  </parent>
   <dependencies>
   	<dependency>
   		<groupId>com.paypal.sdk</groupId>
-  		<artifactId>core</artifactId>
-  		<version>1.0-SNAPSHOT</version>
+  		<artifactId>paypal-core</artifactId>
+  		<version>1.0</version>
   	</dependency>
   </dependencies>
 </project>

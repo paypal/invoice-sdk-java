@@ -7,16 +7,33 @@ Prerequisites:
 
 SDK Integration:
 ----------------
-*	Create a new maven web application.
+For Non-Maven Users:
+--------------------
+*   Create a new application.
+
+*   Copy  all the jar files inside 'lib' folder to your application.
+
+For Maven Users:
+----------------
+*   Install all the jar files inside 'lib' folder manually to local repository. 
+
+        mvn install:install-file -Dfile=commons-codec-1.3.jar -DgroupId=commons-codec -DartifactId=commons-codec -Dversion=1.3 -Dpackaging=jar
+        mvn install:install-file -Dfile=paypal-auth-signature-1.0.jar -DgroupId=com.paypal.sdk -DartifactId=paypal-auth-signature -Dversion=1.0 -Dpackaging=jar
+        mvn install:install-file -Dfile=paypal-core-1.0.jar -DgroupId=com.paypal.sdk -DartifactId=paypal-core -Dversion=1.0 -Dpackaging=jar
+		mvn install:install-file -Dfile=invoicesdk-2.5.96.jar -DgroupId=com.paypal.sdk -DartifactId=invoicesdk -Dversion=2.5.96 -Dpackaging=jar	
+
+*	Create a new maven application.
 
 *	Add dependency to sdk in your application's pom.xml as below.
 		
 		<dependency>
 			<groupId>com.paypal.sdk</groupId>
 			<artifactId>invoicesdk</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>2.5.96</version>
 		</dependency>
-		
+
+To make an API call:
+--------------------		
 *	Import InvoiceService.java into your code.
 		
 *	Copy the configuration file 'sdk_config.properties' in 'invoicesample/src/main/resources' folder to your application 'src/main/resources'. And load it using,  
