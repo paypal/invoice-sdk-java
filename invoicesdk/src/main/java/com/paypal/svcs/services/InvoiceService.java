@@ -38,10 +38,10 @@ public class InvoiceService extends BaseService{
 	public static final String SERVICE_NAME = "Invoice";
 
 	//SDK Name
-	private static final String SDK_NAME="sdkname";
+	private static final String SDK_NAME="invoice-java-sdk";
 	
 	//SDK Version
-	private static final String SDK_VERSION="sdkversion";
+	private static final String SDK_VERSION="2.0.96";
 
 	
 	public InvoiceService(File configFile) throws IOException {

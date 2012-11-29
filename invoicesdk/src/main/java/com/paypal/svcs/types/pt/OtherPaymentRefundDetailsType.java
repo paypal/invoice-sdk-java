@@ -8,8 +8,6 @@ import java.util.Map;
  */
 public class OtherPaymentRefundDetailsType{
 
-	private static final String nameSpace="com.paypal.svcs.types.pt";
-	private static final String preferredPrefix="";
 
 	/**
 	 * Optional note associated with the refund. 	 
