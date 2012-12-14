@@ -2,19 +2,19 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.paypal.sdk</groupId>
   <artifactId>invoicesample</artifactId>
-  <version>2.0.96</version>
+  <version>2.1.96</version>
   <packaging>war</packaging>
   <name>InvoiceSample</name>
   <dependencies>
   	<dependency>
   		<groupId>com.paypal.sdk</groupId>
   		<artifactId>invoicesdk</artifactId>
-  		<version>2.0.96</version>
+  		<version>2.1.96</version>
   	</dependency>
   	<dependency>
   		<groupId>com.paypal.sdk</groupId>
   		<artifactId>permissionssdk</artifactId>
-  		<version>2.0.96</version>
+  		<version>2.1.96</version>
   	</dependency>
   	<dependency>
   		<groupId>javax.servlet</groupId>

@@ -55,10 +55,10 @@ public class InvoiceItemListType{
 	
 	public String toNVPString(String prefix) throws UnsupportedEncodingException {
 		StringBuilder sb = new StringBuilder();
-		if (item != null) {
-			for(int i=0; i < item.size(); i++) {
+		if (this.item != null) {
+			for(int i=0; i < this.item.size(); i++) {
 				String newPrefix = prefix + "item" + "(" + i + ").";
-				sb.append(item.get(i).toNVPString(newPrefix));
+				sb.append(this.item.get(i).toNVPString(newPrefix));
 			}
 		}
 		return sb.toString();

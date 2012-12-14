@@ -137,24 +137,24 @@ public class SearchInvoicesRequest{
 	
 	public String toNVPString(String prefix) throws UnsupportedEncodingException {
 		StringBuilder sb = new StringBuilder();
-		if (requestEnvelope != null) {
+		if (this.requestEnvelope != null) {
 			String newPrefix = prefix + "requestEnvelope.";
-			sb.append(requestEnvelope.toNVPString(newPrefix));
+			sb.append(this.requestEnvelope.toNVPString(newPrefix));
 		}
-		if (merchantEmail != null) {
-			sb.append(prefix).append("merchantEmail=").append(NVPUtil.encodeUrl(merchantEmail));
+		if (this.merchantEmail != null) {
+			sb.append(prefix).append("merchantEmail=").append(NVPUtil.encodeUrl(this.merchantEmail));
 			sb.append("&");
 		}
-		if (parameters != null) {
+		if (this.parameters != null) {
 			String newPrefix = prefix + "parameters.";
-			sb.append(parameters.toNVPString(newPrefix));
+			sb.append(this.parameters.toNVPString(newPrefix));
 		}
-		if (page != null) {
-			sb.append(prefix).append("page=").append(page);
+		if (this.page != null) {
+			sb.append(prefix).append("page=").append(this.page);
 			sb.append("&");
 		}
-		if (pageSize != null) {
-			sb.append(prefix).append("pageSize=").append(pageSize);
+		if (this.pageSize != null) {
+			sb.append(prefix).append("pageSize=").append(this.pageSize);
 			sb.append("&");
 		}
 		return sb.toString();

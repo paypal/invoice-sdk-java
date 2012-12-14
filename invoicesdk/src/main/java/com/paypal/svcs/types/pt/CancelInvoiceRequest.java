@@ -128,24 +128,24 @@ public class CancelInvoiceRequest{
 	
 	public String toNVPString(String prefix) throws UnsupportedEncodingException {
 		StringBuilder sb = new StringBuilder();
-		if (requestEnvelope != null) {
+		if (this.requestEnvelope != null) {
 			String newPrefix = prefix + "requestEnvelope.";
-			sb.append(requestEnvelope.toNVPString(newPrefix));
+			sb.append(this.requestEnvelope.toNVPString(newPrefix));
 		}
-		if (invoiceID != null) {
-			sb.append(prefix).append("invoiceID=").append(NVPUtil.encodeUrl(invoiceID));
+		if (this.invoiceID != null) {
+			sb.append(prefix).append("invoiceID=").append(NVPUtil.encodeUrl(this.invoiceID));
 			sb.append("&");
 		}
-		if (subject != null) {
-			sb.append(prefix).append("subject=").append(NVPUtil.encodeUrl(subject));
+		if (this.subject != null) {
+			sb.append(prefix).append("subject=").append(NVPUtil.encodeUrl(this.subject));
 			sb.append("&");
 		}
-		if (noteForPayer != null) {
-			sb.append(prefix).append("noteForPayer=").append(NVPUtil.encodeUrl(noteForPayer));
+		if (this.noteForPayer != null) {
+			sb.append(prefix).append("noteForPayer=").append(NVPUtil.encodeUrl(this.noteForPayer));
 			sb.append("&");
 		}
-		if (sendCopyToMerchant != null) {
-			sb.append(prefix).append("sendCopyToMerchant=").append(sendCopyToMerchant);
+		if (this.sendCopyToMerchant != null) {
+			sb.append(prefix).append("sendCopyToMerchant=").append(this.sendCopyToMerchant);
 			sb.append("&");
 		}
 		return sb.toString();

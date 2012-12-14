@@ -172,32 +172,32 @@ public class InvoiceItemType{
 	
 	public String toNVPString(String prefix) throws UnsupportedEncodingException {
 		StringBuilder sb = new StringBuilder();
-		if (name != null) {
-			sb.append(prefix).append("name=").append(NVPUtil.encodeUrl(name));
+		if (this.name != null) {
+			sb.append(prefix).append("name=").append(NVPUtil.encodeUrl(this.name));
 			sb.append("&");
 		}
-		if (description != null) {
-			sb.append(prefix).append("description=").append(NVPUtil.encodeUrl(description));
+		if (this.description != null) {
+			sb.append(prefix).append("description=").append(NVPUtil.encodeUrl(this.description));
 			sb.append("&");
 		}
-		if (date != null) {
-			sb.append(prefix).append("date=").append(NVPUtil.encodeUrl(date));
+		if (this.date != null) {
+			sb.append(prefix).append("date=").append(NVPUtil.encodeUrl(this.date));
 			sb.append("&");
 		}
-		if (quantity != null) {
-			sb.append(prefix).append("quantity=").append(quantity);
+		if (this.quantity != null) {
+			sb.append(prefix).append("quantity=").append(this.quantity);
 			sb.append("&");
 		}
-		if (unitPrice != null) {
-			sb.append(prefix).append("unitPrice=").append(unitPrice);
+		if (this.unitPrice != null) {
+			sb.append(prefix).append("unitPrice=").append(this.unitPrice);
 			sb.append("&");
 		}
-		if (taxName != null) {
-			sb.append(prefix).append("taxName=").append(NVPUtil.encodeUrl(taxName));
+		if (this.taxName != null) {
+			sb.append(prefix).append("taxName=").append(NVPUtil.encodeUrl(this.taxName));
 			sb.append("&");
 		}
-		if (taxRate != null) {
-			sb.append(prefix).append("taxRate=").append(taxRate);
+		if (this.taxRate != null) {
+			sb.append(prefix).append("taxRate=").append(this.taxRate);
 			sb.append("&");
 		}
 		return sb.toString();

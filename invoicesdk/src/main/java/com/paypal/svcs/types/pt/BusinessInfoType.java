@@ -180,37 +180,37 @@ public class BusinessInfoType{
 	
 	public String toNVPString(String prefix) throws UnsupportedEncodingException {
 		StringBuilder sb = new StringBuilder();
-		if (firstName != null) {
-			sb.append(prefix).append("firstName=").append(NVPUtil.encodeUrl(firstName));
+		if (this.firstName != null) {
+			sb.append(prefix).append("firstName=").append(NVPUtil.encodeUrl(this.firstName));
 			sb.append("&");
 		}
-		if (lastName != null) {
-			sb.append(prefix).append("lastName=").append(NVPUtil.encodeUrl(lastName));
+		if (this.lastName != null) {
+			sb.append(prefix).append("lastName=").append(NVPUtil.encodeUrl(this.lastName));
 			sb.append("&");
 		}
-		if (businessName != null) {
-			sb.append(prefix).append("businessName=").append(NVPUtil.encodeUrl(businessName));
+		if (this.businessName != null) {
+			sb.append(prefix).append("businessName=").append(NVPUtil.encodeUrl(this.businessName));
 			sb.append("&");
 		}
-		if (phone != null) {
-			sb.append(prefix).append("phone=").append(NVPUtil.encodeUrl(phone));
+		if (this.phone != null) {
+			sb.append(prefix).append("phone=").append(NVPUtil.encodeUrl(this.phone));
 			sb.append("&");
 		}
-		if (fax != null) {
-			sb.append(prefix).append("fax=").append(NVPUtil.encodeUrl(fax));
+		if (this.fax != null) {
+			sb.append(prefix).append("fax=").append(NVPUtil.encodeUrl(this.fax));
 			sb.append("&");
 		}
-		if (website != null) {
-			sb.append(prefix).append("website=").append(NVPUtil.encodeUrl(website));
+		if (this.website != null) {
+			sb.append(prefix).append("website=").append(NVPUtil.encodeUrl(this.website));
 			sb.append("&");
 		}
-		if (customValue != null) {
-			sb.append(prefix).append("customValue=").append(NVPUtil.encodeUrl(customValue));
+		if (this.customValue != null) {
+			sb.append(prefix).append("customValue=").append(NVPUtil.encodeUrl(this.customValue));
 			sb.append("&");
 		}
-		if (address != null) {
+		if (this.address != null) {
 			String newPrefix = prefix + "address.";
-			sb.append(address.toNVPString(newPrefix));
+			sb.append(this.address.toNVPString(newPrefix));
 		}
 		return sb.toString();
 	}

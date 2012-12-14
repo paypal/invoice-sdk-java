@@ -488,96 +488,96 @@ public class InvoiceType{
 	
 	public String toNVPString(String prefix) throws UnsupportedEncodingException {
 		StringBuilder sb = new StringBuilder();
-		if (merchantEmail != null) {
-			sb.append(prefix).append("merchantEmail=").append(NVPUtil.encodeUrl(merchantEmail));
+		if (this.merchantEmail != null) {
+			sb.append(prefix).append("merchantEmail=").append(NVPUtil.encodeUrl(this.merchantEmail));
 			sb.append("&");
 		}
-		if (payerEmail != null) {
-			sb.append(prefix).append("payerEmail=").append(NVPUtil.encodeUrl(payerEmail));
+		if (this.payerEmail != null) {
+			sb.append(prefix).append("payerEmail=").append(NVPUtil.encodeUrl(this.payerEmail));
 			sb.append("&");
 		}
-		if (number != null) {
-			sb.append(prefix).append("number=").append(NVPUtil.encodeUrl(number));
+		if (this.number != null) {
+			sb.append(prefix).append("number=").append(NVPUtil.encodeUrl(this.number));
 			sb.append("&");
 		}
-		if (merchantInfo != null) {
+		if (this.merchantInfo != null) {
 			String newPrefix = prefix + "merchantInfo.";
-			sb.append(merchantInfo.toNVPString(newPrefix));
+			sb.append(this.merchantInfo.toNVPString(newPrefix));
 		}
-		if (itemList != null) {
+		if (this.itemList != null) {
 			String newPrefix = prefix + "itemList.";
-			sb.append(itemList.toNVPString(newPrefix));
+			sb.append(this.itemList.toNVPString(newPrefix));
 		}
-		if (currencyCode != null) {
-			sb.append(prefix).append("currencyCode=").append(NVPUtil.encodeUrl(currencyCode));
+		if (this.currencyCode != null) {
+			sb.append(prefix).append("currencyCode=").append(NVPUtil.encodeUrl(this.currencyCode));
 			sb.append("&");
 		}
-		if (invoiceDate != null) {
-			sb.append(prefix).append("invoiceDate=").append(NVPUtil.encodeUrl(invoiceDate));
+		if (this.invoiceDate != null) {
+			sb.append(prefix).append("invoiceDate=").append(NVPUtil.encodeUrl(this.invoiceDate));
 			sb.append("&");
 		}
-		if (dueDate != null) {
-			sb.append(prefix).append("dueDate=").append(NVPUtil.encodeUrl(dueDate));
+		if (this.dueDate != null) {
+			sb.append(prefix).append("dueDate=").append(NVPUtil.encodeUrl(this.dueDate));
 			sb.append("&");
 		}
-		if (paymentTerms != null) {
-			sb.append(prefix).append("paymentTerms=").append(paymentTerms.getValue());
+		if (this.paymentTerms != null) {
+			sb.append(prefix).append("paymentTerms=").append(this.paymentTerms.getValue());
 			sb.append("&");
 		}
-		if (discountPercent != null) {
-			sb.append(prefix).append("discountPercent=").append(discountPercent);
+		if (this.discountPercent != null) {
+			sb.append(prefix).append("discountPercent=").append(this.discountPercent);
 			sb.append("&");
 		}
-		if (discountAmount != null) {
-			sb.append(prefix).append("discountAmount=").append(discountAmount);
+		if (this.discountAmount != null) {
+			sb.append(prefix).append("discountAmount=").append(this.discountAmount);
 			sb.append("&");
 		}
-		if (terms != null) {
-			sb.append(prefix).append("terms=").append(NVPUtil.encodeUrl(terms));
+		if (this.terms != null) {
+			sb.append(prefix).append("terms=").append(NVPUtil.encodeUrl(this.terms));
 			sb.append("&");
 		}
-		if (note != null) {
-			sb.append(prefix).append("note=").append(NVPUtil.encodeUrl(note));
+		if (this.note != null) {
+			sb.append(prefix).append("note=").append(NVPUtil.encodeUrl(this.note));
 			sb.append("&");
 		}
-		if (merchantMemo != null) {
-			sb.append(prefix).append("merchantMemo=").append(NVPUtil.encodeUrl(merchantMemo));
+		if (this.merchantMemo != null) {
+			sb.append(prefix).append("merchantMemo=").append(NVPUtil.encodeUrl(this.merchantMemo));
 			sb.append("&");
 		}
-		if (billingInfo != null) {
+		if (this.billingInfo != null) {
 			String newPrefix = prefix + "billingInfo.";
-			sb.append(billingInfo.toNVPString(newPrefix));
+			sb.append(this.billingInfo.toNVPString(newPrefix));
 		}
-		if (shippingInfo != null) {
+		if (this.shippingInfo != null) {
 			String newPrefix = prefix + "shippingInfo.";
-			sb.append(shippingInfo.toNVPString(newPrefix));
+			sb.append(this.shippingInfo.toNVPString(newPrefix));
 		}
-		if (shippingAmount != null) {
-			sb.append(prefix).append("shippingAmount=").append(shippingAmount);
+		if (this.shippingAmount != null) {
+			sb.append(prefix).append("shippingAmount=").append(this.shippingAmount);
 			sb.append("&");
 		}
-		if (shippingTaxName != null) {
-			sb.append(prefix).append("shippingTaxName=").append(NVPUtil.encodeUrl(shippingTaxName));
+		if (this.shippingTaxName != null) {
+			sb.append(prefix).append("shippingTaxName=").append(NVPUtil.encodeUrl(this.shippingTaxName));
 			sb.append("&");
 		}
-		if (shippingTaxRate != null) {
-			sb.append(prefix).append("shippingTaxRate=").append(shippingTaxRate);
+		if (this.shippingTaxRate != null) {
+			sb.append(prefix).append("shippingTaxRate=").append(this.shippingTaxRate);
 			sb.append("&");
 		}
-		if (logoUrl != null) {
-			sb.append(prefix).append("logoUrl=").append(NVPUtil.encodeUrl(logoUrl));
+		if (this.logoUrl != null) {
+			sb.append(prefix).append("logoUrl=").append(NVPUtil.encodeUrl(this.logoUrl));
 			sb.append("&");
 		}
-		if (referrerCode != null) {
-			sb.append(prefix).append("referrerCode=").append(NVPUtil.encodeUrl(referrerCode));
+		if (this.referrerCode != null) {
+			sb.append(prefix).append("referrerCode=").append(NVPUtil.encodeUrl(this.referrerCode));
 			sb.append("&");
 		}
-		if (customAmountLabel != null) {
-			sb.append(prefix).append("customAmountLabel=").append(NVPUtil.encodeUrl(customAmountLabel));
+		if (this.customAmountLabel != null) {
+			sb.append(prefix).append("customAmountLabel=").append(NVPUtil.encodeUrl(this.customAmountLabel));
 			sb.append("&");
 		}
-		if (customAmountValue != null) {
-			sb.append(prefix).append("customAmountValue=").append(customAmountValue);
+		if (this.customAmountValue != null) {
+			sb.append(prefix).append("customAmountValue=").append(this.customAmountValue);
 			sb.append("&");
 		}
 		return sb.toString();

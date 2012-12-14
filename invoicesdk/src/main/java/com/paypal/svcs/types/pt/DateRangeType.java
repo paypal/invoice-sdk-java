@@ -62,12 +62,12 @@ public class DateRangeType{
 	
 	public String toNVPString(String prefix) throws UnsupportedEncodingException {
 		StringBuilder sb = new StringBuilder();
-		if (startDate != null) {
-			sb.append(prefix).append("startDate=").append(NVPUtil.encodeUrl(startDate));
+		if (this.startDate != null) {
+			sb.append(prefix).append("startDate=").append(NVPUtil.encodeUrl(this.startDate));
 			sb.append("&");
 		}
-		if (endDate != null) {
-			sb.append(prefix).append("endDate=").append(NVPUtil.encodeUrl(endDate));
+		if (this.endDate != null) {
+			sb.append(prefix).append("endDate=").append(NVPUtil.encodeUrl(this.endDate));
 			sb.append("&");
 		}
 		return sb.toString();

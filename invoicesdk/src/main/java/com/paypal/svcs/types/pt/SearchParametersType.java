@@ -299,63 +299,63 @@ public class SearchParametersType{
 	
 	public String toNVPString(String prefix) throws UnsupportedEncodingException {
 		StringBuilder sb = new StringBuilder();
-		if (email != null) {
-			sb.append(prefix).append("email=").append(NVPUtil.encodeUrl(email));
+		if (this.email != null) {
+			sb.append(prefix).append("email=").append(NVPUtil.encodeUrl(this.email));
 			sb.append("&");
 		}
-		if (recipientName != null) {
-			sb.append(prefix).append("recipientName=").append(NVPUtil.encodeUrl(recipientName));
+		if (this.recipientName != null) {
+			sb.append(prefix).append("recipientName=").append(NVPUtil.encodeUrl(this.recipientName));
 			sb.append("&");
 		}
-		if (businessName != null) {
-			sb.append(prefix).append("businessName=").append(NVPUtil.encodeUrl(businessName));
+		if (this.businessName != null) {
+			sb.append(prefix).append("businessName=").append(NVPUtil.encodeUrl(this.businessName));
 			sb.append("&");
 		}
-		if (invoiceNumber != null) {
-			sb.append(prefix).append("invoiceNumber=").append(NVPUtil.encodeUrl(invoiceNumber));
+		if (this.invoiceNumber != null) {
+			sb.append(prefix).append("invoiceNumber=").append(NVPUtil.encodeUrl(this.invoiceNumber));
 			sb.append("&");
 		}
-		if (status != null) {
-			for(int i=0; i < status.size(); i++) {
-				sb.append(prefix).append("status(").append(i).append(")=").append(status.get(i).getValue());
+		if (this.status != null) {
+			for(int i=0; i < this.status.size(); i++) {
+				sb.append(prefix).append("status(").append(i).append(")=").append(this.status.get(i).getValue());
 				sb.append("&");
 			}
 		}
-		if (lowerAmount != null) {
-			sb.append(prefix).append("lowerAmount=").append(lowerAmount);
+		if (this.lowerAmount != null) {
+			sb.append(prefix).append("lowerAmount=").append(this.lowerAmount);
 			sb.append("&");
 		}
-		if (upperAmount != null) {
-			sb.append(prefix).append("upperAmount=").append(upperAmount);
+		if (this.upperAmount != null) {
+			sb.append(prefix).append("upperAmount=").append(this.upperAmount);
 			sb.append("&");
 		}
-		if (currencyCode != null) {
-			sb.append(prefix).append("currencyCode=").append(NVPUtil.encodeUrl(currencyCode));
+		if (this.currencyCode != null) {
+			sb.append(prefix).append("currencyCode=").append(NVPUtil.encodeUrl(this.currencyCode));
 			sb.append("&");
 		}
-		if (memo != null) {
-			sb.append(prefix).append("memo=").append(NVPUtil.encodeUrl(memo));
+		if (this.memo != null) {
+			sb.append(prefix).append("memo=").append(NVPUtil.encodeUrl(this.memo));
 			sb.append("&");
 		}
-		if (origin != null) {
-			sb.append(prefix).append("origin=").append(origin.getValue());
+		if (this.origin != null) {
+			sb.append(prefix).append("origin=").append(this.origin.getValue());
 			sb.append("&");
 		}
-		if (invoiceDate != null) {
+		if (this.invoiceDate != null) {
 			String newPrefix = prefix + "invoiceDate.";
-			sb.append(invoiceDate.toNVPString(newPrefix));
+			sb.append(this.invoiceDate.toNVPString(newPrefix));
 		}
-		if (dueDate != null) {
+		if (this.dueDate != null) {
 			String newPrefix = prefix + "dueDate.";
-			sb.append(dueDate.toNVPString(newPrefix));
+			sb.append(this.dueDate.toNVPString(newPrefix));
 		}
-		if (paymentDate != null) {
+		if (this.paymentDate != null) {
 			String newPrefix = prefix + "paymentDate.";
-			sb.append(paymentDate.toNVPString(newPrefix));
+			sb.append(this.paymentDate.toNVPString(newPrefix));
 		}
-		if (creationDate != null) {
+		if (this.creationDate != null) {
 			String newPrefix = prefix + "creationDate.";
-			sb.append(creationDate.toNVPString(newPrefix));
+			sb.append(this.creationDate.toNVPString(newPrefix));
 		}
 		return sb.toString();
 	}

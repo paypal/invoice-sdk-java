@@ -1,3 +1,12 @@
+Version 2.1.96 - December 14, 2012
+ 
+	- Added support for Instant Payment Notification (Refer IPN-README.md for more details)
+	- Added new feature for supporting multiple endpoints based on portname for using different sdks together.
+	- Added new feature in which that service wrapper class have constructor that takes java.util.Properties (https://github.com/paypal/merchant-sdk-java/issues/2)
+	- Fixes for serialization issue (https://github.com/paypal/merchant-sdk-java/issues/1)
+	
+You can see source code of this release in github under https://github.com/paypal/invoice-sdk-java/tree/v2.1.96.
+--------------------------------------------------------------------------------------------------
 
 Version 2.0.96 - November 28, 2012
  

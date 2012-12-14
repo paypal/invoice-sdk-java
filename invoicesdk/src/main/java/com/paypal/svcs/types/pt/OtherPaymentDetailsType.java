@@ -83,16 +83,16 @@ public class OtherPaymentDetailsType{
 	
 	public String toNVPString(String prefix) throws UnsupportedEncodingException {
 		StringBuilder sb = new StringBuilder();
-		if (method != null) {
-			sb.append(prefix).append("method=").append(method.getValue());
+		if (this.method != null) {
+			sb.append(prefix).append("method=").append(this.method.getValue());
 			sb.append("&");
 		}
-		if (note != null) {
-			sb.append(prefix).append("note=").append(NVPUtil.encodeUrl(note));
+		if (this.note != null) {
+			sb.append(prefix).append("note=").append(NVPUtil.encodeUrl(this.note));
 			sb.append("&");
 		}
-		if (date != null) {
-			sb.append(prefix).append("date=").append(NVPUtil.encodeUrl(date));
+		if (this.date != null) {
+			sb.append(prefix).append("date=").append(NVPUtil.encodeUrl(this.date));
 			sb.append("&");
 		}
 		return sb.toString();

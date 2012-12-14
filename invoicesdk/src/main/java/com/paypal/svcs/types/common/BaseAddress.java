@@ -170,32 +170,32 @@ public class BaseAddress{
 	
 	public String toNVPString(String prefix) throws UnsupportedEncodingException {
 		StringBuilder sb = new StringBuilder();
-		if (line1 != null) {
-			sb.append(prefix).append("line1=").append(NVPUtil.encodeUrl(line1));
+		if (this.line1 != null) {
+			sb.append(prefix).append("line1=").append(NVPUtil.encodeUrl(this.line1));
 			sb.append("&");
 		}
-		if (line2 != null) {
-			sb.append(prefix).append("line2=").append(NVPUtil.encodeUrl(line2));
+		if (this.line2 != null) {
+			sb.append(prefix).append("line2=").append(NVPUtil.encodeUrl(this.line2));
 			sb.append("&");
 		}
-		if (city != null) {
-			sb.append(prefix).append("city=").append(NVPUtil.encodeUrl(city));
+		if (this.city != null) {
+			sb.append(prefix).append("city=").append(NVPUtil.encodeUrl(this.city));
 			sb.append("&");
 		}
-		if (state != null) {
-			sb.append(prefix).append("state=").append(NVPUtil.encodeUrl(state));
+		if (this.state != null) {
+			sb.append(prefix).append("state=").append(NVPUtil.encodeUrl(this.state));
 			sb.append("&");
 		}
-		if (postalCode != null) {
-			sb.append(prefix).append("postalCode=").append(NVPUtil.encodeUrl(postalCode));
+		if (this.postalCode != null) {
+			sb.append(prefix).append("postalCode=").append(NVPUtil.encodeUrl(this.postalCode));
 			sb.append("&");
 		}
-		if (countryCode != null) {
-			sb.append(prefix).append("countryCode=").append(NVPUtil.encodeUrl(countryCode));
+		if (this.countryCode != null) {
+			sb.append(prefix).append("countryCode=").append(NVPUtil.encodeUrl(this.countryCode));
 			sb.append("&");
 		}
-		if (type != null) {
-			sb.append(prefix).append("type=").append(NVPUtil.encodeUrl(type));
+		if (this.type != null) {
+			sb.append(prefix).append("type=").append(NVPUtil.encodeUrl(this.type));
 			sb.append("&");
 		}
 		return sb.toString();

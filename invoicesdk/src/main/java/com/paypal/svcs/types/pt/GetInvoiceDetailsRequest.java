@@ -73,12 +73,12 @@ public class GetInvoiceDetailsRequest{
 	
 	public String toNVPString(String prefix) throws UnsupportedEncodingException {
 		StringBuilder sb = new StringBuilder();
-		if (requestEnvelope != null) {
+		if (this.requestEnvelope != null) {
 			String newPrefix = prefix + "requestEnvelope.";
-			sb.append(requestEnvelope.toNVPString(newPrefix));
+			sb.append(this.requestEnvelope.toNVPString(newPrefix));
 		}
-		if (invoiceID != null) {
-			sb.append(prefix).append("invoiceID=").append(NVPUtil.encodeUrl(invoiceID));
+		if (this.invoiceID != null) {
+			sb.append(prefix).append("invoiceID=").append(NVPUtil.encodeUrl(this.invoiceID));
 			sb.append("&");
 		}
 		return sb.toString();

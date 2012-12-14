@@ -95,17 +95,17 @@ public class MarkInvoiceAsPaidRequest{
 	
 	public String toNVPString(String prefix) throws UnsupportedEncodingException {
 		StringBuilder sb = new StringBuilder();
-		if (requestEnvelope != null) {
+		if (this.requestEnvelope != null) {
 			String newPrefix = prefix + "requestEnvelope.";
-			sb.append(requestEnvelope.toNVPString(newPrefix));
+			sb.append(this.requestEnvelope.toNVPString(newPrefix));
 		}
-		if (invoiceID != null) {
-			sb.append(prefix).append("invoiceID=").append(NVPUtil.encodeUrl(invoiceID));
+		if (this.invoiceID != null) {
+			sb.append(prefix).append("invoiceID=").append(NVPUtil.encodeUrl(this.invoiceID));
 			sb.append("&");
 		}
-		if (payment != null) {
+		if (this.payment != null) {
 			String newPrefix = prefix + "payment.";
-			sb.append(payment.toNVPString(newPrefix));
+			sb.append(this.payment.toNVPString(newPrefix));
 		}
 		return sb.toString();
 	}
