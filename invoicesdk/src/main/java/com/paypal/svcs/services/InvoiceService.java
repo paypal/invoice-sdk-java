@@ -1,5 +1,6 @@
 package com.paypal.svcs.services;
 import java.io.*;
+import java.util.Map;
 import java.util.Properties;
 import com.paypal.core.BaseService;
 import com.paypal.exception.*;
@@ -39,54 +40,102 @@ public class InvoiceService extends BaseService {
 	public static final String SERVICE_NAME = "Invoice";
 
 	//SDK Name
-	private static final String SDK_NAME="invoice-java-sdk";
+	private static final String SDK_NAME = "sdkname";
 	
 	//SDK Version
-	private static final String SDK_VERSION="2.1.96";
+	private static final String SDK_VERSION = "sdkversion";
 
+
+	/**
+	 * Default <code>InvoiceService</code> Constructor.
+	 * Initializes the SDK system with the default configuration file named
+	 * 'sdk_config.properties' found in the class-path
+	 * 
+	 */
+	public InvoiceService() {
+		super();
+	}
 	
+	/**
+	 * <code>InvoiceService</code> that uses the supplied path
+	 * to initialize the SDK system. The initialization context is maintained
+	 * only for this instance of the class. To initialize the SDK system
+	 * globally use the default constructor.
+	 * 
+	 * @see PayPalAPIInterfaceServiceService
+	 * @param configFilePath
+	 *            Absolute path to a {@link Properties} file
+	 * @throws IOException
+	 */
+	public InvoiceService(String configFilePath) throws IOException {
+		this(new File(configFilePath));
+	}
+	
+	/**
+	 * <code>InvoiceService</code> that uses the supplied
+	 * {@link File} object to initialize the SDK system. The initialization
+	 * context is maintained only for this instance of the class. To initialize
+	 * the SDK system globally use the default constructor
+	 * 
+	 * @see PayPalAPIInterfaceServiceService
+	 * @param configFile
+	 *            Configuration file in {@link Properties} format
+	 * @throws IOException
+	 */
 	public InvoiceService(File configFile) throws IOException {
-		initConfig(configFile);
+		this(new FileInputStream(configFile));
 	}		
 
-	public InvoiceService(InputStream config) throws IOException {
-		initConfig(config);
+	/**
+	 * <code>InvoiceService</code> that uses the supplied
+	 * {@link InputStream} object to initialize the SDK system. The
+	 * initialization context is maintained only for this instance of the class.
+	 * To initialize the SDK system globally use the default constructor.
+	 * 
+	 * @see PayPalAPIInterfaceServiceService
+	 * @param inputStream
+	 *            InputStream of a {@link Properties} file
+	 * @throws IOException
+	 */
+	public InvoiceService(InputStream inputStream) throws IOException {
+		super(inputStream);
 	}
 
-	public InvoiceService(String configFilePath) throws IOException {
-		initConfig(configFilePath);
+	/**
+	 * <code>InvoiceService</code> that uses the supplied
+	 * {@link Properties} to initialize the SDK system. For values that the
+	 * properties should hold consult the sample 'sdk_config.properties' file
+	 * bundled with the SDK. The initialization context is maintained only for
+	 * this instance of the class. To initialize the SDK system globally use the
+	 * default constructor.
+	 * 
+	 * @see PayPalAPIInterfaceServiceService
+	 * @param properties
+	 *            {@link Properties} object
+	 */	
+	public InvoiceService(Properties properties) {
+		super(properties);
 	}
 	
-	public InvoiceService(Properties properties) {
-		initConfig(properties);
+	/**
+	 * <code>PayPalAPIInterfaceServiceService</code> that uses the supplied
+	 * {@link Map} to initialize the SDK system. For values that the map should
+	 * hold consult the sample 'sdk_config.properties' file bundled with the
+	 * SDK. The initialization context is maintained only for this instance of
+	 * the class. To initialize the SDK system globally use the default
+	 * constructor.
+	 * 
+	 * @see PayPalAPIInterfaceServiceService
+	 * @param configurationMap
+	 *            {@link Map} object
+	 */
+	public InvoiceService(Map<String, String> configurationMap) {
+		super(configurationMap);
 	}
 
 
 
-	/**	
-	 * AUTO_GENERATED
-	 * @throws SSLConfigurationException
-	 * @throws InvalidCredentialException
-	 * @throws UnsupportedEncodingException
-	 * @throws IOException
-	 * @throws HttpErrorException
-	 * @throws InvalidResponseDataException
-	 * @throws ClientActionRequiredException
-	 * @throws MissingCredentialException
-	 * @throws InterruptedException
-	 * @throws OAuthException
-	 */
-	 public CreateInvoiceResponse createInvoice(CreateInvoiceRequest createInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(createInvoiceRequest.toNVPString(), SERVICE_NAME, "CreateInvoice", apiUsername, getAccessToken(), getTokenSecret());
-	    ((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
-	 	String response = call(apiCallPreHandler);
-		return CreateInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
-	 }
-	 
+
 	/** 
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -118,15 +167,11 @@ public class InvoiceService extends BaseService {
 	 * @throws OAuthException
 	 */
 	 public CreateInvoiceResponse createInvoice(CreateInvoiceRequest createInvoiceRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(createInvoiceRequest.toNVPString(), SERVICE_NAME, "CreateInvoice", credential);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(createInvoiceRequest.toNVPString(), SERVICE_NAME, "CreateInvoice", credential, SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return CreateInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
 	}
+	
 	/**	
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -140,17 +185,12 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	 public SendInvoiceResponse sendInvoice(SendInvoiceRequest sendInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(sendInvoiceRequest.toNVPString(), SERVICE_NAME, "SendInvoice", apiUsername, getAccessToken(), getTokenSecret());
-	    ((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+	 public CreateInvoiceResponse createInvoice(CreateInvoiceRequest createInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(createInvoiceRequest.toNVPString(), SERVICE_NAME, "CreateInvoice", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
-		return SendInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
+		return CreateInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
-	 
+
 	/** 
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -182,15 +222,11 @@ public class InvoiceService extends BaseService {
 	 * @throws OAuthException
 	 */
 	 public SendInvoiceResponse sendInvoice(SendInvoiceRequest sendInvoiceRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(sendInvoiceRequest.toNVPString(), SERVICE_NAME, "SendInvoice", credential);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(sendInvoiceRequest.toNVPString(), SERVICE_NAME, "SendInvoice", credential, SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return SendInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
 	}
+	
 	/**	
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -204,17 +240,12 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	 public CreateAndSendInvoiceResponse createAndSendInvoice(CreateAndSendInvoiceRequest createAndSendInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(createAndSendInvoiceRequest.toNVPString(), SERVICE_NAME, "CreateAndSendInvoice", apiUsername, getAccessToken(), getTokenSecret());
-	    ((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+	 public SendInvoiceResponse sendInvoice(SendInvoiceRequest sendInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(sendInvoiceRequest.toNVPString(), SERVICE_NAME, "SendInvoice", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
-		return CreateAndSendInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
+		return SendInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
-	 
+
 	/** 
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -246,15 +277,11 @@ public class InvoiceService extends BaseService {
 	 * @throws OAuthException
 	 */
 	 public CreateAndSendInvoiceResponse createAndSendInvoice(CreateAndSendInvoiceRequest createAndSendInvoiceRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(createAndSendInvoiceRequest.toNVPString(), SERVICE_NAME, "CreateAndSendInvoice", credential);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(createAndSendInvoiceRequest.toNVPString(), SERVICE_NAME, "CreateAndSendInvoice", credential, SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return CreateAndSendInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
 	}
+	
 	/**	
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -268,17 +295,12 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	 public UpdateInvoiceResponse updateInvoice(UpdateInvoiceRequest updateInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(updateInvoiceRequest.toNVPString(), SERVICE_NAME, "UpdateInvoice", apiUsername, getAccessToken(), getTokenSecret());
-	    ((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+	 public CreateAndSendInvoiceResponse createAndSendInvoice(CreateAndSendInvoiceRequest createAndSendInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(createAndSendInvoiceRequest.toNVPString(), SERVICE_NAME, "CreateAndSendInvoice", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
-		return UpdateInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
+		return CreateAndSendInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
-	 
+
 	/** 
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -310,15 +332,11 @@ public class InvoiceService extends BaseService {
 	 * @throws OAuthException
 	 */
 	 public UpdateInvoiceResponse updateInvoice(UpdateInvoiceRequest updateInvoiceRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(updateInvoiceRequest.toNVPString(), SERVICE_NAME, "UpdateInvoice", credential);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(updateInvoiceRequest.toNVPString(), SERVICE_NAME, "UpdateInvoice", credential, SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return UpdateInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
 	}
+	
 	/**	
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -332,17 +350,12 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	 public GetInvoiceDetailsResponse getInvoiceDetails(GetInvoiceDetailsRequest getInvoiceDetailsRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(getInvoiceDetailsRequest.toNVPString(), SERVICE_NAME, "GetInvoiceDetails", apiUsername, getAccessToken(), getTokenSecret());
-	    ((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+	 public UpdateInvoiceResponse updateInvoice(UpdateInvoiceRequest updateInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(updateInvoiceRequest.toNVPString(), SERVICE_NAME, "UpdateInvoice", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
-		return GetInvoiceDetailsResponse.createInstance(NVPUtil.decode(response), "", -1);
+		return UpdateInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
-	 
+
 	/** 
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -374,15 +387,11 @@ public class InvoiceService extends BaseService {
 	 * @throws OAuthException
 	 */
 	 public GetInvoiceDetailsResponse getInvoiceDetails(GetInvoiceDetailsRequest getInvoiceDetailsRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(getInvoiceDetailsRequest.toNVPString(), SERVICE_NAME, "GetInvoiceDetails", credential);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(getInvoiceDetailsRequest.toNVPString(), SERVICE_NAME, "GetInvoiceDetails", credential, SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return GetInvoiceDetailsResponse.createInstance(NVPUtil.decode(response), "", -1);
 	}
+	
 	/**	
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -396,17 +405,12 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	 public CancelInvoiceResponse cancelInvoice(CancelInvoiceRequest cancelInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(cancelInvoiceRequest.toNVPString(), SERVICE_NAME, "CancelInvoice", apiUsername, getAccessToken(), getTokenSecret());
-	    ((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+	 public GetInvoiceDetailsResponse getInvoiceDetails(GetInvoiceDetailsRequest getInvoiceDetailsRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(getInvoiceDetailsRequest.toNVPString(), SERVICE_NAME, "GetInvoiceDetails", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
-		return CancelInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
+		return GetInvoiceDetailsResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
-	 
+
 	/** 
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -438,15 +442,11 @@ public class InvoiceService extends BaseService {
 	 * @throws OAuthException
 	 */
 	 public CancelInvoiceResponse cancelInvoice(CancelInvoiceRequest cancelInvoiceRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(cancelInvoiceRequest.toNVPString(), SERVICE_NAME, "CancelInvoice", credential);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(cancelInvoiceRequest.toNVPString(), SERVICE_NAME, "CancelInvoice", credential, SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return CancelInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
 	}
+	
 	/**	
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -460,17 +460,12 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	 public SearchInvoicesResponse searchInvoices(SearchInvoicesRequest searchInvoicesRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(searchInvoicesRequest.toNVPString(), SERVICE_NAME, "SearchInvoices", apiUsername, getAccessToken(), getTokenSecret());
-	    ((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+	 public CancelInvoiceResponse cancelInvoice(CancelInvoiceRequest cancelInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(cancelInvoiceRequest.toNVPString(), SERVICE_NAME, "CancelInvoice", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
-		return SearchInvoicesResponse.createInstance(NVPUtil.decode(response), "", -1);
+		return CancelInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
-	 
+
 	/** 
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -502,15 +497,11 @@ public class InvoiceService extends BaseService {
 	 * @throws OAuthException
 	 */
 	 public SearchInvoicesResponse searchInvoices(SearchInvoicesRequest searchInvoicesRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(searchInvoicesRequest.toNVPString(), SERVICE_NAME, "SearchInvoices", credential);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(searchInvoicesRequest.toNVPString(), SERVICE_NAME, "SearchInvoices", credential, SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return SearchInvoicesResponse.createInstance(NVPUtil.decode(response), "", -1);
 	}
+	
 	/**	
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -524,17 +515,12 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	 public MarkInvoiceAsPaidResponse markInvoiceAsPaid(MarkInvoiceAsPaidRequest markInvoiceAsPaidRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(markInvoiceAsPaidRequest.toNVPString(), SERVICE_NAME, "MarkInvoiceAsPaid", apiUsername, getAccessToken(), getTokenSecret());
-	    ((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+	 public SearchInvoicesResponse searchInvoices(SearchInvoicesRequest searchInvoicesRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(searchInvoicesRequest.toNVPString(), SERVICE_NAME, "SearchInvoices", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
-		return MarkInvoiceAsPaidResponse.createInstance(NVPUtil.decode(response), "", -1);
+		return SearchInvoicesResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
-	 
+
 	/** 
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -566,15 +552,11 @@ public class InvoiceService extends BaseService {
 	 * @throws OAuthException
 	 */
 	 public MarkInvoiceAsPaidResponse markInvoiceAsPaid(MarkInvoiceAsPaidRequest markInvoiceAsPaidRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(markInvoiceAsPaidRequest.toNVPString(), SERVICE_NAME, "MarkInvoiceAsPaid", credential);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(markInvoiceAsPaidRequest.toNVPString(), SERVICE_NAME, "MarkInvoiceAsPaid", credential, SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return MarkInvoiceAsPaidResponse.createInstance(NVPUtil.decode(response), "", -1);
 	}
+	
 	/**	
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -588,17 +570,12 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	 public MarkInvoiceAsUnpaidResponse markInvoiceAsUnpaid(MarkInvoiceAsUnpaidRequest markInvoiceAsUnpaidRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(markInvoiceAsUnpaidRequest.toNVPString(), SERVICE_NAME, "MarkInvoiceAsUnpaid", apiUsername, getAccessToken(), getTokenSecret());
-	    ((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+	 public MarkInvoiceAsPaidResponse markInvoiceAsPaid(MarkInvoiceAsPaidRequest markInvoiceAsPaidRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(markInvoiceAsPaidRequest.toNVPString(), SERVICE_NAME, "MarkInvoiceAsPaid", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
-		return MarkInvoiceAsUnpaidResponse.createInstance(NVPUtil.decode(response), "", -1);
+		return MarkInvoiceAsPaidResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
-	 
+
 	/** 
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -630,15 +607,11 @@ public class InvoiceService extends BaseService {
 	 * @throws OAuthException
 	 */
 	 public MarkInvoiceAsUnpaidResponse markInvoiceAsUnpaid(MarkInvoiceAsUnpaidRequest markInvoiceAsUnpaidRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(markInvoiceAsUnpaidRequest.toNVPString(), SERVICE_NAME, "MarkInvoiceAsUnpaid", credential);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(markInvoiceAsUnpaidRequest.toNVPString(), SERVICE_NAME, "MarkInvoiceAsUnpaid", credential, SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return MarkInvoiceAsUnpaidResponse.createInstance(NVPUtil.decode(response), "", -1);
 	}
+	
 	/**	
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -652,17 +625,12 @@ public class InvoiceService extends BaseService {
 	 * @throws InterruptedException
 	 * @throws OAuthException
 	 */
-	 public MarkInvoiceAsRefundedResponse markInvoiceAsRefunded(MarkInvoiceAsRefundedRequest markInvoiceAsRefundedRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(markInvoiceAsRefundedRequest.toNVPString(), SERVICE_NAME, "MarkInvoiceAsRefunded", apiUsername, getAccessToken(), getTokenSecret());
-	    ((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+	 public MarkInvoiceAsUnpaidResponse markInvoiceAsUnpaid(MarkInvoiceAsUnpaidRequest markInvoiceAsUnpaidRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(markInvoiceAsUnpaidRequest.toNVPString(), SERVICE_NAME, "MarkInvoiceAsUnpaid", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
-		return MarkInvoiceAsRefundedResponse.createInstance(NVPUtil.decode(response), "", -1);
+		return MarkInvoiceAsUnpaidResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
-	 
+
 	/** 
 	 * AUTO_GENERATED
 	 * @throws SSLConfigurationException
@@ -694,14 +662,28 @@ public class InvoiceService extends BaseService {
 	 * @throws OAuthException
 	 */
 	 public MarkInvoiceAsRefundedResponse markInvoiceAsRefunded(MarkInvoiceAsRefundedRequest markInvoiceAsRefundedRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
-	 	APICallPreHandler apiCallPreHandler = null;
-	 	String portName = "Invoice";
-		apiCallPreHandler = new PlatformAPICallPreHandler(markInvoiceAsRefundedRequest.toNVPString(), SERVICE_NAME, "MarkInvoiceAsRefunded", credential);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkName(SDK_NAME);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setSdkVersion(SDK_VERSION);
-		((PlatformAPICallPreHandler) apiCallPreHandler).setPortName(portName);
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(markInvoiceAsRefundedRequest.toNVPString(), SERVICE_NAME, "MarkInvoiceAsRefunded", credential, SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return MarkInvoiceAsRefundedResponse.createInstance(NVPUtil.decode(response), "", -1);
 	}
+	
+	/**	
+	 * AUTO_GENERATED
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public MarkInvoiceAsRefundedResponse markInvoiceAsRefunded(MarkInvoiceAsRefundedRequest markInvoiceAsRefundedRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(markInvoiceAsRefundedRequest.toNVPString(), SERVICE_NAME, "MarkInvoiceAsRefunded", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
+	 	String response = call(apiCallPreHandler);
+		return MarkInvoiceAsRefundedResponse.createInstance(NVPUtil.decode(response), "", -1);
+	 }
 
 }
