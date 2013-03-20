@@ -28,22 +28,27 @@ To make an API call:
 --------------------		
 *	Import InvoiceService.java into your code.
 		
-*	Copy the configuration file 'sdk_config.properties' in 'invoicesample/src/main/resources' folder to your application 'src/main/resources'. And load it using,  
+*	Copy the configuration file 'sdk_config.properties' in 'invoicesample/src/main/resources' folder to your application 'src/main/resources'. Use the default constructor to run in default configuration.
 		  
     ```java
-    new InvoiceService(this.getClass().getResourceAsStream("/sdk_config.properties"));
+    new InvoiceService();
     ```
 	
-*	Or load the configuration file from any location using absolute path with the below method calls as required.
+*	For Dynamic configuration(configuration is valid for the lifetime of the service object)
 
     ```java
-    new InvoiceService(new File(" .../sdk_config.properties"));
+    new InvoiceService(new File("/pathto/custom.properties"));
                          Or
-    new InvoiceService(new InputStream(new File(" .../sdk_config.properties")));
+    new InvoiceService(new FileInputStream(new File("/pathto/custom.properties")));
                          Or
-    new InvoiceService(" .../sdk_config.properties");
+    new InvoiceService("/pathto/custom.properties");
+    			 Or
+    new InvoiceService(Map<String, String> customConfigurationMap);
+    			 Or
+    new InvoiceService(Properties customProperties);
     ```
-  
+*	The SDK assumes defaults for certain parameters(refer sdk_config.properties for defaults). Either 'mode' or 'service.Endpoint' is a mandatory configuration. Account credentials are treated as mandatory parameters.
+
 *	Create a service wrapper object.
 
 *	Create a request object as per your project needs. 
@@ -82,7 +87,7 @@ To make an API call:
     createInvoiceRequest.setRequestEnvelope(env);
     ...
 
-    InvoiceService invoiceService = new InvoiceService(this.getClass().getResourceAsStream("/sdk_config.properties"));
+    InvoiceService invoiceService = new InvoiceService();
     //userName is optional
     CreateInvoiceResponse createInvoiceResponse = invoiceService.createInvoice(createInvoiceRequest,userName);
     ```
@@ -98,9 +103,11 @@ The SDK uses .properties format configuration file. Sample of this file is at
  
 'invoicesample/src/main/resources/'. You can use the 'sdk_config.properties' configuration file to configure
 
-*	(Multiple) API account credentials.
+*	Mode is specified using the parameter name 'mode' with values 'sandbox' or 'live', if specified 'service.EndPoint' parameter is not required and the SDK chooses the sandbox or live endpoints automatically.
 
-*	HTTP connection parameters.
+*	(Multiple) API account credentials, by appending a '.' (dot) character and the service name to 'service.EndPoint' parameter.
+
+*	HTTP connection parameters, if certain connection parameters are not specified, the SDK will assume defaults for them.
 
 *	Service configuration.
 
