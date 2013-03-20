@@ -16,12 +16,13 @@ SDK Integration:
 *	Create a new maven application.
 
 *	Add dependency to sdk in your application's pom.xml as below.
-		
-		<dependency>
-			<groupId>com.paypal.sdk</groupId>
-			<artifactId>invoicesdk</artifactId>
-			<version>2.1.96</version>
-		</dependency>
+    ```xml
+    <dependency>
+        <groupId>com.paypal.sdk</groupId>
+        <artifactId>invoicesdk</artifactId>
+        <version>2.1.96</version>
+    </dependency>
+    ```
 
 To make an API call:
 --------------------		
@@ -29,15 +30,19 @@ To make an API call:
 		
 *	Copy the configuration file 'sdk_config.properties' in 'invoicesample/src/main/resources' folder to your application 'src/main/resources'. And load it using,  
 		  
-		new InvoiceService(this.getClass().getResourceAsStream("/sdk_config.properties"));
+    ```java
+    new InvoiceService(this.getClass().getResourceAsStream("/sdk_config.properties"));
+    ```
 	
 *	Or load the configuration file from any location using absolute path with the below method calls as required.
 
-          new InvoiceService(new File(" .../sdk_config.properties"));
-                                 Or
-		  new InvoiceService(new InputStream(new File(" .../sdk_config.properties")));
-                                 Or
-          new InvoiceService(" .../sdk_config.properties");
+    ```java
+    new InvoiceService(new File(" .../sdk_config.properties"));
+                         Or
+    new InvoiceService(new InputStream(new File(" .../sdk_config.properties")));
+                         Or
+    new InvoiceService(" .../sdk_config.properties");
+    ```
   
 *	Create a service wrapper object.
 
@@ -45,45 +50,42 @@ To make an API call:
 
 *	Invoke the appropriate method on the service wrapper object.
 
-For example,
+    For example,
 
           
-	  import com.paypal.svcs.services.InvoiceService;
-	  import com.paypal.svcs.types.common.RequestEnvelope;
-	  import com.paypal.svcs.types.pt.CreateInvoiceRequest;
-	  import com.paypal.svcs.types.pt.CreateInvoiceResponse;
-	  import com.paypal.svcs.types.pt.InvoiceItemType;
-	  import com.paypal.svcs.types.pt.InvoiceType;
-	  ...
-	  
-          
-          
-          RequestEnvelope env = new RequestEnvelope();
-	      env.setErrorLanguage("en_US");
-          ...
-          
-		  List<InvoiceItemType> items = new ArrayList<InvoiceItemType>();
-		  InvoiceItemListType invoiceItem = new InvoiceItemListType();
-          InvoiceItemType item = new InvoiceItemType();
-	      item.setName("product1");
-		  invoiceItem.setItem(item);
-          ...
-          
-          InvoiceType invo = new InvoiceType();
-	      invo.setCurrencyCode("USD");
-		  invo.setItemList(invoiceItem);
-	      ...
-	  
-	      CreateInvoiceRequest createInvoiceRequest = new CreateInvoiceRequest();
-	      createInvoiceRequest.setInvoice(invo);
-	      createInvoiceRequest.setRequestEnvelope(env);
-          ...
+    ```java
+    import com.paypal.svcs.services.InvoiceService;
+    import com.paypal.svcs.types.common.RequestEnvelope;
+    import com.paypal.svcs.types.pt.*;
+    ...
 
-          InvoiceService invoiceService = new InvoiceService(this.getClass().getResourceAsStream("/sdk_config.properties"));
-		  //userName is optional
-	      CreateInvoiceResponse createInvoiceResponse = invoiceService.createInvoice(createInvoiceRequest,userName);
 
-		  
+
+    RequestEnvelope env = new RequestEnvelope();
+    env.setErrorLanguage("en_US");
+    ...
+
+    List<InvoiceItemType> items = new ArrayList<InvoiceItemType>();
+    InvoiceItemListType invoiceItem = new InvoiceItemListType();
+    InvoiceItemType item = new InvoiceItemType();
+    item.setName("product1");
+    invoiceItem.setItem(item);
+    ...
+
+    InvoiceType invo = new InvoiceType();
+    invo.setCurrencyCode("USD");
+    invo.setItemList(invoiceItem);
+    ...
+
+    CreateInvoiceRequest createInvoiceRequest = new CreateInvoiceRequest();
+    createInvoiceRequest.setInvoice(invo);
+    createInvoiceRequest.setRequestEnvelope(env);
+    ...
+
+    InvoiceService invoiceService = new InvoiceService(this.getClass().getResourceAsStream("/sdk_config.properties"));
+    //userName is optional
+    CreateInvoiceResponse createInvoiceResponse = invoiceService.createInvoice(createInvoiceRequest,userName);
+    ```
 
 SDK Logging:
 ------------
@@ -153,7 +155,3 @@ service.EndPoint.Invoice=https://svcs.paypal.com/
 service.EndPoint.Permissions=https://svcs.paypal.com/  
 
 For additional information on Invoicing API, please refer to https://www.x.com/developers/paypal/documentation-tools/api
-
-
-
-
