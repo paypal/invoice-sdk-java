@@ -16,6 +16,7 @@ SDK Integration:
 *	Create a new maven application.
 
 *	Add dependency to sdk in your application's pom.xml as below.
+
     ```xml
     <dependency>
         <groupId>com.paypal.sdk</groupId>
@@ -28,26 +29,23 @@ To make an API call:
 --------------------		
 *	Import InvoiceService.java into your code.
 		
-*	Copy the configuration file 'sdk_config.properties' in 'invoicesample/src/main/resources' folder to your application 'src/main/resources'. Use the default constructor to run in default configuration.
-		  
-    ```java
-    new InvoiceService();
-    ```
-	
-*	For Dynamic configuration(configuration is valid for the lifetime of the service object)
-
-    ```java
-    new InvoiceService(new File("/pathto/custom.properties"));
-                         Or
-    new InvoiceService(new FileInputStream(new File("/pathto/custom.properties")));
-                         Or
-    new InvoiceService("/pathto/custom.properties");
-    			 Or
-    new InvoiceService(Map<String, String> customConfigurationMap);
-    			 Or
-    new InvoiceService(Properties customProperties);
-    ```
-*	The SDK assumes defaults for certain parameters(refer sdk_config.properties for defaults). Either 'mode' or 'service.Endpoint' is a mandatory configuration. Account credentials are treated as mandatory parameters.
+*	Copy the configuration file 'sdk_config.properties' in 'invoicesample/src/main/resources' folder to your application 'src/main/resources'. Use the default constructor to run in default configuration(configuration used from sdk_config.properties found in classpath).
+	```java
+	new InvoiceService();
+	```
+*	For Dynamic configuration(configuration is tied to the lifetime of the service object)
+	```java
+	new InvoiceService(new File("/pathto/custom.properties"));
+			Or
+	new InvoiceService(new FileInputStream(new File("/pathto/custom.properties")));
+			Or
+	new InvoiceService("/pathto/custom.properties");
+			Or
+	new InvoiceService(Map<String, String> customConfigurationMap);
+			Or
+	new InvoiceService(Properties customProperties);
+	```
+*	The SDK takes defaults for certain parameters(refer sdk_config.properties for defaults). Account Credentials and either of 'mode' or 'service.Endpoint' are mandatory parameters.
 
 *	Create a service wrapper object.
 
@@ -63,32 +61,29 @@ To make an API call:
     import com.paypal.svcs.types.common.RequestEnvelope;
     import com.paypal.svcs.types.pt.*;
     ...
-
-
-
     RequestEnvelope env = new RequestEnvelope();
     env.setErrorLanguage("en_US");
     ...
-
     List<InvoiceItemType> items = new ArrayList<InvoiceItemType>();
     InvoiceItemListType invoiceItem = new InvoiceItemListType();
     InvoiceItemType item = new InvoiceItemType();
     item.setName("product1");
     invoiceItem.setItem(item);
     ...
-
     InvoiceType invo = new InvoiceType();
     invo.setCurrencyCode("USD");
     invo.setItemList(invoiceItem);
     ...
-
     CreateInvoiceRequest createInvoiceRequest = new CreateInvoiceRequest();
     createInvoiceRequest.setInvoice(invo);
     createInvoiceRequest.setRequestEnvelope(env);
     ...
-
     InvoiceService invoiceService = new InvoiceService();
-    //userName is optional
+			Or
+    Map<String, String> customConfigurationMap = new HashMap<String, String>();
+    customConfigurationMap.put("mode", "sandbox"); // Load the map with all mandatory parameters
+    ...
+    InvoiceService invoiceService = new InvoiceService(Map<String, String> customConfigurationMap);    
     CreateInvoiceResponse createInvoiceResponse = invoiceService.createInvoice(createInvoiceRequest,userName);
     ```
 
@@ -111,7 +106,7 @@ The SDK uses .properties format configuration file. Sample of this file is at
 
 *	Service configuration.
 
-Multiple End-points Support
+Multiple SDK usage (Multiple End-points Support)
 ---------------------------
 Multiple end-points configuration can be done by specifying mulitple end-points identified by specific property keys. 
 When using multiple SDKs in combination, like Merchant and Permissions etc..configure the endpoints as shown below 
