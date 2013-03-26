@@ -61,7 +61,8 @@ public class PermissionServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.setAttribute("url", request.getRequestURI());
-		RequestEnvelope env = new RequestEnvelope("en_US");
+		RequestEnvelope env = new RequestEnvelope();
+		env.setErrorLanguage("en_US");
 		List<String> scope = new ArrayList<String>();
 		String check[] = request.getParameterValues("api");
 		for (int i = 0; i < check.length; i++) {

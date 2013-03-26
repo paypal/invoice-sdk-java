@@ -47,6 +47,7 @@ public class GenerateAccessTokenServlet extends HttpServlet {
 					.getClass().getResourceAsStream("/sdk_config.properties"));
 			GetAccessTokenRequest tokenReq = new GetAccessTokenRequest();
 			RequestEnvelope env = new RequestEnvelope("en_US");
+			env.setErrorLanguage("en_US");
 			tokenReq.setRequestEnvelope(env);
 			String text[] = request.getParameterValues("txtbox");
 			int i = 0;
