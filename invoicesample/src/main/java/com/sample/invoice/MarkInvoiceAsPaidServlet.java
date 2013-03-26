@@ -57,7 +57,8 @@ public class MarkInvoiceAsPaidServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.setAttribute("url", request.getRequestURI());
-		RequestEnvelope env = new RequestEnvelope("en_US");
+		RequestEnvelope env = new RequestEnvelope();
+		env.setErrorLanguage("en_US");
 		MarkInvoiceAsPaidRequest req = new MarkInvoiceAsPaidRequest();
 		req.setRequestEnvelope(env);
 		req.setInvoiceID(request.getParameter("invoiceId"));

@@ -59,7 +59,8 @@ public class MarkInvoiceAsUnpaidServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("url", request.getRequestURI());
 
-		RequestEnvelope env = new RequestEnvelope("en_US");
+		RequestEnvelope env = new RequestEnvelope();
+		env.setErrorLanguage("en_US");
 		MarkInvoiceAsUnpaidRequest req = new MarkInvoiceAsUnpaidRequest(env, request.getParameter("invoiceId"));
 
 		try {

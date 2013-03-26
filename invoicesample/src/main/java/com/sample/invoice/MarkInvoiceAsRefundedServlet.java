@@ -58,7 +58,8 @@ public class MarkInvoiceAsRefundedServlet extends HttpServlet {
 		session.setAttribute("url", request.getRequestURI());
 
 		String invoiceId = request.getParameter("invoiceId");
-		RequestEnvelope env = new RequestEnvelope("en_US");
+		RequestEnvelope env = new RequestEnvelope();
+		env.setErrorLanguage("en_US");
 		OtherPaymentRefundDetailsType refundDetails = new OtherPaymentRefundDetailsType();
 		if (request.getParameter("date") != "")
 			refundDetails.setDate(request.getParameter("date"));

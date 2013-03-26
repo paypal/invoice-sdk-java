@@ -56,7 +56,8 @@ public class SendInvoiceServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("url", request.getRequestURI());
 		try {
-			RequestEnvelope env = new RequestEnvelope("en_US");
+			RequestEnvelope env = new RequestEnvelope();
+			env.setErrorLanguage("en_US");
 			SendInvoiceRequest sendInvoiceRequest = new SendInvoiceRequest(env,
 					request.getParameter("invoiceID"));
 			InvoiceService invoiceSrvc = new InvoiceService(this

@@ -78,7 +78,8 @@ public class UpdateInvoiceServlet extends HttpServlet {
 		invoiceType.setCurrencyCode(request.getParameter("currencyCode"));
 		invoiceType.setPaymentTerms(PaymentTermsType.fromValue(request
 				.getParameter("paymentTerms")));
-		RequestEnvelope env = new RequestEnvelope("en_US");
+		RequestEnvelope env = new RequestEnvelope();
+		env.setErrorLanguage("en_US");
 		String invoiceID = request.getParameter("invoiceId");
 		UpdateInvoiceRequest req = new UpdateInvoiceRequest(env, invoiceID,
 				invoiceType);

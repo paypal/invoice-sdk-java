@@ -82,7 +82,8 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 		invoiceType.setPaymentTerms(PaymentTermsType.fromValue(request
 				.getParameter("paymentTerms")));
 
-		RequestEnvelope env = new RequestEnvelope("en_US");
+		RequestEnvelope env = new RequestEnvelope();
+		env.setErrorLanguage("en_US");
 		try {
 			response.setContentType("text/html");
 			if (request.getParameter("CreateBtn") != null) {
