@@ -1,3 +1,10 @@
+Version 2.2.100 - March 26, 2013
+ 
+	- Updated stubs for 100 release
+	- Added dynamic configuration support by passing configuration parameters using hash map.
+	
+You can see source code of this release in github under https://github.com/paypal/invoice-sdk-java/tree/v2.2.100.
+--------------------------------------------------------------------------------------------------
 Version 2.1.96 - December 14, 2012
  
 	- Added support for Instant Payment Notification (Refer IPN-README.md for more details)

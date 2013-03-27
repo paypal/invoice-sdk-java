@@ -5,13 +5,13 @@ import com.paypal.svcs.types.pt.InvoiceSummaryType;
 import java.util.Map;
 
 /**
- * A list of invoice summaries. 
+ *  A list of invoice summaries. 
  */
 public class InvoiceSummaryListType{
 
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private List<InvoiceSummaryType> invoice = new ArrayList<InvoiceSummaryType>();
 

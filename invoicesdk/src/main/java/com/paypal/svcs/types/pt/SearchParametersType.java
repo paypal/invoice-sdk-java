@@ -8,82 +8,82 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- * Search parameters criteria. 
+ *  Search parameters criteria. 
  */
 public class SearchParametersType{
 
 
 	/**
-	 * Email search string. 	 
+	*  Email search string. 	 
 	 */ 
 	private String email;
 
 	/**
-	 * Recipient search string. 	 
+	*  Recipient search string. 	 
 	 */ 
 	private String recipientName;
 
 	/**
-	 * Company search string. 	 
+	*  Company search string. 	 
 	 */ 
 	private String businessName;
 
 	/**
-	 * Invoice number search string. 	 
+	*  Invoice number search string. 	 
 	 */ 
 	private String invoiceNumber;
 
 	/**
-	 * Invoice status search. 	 
+	*  Invoice status search. 	 
 	 */ 
 	private List<StatusType> status = new ArrayList<StatusType>();
 
 	/**
-	 * Invoice amount search. Specifies the smallest amount to be
-	 * returned. 	 
+	*  Invoice amount search. Specifies the smallest amount to be
+	*  returned. 	 
 	 */ 
 	private Double lowerAmount;
 
 	/**
-	 * Invoice amount search. Specifies the largest amount to be
-	 * returned. 	 
+	*  Invoice amount search. Specifies the largest amount to be
+	*  returned. 	 
 	 */ 
 	private Double upperAmount;
 
 	/**
-	 * Currency used for lower and upper amounts. Required when
-	 * lowerAmount or upperAmount is specified. 	 
+	*  Currency used for lower and upper amounts. Required when
+	*  lowerAmount or upperAmount is specified. 	 
 	 */ 
 	private String currencyCode;
 
 	/**
-	 * Invoice memo search string. 	 
+	*  Invoice memo search string. 	 
 	 */ 
 	private String memo;
 
 	/**
-	 * Whether the invoice was created via the website or via an
-	 * API call. 	 
+	*  Whether the invoice was created via the website or via an
+	*  API call. 	 
 	 */ 
 	private OriginType origin;
 
 	/**
-	 * Invoice date range filter. 	 
+	*  Invoice date range filter. 	 
 	 */ 
 	private DateRangeType invoiceDate;
 
 	/**
-	 * Invoice due date range filter. 	 
+	*  Invoice due date range filter. 	 
 	 */ 
 	private DateRangeType dueDate;
 
 	/**
-	 * Invoice payment date range filter. 	 
+	*  Invoice payment date range filter. 	 
 	 */ 
 	private DateRangeType paymentDate;
 
 	/**
-	 * Invoice creation date range filter. 	 
+	*  Invoice creation date range filter. 	 
 	 */ 
 	private DateRangeType creationDate;
 

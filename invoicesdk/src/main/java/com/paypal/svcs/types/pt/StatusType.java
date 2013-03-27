@@ -1,9 +1,8 @@
 package com.paypal.svcs.types.pt;
 
 /**
- * 
  *  Specifies the invoice status.
- * 
+ *   
  */
 public enum  StatusType {
 

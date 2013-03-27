@@ -1,9 +1,8 @@
 package com.paypal.svcs.types.pt;
 
 /**
- * 
  *  Specifies the merchant or payer.
- * 
+ *   
  */
 public enum  ActorType {
 

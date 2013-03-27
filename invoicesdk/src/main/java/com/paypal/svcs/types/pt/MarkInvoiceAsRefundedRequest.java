@@ -5,25 +5,25 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- * The request object for MarkInvoiceAsRefunded. 
+ *  The request object for MarkInvoiceAsRefunded. 
  */
 public class MarkInvoiceAsRefundedRequest{
 
 
 	/**
-	 * 	  
+	*  	  
 	 *@Required	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	 * ID of the invoice to mark as refunded. 	  
+	*  ID of the invoice to mark as refunded. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceID;
 
 	/**
-	 * Details of the refund made against this invoice. 	  
+	*  Details of the refund made against this invoice. 	  
 	 *@Required	 
 	 */ 
 	private OtherPaymentRefundDetailsType refundDetail;

@@ -1,4 +1,4 @@
-package com.paypal.svcs.types.common;
+package com.paypal.svcs.types.pt;
 import com.paypal.svcs.types.common.ResponseEnvelope;
 import java.util.List;
 import java.util.ArrayList;
@@ -6,10 +6,9 @@ import com.paypal.svcs.types.common.ErrorData;
 import java.util.Map;
 
 /**
- *  This specifies a fault, encapsulating error data, with
- *  specific error codes. 
+ *  The response object for DeleteInvoice. 
  */
-public class FaultMessage{
+public class DeleteInvoiceResponse{
 
 
 	/**
@@ -28,7 +27,7 @@ public class FaultMessage{
 	/**
 	 * Default Constructor
 	 */
-	public FaultMessage (){
+	public DeleteInvoiceResponse (){
 	}	
 
 	/**
@@ -62,8 +61,8 @@ public class FaultMessage{
 
 
 	
-	public static FaultMessage createInstance(Map<String, String> map, String prefix, int index) {
-		FaultMessage faultMessage = null;
+	public static DeleteInvoiceResponse createInstance(Map<String, String> map, String prefix, int index) {
+		DeleteInvoiceResponse deleteInvoiceResponse = null;
 		int i = 0;
 		if (index != -1) {
 				if (prefix != null && prefix.length() != 0 && !prefix.endsWith(".")) {
@@ -77,21 +76,21 @@ public class FaultMessage{
 			
 		ResponseEnvelope responseEnvelope =  ResponseEnvelope.createInstance(map, prefix + "responseEnvelope", -1);
 		if (responseEnvelope != null) {
-			faultMessage = (faultMessage == null) ? new FaultMessage() : faultMessage;
-			faultMessage.setResponseEnvelope(responseEnvelope);
+			deleteInvoiceResponse = (deleteInvoiceResponse == null) ? new DeleteInvoiceResponse() : deleteInvoiceResponse;
+			deleteInvoiceResponse.setResponseEnvelope(responseEnvelope);
 		}
 		i = 0;
 		while(true) {
 			ErrorData error =  ErrorData.createInstance(map, prefix + "error", i);
 			if (error != null) {
-				faultMessage = (faultMessage == null) ? new FaultMessage() : faultMessage;
-				faultMessage.getError().add(error);
+				deleteInvoiceResponse = (deleteInvoiceResponse == null) ? new DeleteInvoiceResponse() : deleteInvoiceResponse;
+				deleteInvoiceResponse.getError().add(error);
 				i++;
 			} else {
 				break;
 			}
 		}
-		return faultMessage;
+		return deleteInvoiceResponse;
 	}
  
 }

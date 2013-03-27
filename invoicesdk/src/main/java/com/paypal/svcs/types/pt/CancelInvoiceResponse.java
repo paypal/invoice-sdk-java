@@ -6,38 +6,38 @@ import com.paypal.svcs.types.common.ErrorData;
 import java.util.Map;
 
 /**
- * The response object for CancelInvoice. 
+ *  The response object for CancelInvoice. 
  */
 public class CancelInvoiceResponse{
 
 
 	/**
-	 * 	  
+	*  	  
 	 *@Required	 
 	 */ 
 	private ResponseEnvelope responseEnvelope;
 
 	/**
-	 * The canceled invoice's ID. 	  
+	*  The canceled invoice's ID. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceID;
 
 	/**
-	 * The canceled invoice's number. 	  
+	*  The canceled invoice's number. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceNumber;
 
 	/**
-	 * The URL which lead merchant to view the invoice details on
-	 * web. 	  
+	*  The URL which lead merchant to view the invoice details on
+	*  web. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceURL;
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private List<ErrorData> error = new ArrayList<ErrorData>();
 

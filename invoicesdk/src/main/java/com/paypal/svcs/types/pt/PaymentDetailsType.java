@@ -4,24 +4,24 @@ import com.paypal.svcs.types.pt.OtherPaymentDetailsType;
 import java.util.Map;
 
 /**
- * Payment details about the invoice. 
+ *  Payment details about the invoice. 
  */
 public class PaymentDetailsType{
 
 
 	/**
-	 * True if the invoice was paid using PayPal. 	  
+	*  True if the invoice was paid using PayPal. 	  
 	 *@Required	 
 	 */ 
 	private Boolean viaPayPal;
 
 	/**
-	 * PayPal payment details. 	 
+	*  PayPal payment details. 	 
 	 */ 
 	private PayPalPaymentDetailsType paypalPayment;
 
 	/**
-	 * Other payment details. 	 
+	*  Other payment details. 	 
 	 */ 
 	private OtherPaymentDetailsType otherPayment;
 

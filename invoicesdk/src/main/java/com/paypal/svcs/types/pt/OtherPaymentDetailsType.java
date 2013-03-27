@@ -5,23 +5,23 @@ import com.paypal.core.NVPUtil;
 import java.util.Map;
 
 /**
- * Offline payment details about the invoice. 
+ *  Offline payment details about the invoice. 
  */
 public class OtherPaymentDetailsType{
 
 
 	/**
-	 * Method used for the offline payment. 	 
+	*  Method used for the offline payment. 	 
 	 */ 
 	private PaymentMethodsType method;
 
 	/**
-	 * Optional note associated with the payment. 	 
+	*  Optional note associated with the payment. 	 
 	 */ 
 	private String note;
 
 	/**
-	 * Date when the invoice was paid. 	 
+	*  Date when the invoice was paid. 	 
 	 */ 
 	private String date;
 

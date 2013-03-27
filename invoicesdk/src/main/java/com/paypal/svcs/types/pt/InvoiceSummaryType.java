@@ -4,105 +4,105 @@ import com.paypal.svcs.types.pt.OriginType;
 import java.util.Map;
 
 /**
- * Summary of invoice information. 
+ *  Summary of invoice information. 
  */
 public class InvoiceSummaryType{
 
 
 	/**
-	 * The created invoice's ID. 	  
+	*  The created invoice's ID. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceID;
 
 	/**
-	 * Invoice creator's email. 	  
+	*  Invoice creator's email. 	  
 	 *@Required	 
 	 */ 
 	private String merchantEmail;
 
 	/**
-	 * Email to which the invoice will be sent. 	  
+	*  Email to which the invoice will be sent. 	  
 	 *@Required	 
 	 */ 
 	private String payerEmail;
 
 	/**
-	 * Unique identifier for the invoice. 	  
+	*  Unique identifier for the invoice. 	  
 	 *@Required	 
 	 */ 
 	private String number;
 
 	/**
-	 * Business name of the billing info. 	 
+	*  Business name of the billing info. 	 
 	 */ 
 	private String billingBusinessName;
 
 	/**
-	 * First name of the billing info. 	 
+	*  First name of the billing info. 	 
 	 */ 
 	private String billingFirstName;
 
 	/**
-	 * Last name of the billing info. 	 
+	*  Last name of the billing info. 	 
 	 */ 
 	private String billingLastName;
 
 	/**
-	 * Business name of the shipping info. 	 
+	*  Business name of the shipping info. 	 
 	 */ 
 	private String shippingBusinessName;
 
 	/**
-	 * First name of the shipping info. 	 
+	*  First name of the shipping info. 	 
 	 */ 
 	private String shippingFirstName;
 
 	/**
-	 * Last name of the shipping info. 	 
+	*  Last name of the shipping info. 	 
 	 */ 
 	private String shippingLastName;
 
 	/**
-	 * Total amount of the invoice. 	  
+	*  Total amount of the invoice. 	  
 	 *@Required	 
 	 */ 
 	private Double totalAmount;
 
 	/**
-	 * Currency used for all invoice item amounts and totals. 	  
+	*  Currency used for all invoice item amounts and totals. 	  
 	 *@Required	 
 	 */ 
 	private String currencyCode;
 
 	/**
-	 * Date on which the invoice will be enabled. 	  
+	*  Date on which the invoice will be enabled. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceDate;
 
 	/**
-	 * Date on which the invoice payment is due. 	  
+	*  Date on which the invoice payment is due. 	  
 	 *@Required	 
 	 */ 
 	private String dueDate;
 
 	/**
-	 * Status of the invoice. 	  
+	*  Status of the invoice. 	  
 	 *@Required	 
 	 */ 
 	private StatusType status;
 
 	/**
-	 * Whether the invoice was created via the website or via an
-	 * API call. 	  
+	*  Whether the invoice was created via the website or via an
+	*  API call. 	  
 	 *@Required	 
 	 */ 
 	private OriginType origin;
 
 	/**
-	 * BN code for tracking transactions with a particular partner.
-	 * 	 
+	*  BN code for tracking transactions with a particular partner.
+	*  	 
 	 */ 
 	private String referrerCode;
 

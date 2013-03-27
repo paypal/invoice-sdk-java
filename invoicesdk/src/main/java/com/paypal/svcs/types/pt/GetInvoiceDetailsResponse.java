@@ -10,48 +10,48 @@ import com.paypal.svcs.types.common.ErrorData;
 import java.util.Map;
 
 /**
- * The response object for CreateInvoice. 
+ *  The response object for CreateInvoice. 
  */
 public class GetInvoiceDetailsResponse{
 
 
 	/**
-	 * 	  
+	*  	  
 	 *@Required	 
 	 */ 
 	private ResponseEnvelope responseEnvelope;
 
 	/**
-	 * The requested invoice. 	  
+	*  The requested invoice. 	  
 	 *@Required	 
 	 */ 
 	private InvoiceType invoice;
 
 	/**
-	 * The requested invoice details. 	  
+	*  The requested invoice details. 	  
 	 *@Required	 
 	 */ 
 	private InvoiceDetailsType invoiceDetails;
 
 	/**
-	 * The requested invoice payment details. 	 
+	*  The requested invoice payment details. 	 
 	 */ 
 	private PaymentDetailsType paymentDetails;
 
 	/**
-	 * The requested invoice refund details. 	 
+	*  The requested invoice refund details. 	 
 	 */ 
 	private PaymentRefundDetailsType refundDetails;
 
 	/**
-	 * The URL which lead merchant to view the invoice details on
-	 * web. 	  
+	*  The URL which lead merchant to view the invoice details on
+	*  web. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceURL;
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private List<ErrorData> error = new ArrayList<ErrorData>();
 

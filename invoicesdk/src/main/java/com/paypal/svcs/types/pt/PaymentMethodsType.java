@@ -1,10 +1,9 @@
 package com.paypal.svcs.types.pt;
 
 /**
- * 
  *  Specifies the payment methods that can be used to mark an
- * invoice as paid.
- * 
+ *  invoice as paid.
+ *   
  */
 public enum  PaymentMethodsType {
 

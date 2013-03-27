@@ -5,85 +5,85 @@ import com.paypal.svcs.types.pt.ActorType;
 import java.util.Map;
 
 /**
- * Invoice details about the invoice status and state change
- * dates. 
+ *  Invoice details about the invoice status and state change
+ *  dates. 
  */
 public class InvoiceDetailsType{
 
 
 	/**
-	 * Status of the invoice. 	  
+	*  Status of the invoice. 	  
 	 *@Required	 
 	 */ 
 	private StatusType status;
 
 	/**
-	 * The total amount of the invoice (cost of items, shipping and
-	 * tax, less any discount). This field is set by the invoicing
-	 * system and will ignore any changes made by API callers. 	 
+	*  The total amount of the invoice (cost of items, shipping and
+	*  tax, less any discount). This field is set by the invoicing
+	*  system and will ignore any changes made by API callers. 	 
 	 */ 
 	private Double totalAmount;
 
 	/**
-	 * Whether the invoice was created via the website or via an
-	 * API call. 	  
+	*  Whether the invoice was created via the website or via an
+	*  API call. 	  
 	 *@Required	 
 	 */ 
 	private OriginType origin;
 
 	/**
-	 * Date when the invoice was created. 	  
+	*  Date when the invoice was created. 	  
 	 *@Required	 
 	 */ 
 	private String createdDate;
 
 	/**
-	 * Account that created the invoice. 	 
+	*  Account that created the invoice. 	 
 	 */ 
 	private String createdBy;
 
 	/**
-	 * If canceled, date when the invoice was canceled. 	 
+	*  If canceled, date when the invoice was canceled. 	 
 	 */ 
 	private String canceledDate;
 
 	/**
-	 * Actor who canceled the invoice. 	 
+	*  Actor who canceled the invoice. 	 
 	 */ 
 	private ActorType canceledByActor;
 
 	/**
-	 * Account that canceled the invoice. 	 
+	*  Account that canceled the invoice. 	 
 	 */ 
 	private String canceledBy;
 
 	/**
-	 * Date when the invoice was last edited. 	 
+	*  Date when the invoice was last edited. 	 
 	 */ 
 	private String lastUpdatedDate;
 
 	/**
-	 * Account that last edited the invoice. 	 
+	*  Account that last edited the invoice. 	 
 	 */ 
 	private String lastUpdatedBy;
 
 	/**
-	 * Date when the invoice was first sent. 	 
+	*  Date when the invoice was first sent. 	 
 	 */ 
 	private String firstSentDate;
 
 	/**
-	 * Date when the invoice was last sent. 	 
+	*  Date when the invoice was last sent. 	 
 	 */ 
 	private String lastSentDate;
 
 	/**
-	 * Account that last sent the invoice. 	 
+	*  Account that last sent the invoice. 	 
 	 */ 
 	private String lastSentBy;
 
 	/**
-	 * If the invoice was paid, date when the invoice was paid. 	 
+	*  If the invoice was paid, date when the invoice was paid. 	 
 	 */ 
 	private String paidDate;
 

@@ -4,48 +4,48 @@ import com.paypal.core.NVPUtil;
 import java.util.Map;
 
 /**
- * Item information about a service or product listed in the
- * invoice. 
+ *  Item information about a service or product listed in the
+ *  invoice. 
  */
 public class InvoiceItemType{
 
 
 	/**
-	 * SKU or item name. 	  
+	*  SKU or item name. 	  
 	 *@Required	 
 	 */ 
 	private String name;
 
 	/**
-	 * Description of the item. 	 
+	*  Description of the item. 	 
 	 */ 
 	private String description;
 
 	/**
-	 * Date on which the product or service was provided. 	 
+	*  Date on which the product or service was provided. 	 
 	 */ 
 	private String date;
 
 	/**
-	 * Item count. 	  
+	*  Item count. 	  
 	 *@Required	 
 	 */ 
 	private Double quantity;
 
 	/**
-	 * Price of the item, in the currency specified by the invoice.
-	 * 	  
+	*  Price of the item, in the currency specified by the invoice.
+	*  	  
 	 *@Required	 
 	 */ 
 	private Double unitPrice;
 
 	/**
-	 * Name of an applicable tax, if any. 	 
+	*  Name of an applicable tax, if any. 	 
 	 */ 
 	private String taxName;
 
 	/**
-	 * Rate of an applicable tax, if any. 	 
+	*  Rate of an applicable tax, if any. 	 
 	 */ 
 	private Double taxRate;
 

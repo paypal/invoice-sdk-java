@@ -4,46 +4,46 @@ import com.paypal.core.NVPUtil;
 import java.util.Map;
 
 /**
- * 
+ *  
  */
 public class BaseAddress{
 
 
 	/**
-	 * 	  
+	*  	  
 	 *@Required	 
 	 */ 
 	private String line1;
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private String line2;
 
 	/**
-	 * 	  
+	*  	  
 	 *@Required	 
 	 */ 
 	private String city;
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private String state;
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private String postalCode;
 
 	/**
-	 * 	  
+	*  	  
 	 *@Required	 
 	 */ 
 	private String countryCode;
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private String type;
 

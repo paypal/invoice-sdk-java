@@ -6,38 +6,38 @@ import com.paypal.svcs.types.common.ErrorData;
 import java.util.Map;
 
 /**
- * The response object for MarkInvoiceAsPaid. 
+ *  The response object for MarkInvoiceAsPaid. 
  */
 public class MarkInvoiceAsPaidResponse{
 
 
 	/**
-	 * 	  
+	*  	  
 	 *@Required	 
 	 */ 
 	private ResponseEnvelope responseEnvelope;
 
 	/**
-	 * The paid invoice ID. 	  
+	*  The paid invoice ID. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceID;
 
 	/**
-	 * The paid invoice number. 	  
+	*  The paid invoice number. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceNumber;
 
 	/**
-	 * The URL which lead merchant to view the invoice details on
-	 * web. 	  
+	*  The URL which lead merchant to view the invoice details on
+	*  web. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceURL;
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private List<ErrorData> error = new ArrayList<ErrorData>();
 

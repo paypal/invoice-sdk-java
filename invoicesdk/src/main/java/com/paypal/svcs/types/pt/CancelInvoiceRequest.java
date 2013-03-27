@@ -4,34 +4,34 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- * The request object for CancelInvoice. 
+ *  The request object for CancelInvoice. 
  */
 public class CancelInvoiceRequest{
 
 
 	/**
-	 * 	  
+	*  	  
 	 *@Required	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	 * invoice's ID 	 
+	*  invoice's ID 	 
 	 */ 
 	private String invoiceID;
 
 	/**
-	 * Subject of the cancellation notification 	 
+	*  Subject of the cancellation notification 	 
 	 */ 
 	private String subject;
 
 	/**
-	 * Note to send payer within the cancellation notification 	 
+	*  Note to send payer within the cancellation notification 	 
 	 */ 
 	private String noteForPayer;
 
 	/**
-	 * send a copy of cancellation notification to merchant 	 
+	*  send a copy of cancellation notification to merchant 	 
 	 */ 
 	private Boolean sendCopyToMerchant;
 

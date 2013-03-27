@@ -1,13 +1,12 @@
 package com.paypal.svcs.types.pt;
 import com.paypal.svcs.types.common.RequestEnvelope;
-import com.paypal.svcs.types.pt.OtherPaymentDetailsType;
 import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- *  The request object for MarkInvoiceAsPaid. 
+ *  The request object for DeleteInvoice. 
  */
-public class MarkInvoiceAsPaidRequest{
+public class DeleteInvoiceRequest{
 
 
 	/**
@@ -17,32 +16,25 @@ public class MarkInvoiceAsPaidRequest{
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	*  ID of the invoice to mark as paid. 	  
+	*  ID of the invoice to be deleted. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceID;
-
-	/**
-	*  Details of the payment made against this invoice. 	  
-	 *@Required	 
-	 */ 
-	private OtherPaymentDetailsType payment;
 
 	
 
 	/**
 	 * Constructor with arguments
 	 */
-	public MarkInvoiceAsPaidRequest (RequestEnvelope requestEnvelope, String invoiceID, OtherPaymentDetailsType payment){
+	public DeleteInvoiceRequest (RequestEnvelope requestEnvelope, String invoiceID){
 		this.requestEnvelope = requestEnvelope;
 		this.invoiceID = invoiceID;
-		this.payment = payment;
 	}	
 
 	/**
 	 * Default Constructor
 	 */
-	public MarkInvoiceAsPaidRequest (){
+	public DeleteInvoiceRequest (){
 	}	
 
 	/**
@@ -73,20 +65,6 @@ public class MarkInvoiceAsPaidRequest{
 	 	this.invoiceID = invoiceID;
 	 }
 	 
-	/**
-	 * Getter for payment
-	 */
-	 public OtherPaymentDetailsType getPayment() {
-	 	return payment;
-	 }
-	 
-	/**
-	 * Setter for payment
-	 */
-	 public void setPayment(OtherPaymentDetailsType payment) {
-	 	this.payment = payment;
-	 }
-	 
 
 
 	public String toNVPString() throws UnsupportedEncodingException {
@@ -102,10 +80,6 @@ public class MarkInvoiceAsPaidRequest{
 		if (this.invoiceID != null) {
 			sb.append(prefix).append("invoiceID=").append(NVPUtil.encodeUrl(this.invoiceID));
 			sb.append("&");
-		}
-		if (this.payment != null) {
-			String newPrefix = prefix + "payment.";
-			sb.append(this.payment.toNVPString(newPrefix));
 		}
 		return sb.toString();
 	}

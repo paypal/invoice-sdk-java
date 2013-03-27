@@ -7,48 +7,48 @@ import com.paypal.svcs.types.common.ErrorData;
 import java.util.Map;
 
 /**
- * The response object for SearchInvoices. 
+ *  The response object for SearchInvoices. 
  */
 public class SearchInvoicesResponse{
 
 
 	/**
-	 * 	  
+	*  	  
 	 *@Required	 
 	 */ 
 	private ResponseEnvelope responseEnvelope;
 
 	/**
-	 * Number of invoices that matched the search. 	  
+	*  Number of invoices that matched the search. 	  
 	 *@Required	 
 	 */ 
 	private Integer count;
 
 	/**
-	 * Page of invoice summaries that matched the search. 	 
+	*  Page of invoice summaries that matched the search. 	 
 	 */ 
 	private InvoiceSummaryListType invoiceList;
 
 	/**
-	 * Page number of result set. 	  
+	*  Page number of result set. 	  
 	 *@Required	 
 	 */ 
 	private Integer page;
 
 	/**
-	 * True if another page of invoice summary results exists. 	  
+	*  True if another page of invoice summary results exists. 	  
 	 *@Required	 
 	 */ 
 	private Boolean hasNextPage;
 
 	/**
-	 * True if a previous page of invoice summary results exists. 	  
+	*  True if a previous page of invoice summary results exists. 	  
 	 *@Required	 
 	 */ 
 	private Boolean hasPreviousPage;
 
 	/**
-	 * 	 
+	*  	 
 	 */ 
 	private List<ErrorData> error = new ArrayList<ErrorData>();
 

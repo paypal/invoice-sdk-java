@@ -28,22 +28,24 @@ import com.paypal.svcs.types.pt.MarkInvoiceAsUnpaidRequest;
 import com.paypal.svcs.types.pt.MarkInvoiceAsUnpaidResponse;
 import com.paypal.svcs.types.pt.MarkInvoiceAsRefundedRequest;
 import com.paypal.svcs.types.pt.MarkInvoiceAsRefundedResponse;
+import com.paypal.svcs.types.pt.DeleteInvoiceRequest;
+import com.paypal.svcs.types.pt.DeleteInvoiceResponse;
 import com.paypal.sdk.exceptions.OAuthException;
 
 public class InvoiceService extends BaseService {
 
 
 	// Service Version
-	public static final String SERVICE_VERSION = "1.6.0";
+	public static final String SERVICE_VERSION = "1.8.0";
 
 	// Service Name
 	public static final String SERVICE_NAME = "Invoice";
 
 	//SDK Name
-	private static final String SDK_NAME = "sdkname";
+	private static final String SDK_NAME = "invoice-java-sdk";
 	
 	//SDK Version
-	private static final String SDK_VERSION = "sdkversion";
+	private static final String SDK_VERSION = "2.2.100";
 
 
 	/**
@@ -137,7 +139,7 @@ public class InvoiceService extends BaseService {
 
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -154,7 +156,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -173,7 +175,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -192,7 +194,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -209,7 +211,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -228,7 +230,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -247,7 +249,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -264,7 +266,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -283,7 +285,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -302,7 +304,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -319,7 +321,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -338,7 +340,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -357,7 +359,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -374,7 +376,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -393,7 +395,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -412,7 +414,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -429,7 +431,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -448,7 +450,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -467,7 +469,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -484,7 +486,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -503,7 +505,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -522,7 +524,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -539,7 +541,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -558,7 +560,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -577,7 +579,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -594,7 +596,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -613,7 +615,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -632,7 +634,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -649,7 +651,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -668,7 +670,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	 * AUTO_GENERATED
+	*  
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -684,6 +686,61 @@ public class InvoiceService extends BaseService {
 		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(markInvoiceAsRefundedRequest.toNVPString(), SERVICE_NAME, "MarkInvoiceAsRefunded", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return MarkInvoiceAsRefundedResponse.createInstance(NVPUtil.decode(response), "", -1);
+	 }
+
+	/** 
+	*  
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public DeleteInvoiceResponse deleteInvoice(DeleteInvoiceRequest deleteInvoiceRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return deleteInvoice(deleteInvoiceRequest, (String) null);
+	 }
+
+	/** 
+	*  
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public DeleteInvoiceResponse deleteInvoice(DeleteInvoiceRequest deleteInvoiceRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(deleteInvoiceRequest.toNVPString(), SERVICE_NAME, "DeleteInvoice", credential, SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
+	 	String response = call(apiCallPreHandler);
+		return DeleteInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
+	}
+	
+	/**	
+	*  
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public DeleteInvoiceResponse deleteInvoice(DeleteInvoiceRequest deleteInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(deleteInvoiceRequest.toNVPString(), SERVICE_NAME, "DeleteInvoice", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
+	 	String response = call(apiCallPreHandler);
+		return DeleteInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 
 }
