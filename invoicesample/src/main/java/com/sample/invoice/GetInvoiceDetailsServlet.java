@@ -56,15 +56,24 @@ public class GetInvoiceDetailsServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("url", request.getRequestURI());
 		RequestEnvelope env = new RequestEnvelope();
+		// The code for the language in which errors are returned, which must be en_US.
 		env.setErrorLanguage("en_US");
 		GetInvoiceDetailsRequest req = new GetInvoiceDetailsRequest();
 		req.setRequestEnvelope(env);
+		//ID of the invoice. 
 		req.setInvoiceID(request.getParameter("invoiceId"));
 		try {
-
-			InvoiceService invoiceSrvc = new InvoiceService(this
-					.getClass().getResourceAsStream("/sdk_config.properties"));
-
+			/* 
+			 ## Creating service wrapper object
+			 Creating service wrapper object to make API call and loading
+			 configuration file for your credentials and endpoint
+			*/ 
+			InvoiceService invoiceSrvc = new InvoiceService(this.getClass().getResourceAsStream("/sdk_config.properties"));
+			
+			/* AccessToken and TokenSecret for third party authentication.
+			   PayPal Permission api provides these tokens.Please refer Permission SDK 
+			   at (https://github.com/paypal/permissions-sdk-java). 	
+			*/
 			if (request.getParameter("accessToken") != null
 					&& request.getParameter("tokenSecret") != null) {
 				invoiceSrvc.setAccessToken(request.getParameter("accessToken"));
@@ -79,13 +88,24 @@ public class GetInvoiceDetailsServlet extends HttpServlet {
 				if (resp.getResponseEnvelope().getAck().toString()
 						.equalsIgnoreCase("SUCCESS")) {
 					Map<Object, Object> map = new LinkedHashMap<Object, Object>();
+					/*
+					 * common:AckCode Acknowledgement code. It is one of the following 
+					 * values:
+					    Success – The operation completed successfully.
+					    Failure – The operation failed.
+					    SuccessWithWarning – The operation completed successfully; however, there is a warning message.
+					    FailureWithWarning – The operation failed with a warning message.
+					 */
 					map.put("Ack", resp.getResponseEnvelope().getAck());
-					map.put("Created By", resp.getInvoiceDetails()
-							.getCreatedBy());
+					
+					//Account that created the invoice. 
+					map.put("Created By", resp.getInvoiceDetails().getCreatedBy());
 					if(resp.getPaymentDetails() != null) {
-						map.put("ViaPayPal", resp.getPaymentDetails()
-							.getViaPayPal());
+						//Returns True if the invoice was paid by PayPal. 
+						map.put("ViaPayPal", resp.getPaymentDetails().getViaPayPal());
 					}
+					
+					//URL location where merchants view the invoice details. 
 					map.put("Invoice URL", resp.getInvoiceURL());
 					session.setAttribute("map", map);
 					response.sendRedirect("Response.jsp");

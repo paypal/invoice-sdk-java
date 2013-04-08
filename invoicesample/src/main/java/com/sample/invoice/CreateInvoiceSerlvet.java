@@ -64,35 +64,80 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		session.setAttribute("url", request.getRequestURI());
+		// InvoiceType which takes mandatory params:
+		//
+		// * `Merchant Email` - Merchant email address.
+		// * `Personal Email` - Payer email address.
+		// * `InvoiceItemList` - List of items included in this invoice.
+		// * `CurrencyCode` - Currency used for all invoice item amounts and
+		// totals.
+		// * `PaymentTerms` - Terms by which the invoice payment is due. It is
+		// one of the following values:
+		// * DueOnReceipt - Payment is due when the payer receives the invoice.
+		// * DueOnDateSpecified - Payment is due on the date specified in the
+		// invoice.
+		// * Net10 - Payment is due 10 days from the invoice date.
+		// * Net15 - Payment is due 15 days from the invoice date.
+		// * Net30 - Payment is due 30 days from the invoice date.
+		// * Net45 - Payment is due 45 days from the invoice date.
 		InvoiceType invoiceType = new InvoiceType();
 		invoiceType.setMerchantEmail(request.getParameter("merchantEmail"));
 		invoiceType.setPayerEmail(request.getParameter("payerEmail"));
+		
+		// InvoiceItemType which takes mandatory params:
+		//
+		// * `Item Name` - SKU or name of the item.
+		// * `Quantity` - Item count.
+		// * `Amount` - Price of the item, in the currency specified by the
+		// invoice.
 		List<InvoiceItemType> items = new ArrayList<InvoiceItemType>();
 		InvoiceItemListType invoiceItem = new InvoiceItemListType();
+		//Individual Item [name, quantity, price]
 		items.add(new InvoiceItemType(request.getParameter("item_name1"),
 				Double.valueOf(request.getParameter("item_quantity1")), Double
 						.valueOf(request.getParameter("item_unitPrice1"))));
+		//Individual Item [name, quantity, price]
 		items.add(new InvoiceItemType(request.getParameter("item_name2"),
 				Double.valueOf(request.getParameter("item_quantity2")), Double
 						.valueOf(request.getParameter("item_unitPrice2"))));
 		invoiceItem.setItem(items);
 		invoiceType.setItemList(invoiceItem);
-
+		//PayPal uses 3-character ISO-4217 codes for specifying currencies in fields and variables.
 		invoiceType.setCurrencyCode(request.getParameter("currencyCode"));
-		invoiceType.setPaymentTerms(PaymentTermsType.fromValue(request
-				.getParameter("paymentTerms")));
+		/*
+		 * (Required) Terms by which the invoice payment is due. It is one of the following values:
+		   1. DueOnReceipt – Payment is due when the payer receives the invoice.
+		   2. DueOnDateSpecified – Payment is due on the date specified in the invoice.
+		   3. Net10 – Payment is due 10 days from the invoice date.
+		   4. Net15 – Payment is due 15 days from the invoice date.
+		   5. Net30 – Payment is due 30 days from the invoice date.
+		   6. Net45 – Payment is due 45 days from the invoice date.
+		 */
+		invoiceType.setPaymentTerms(PaymentTermsType.fromValue(request.getParameter("paymentTerms")));
 
 		RequestEnvelope env = new RequestEnvelope();
+		
+		// The code for the language in which errors are returned, which must be en_US.
 		env.setErrorLanguage("en_US");
 		try {
 			response.setContentType("text/html");
 			if (request.getParameter("CreateBtn") != null) {
 				if (request.getParameter("CreateBtn").equals("CreateInvoice")) {
-					CreateInvoiceRequest createRequest = new CreateInvoiceRequest(
-							env, invoiceType);
+					// ##CreateInvoiceRequest
+					// Use the CreateInvoiceRequest message to create a new invoice. The
+					// merchant issuing the invoice, and the partner, if any, making the
+					// call, must have a PayPal account in good standing.
+					CreateInvoiceRequest createRequest = new CreateInvoiceRequest(env, invoiceType);
+					
+					// ## Creating service wrapper object
+					// Creating service wrapper object to make API call and loading
+					// configuration file for your credentials and endpoint
 					InvoiceService invoiceSrvc = new InvoiceService(this
 							.getClass().getResourceAsStream("/sdk_config.properties"));
-
+					/* AccessToken and TokenSecret for third party authentication.
+					   PayPal Permission api provides these tokens.Please refer Permission SDK 
+					   at (https://github.com/paypal/permissions-sdk-java). 	
+					*/
 					if (request.getParameter("accessToken") != null
 							&& request.getParameter("tokenSecret") != null) {
 						invoiceSrvc.setAccessToken(request
@@ -101,8 +146,11 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 								.getParameter("tokenSecret"));
 
 					}
-					CreateInvoiceResponse resp = invoiceSrvc
-							.createInvoice(createRequest);
+					
+					// ## Making API call
+					// Invoke the appropriate method corresponding to API in service
+					// wrapper object
+					CreateInvoiceResponse resp = invoiceSrvc.createInvoice(createRequest);
 
 					if (resp != null) {
 						session.setAttribute("RESPONSE_OBJECT", resp);
@@ -113,9 +161,20 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 						if (resp.getResponseEnvelope().getAck().toString()
 								.equalsIgnoreCase("SUCCESS")) {
 							Map<Object, Object> map = new LinkedHashMap<Object, Object>();
+							/*
+							 * common:AckCode Acknowledgement code. It is one of the following 
+							 * values:
+							    Success – The operation completed successfully.
+							    Failure – The operation failed.
+							    SuccessWithWarning – The operation completed successfully; however, there is a warning message.
+							    FailureWithWarning – The operation failed with a warning message.
+							 */
 							map.put("Ack", resp.getResponseEnvelope().getAck());
+							// ID of the created invoice.
 							map.put("Invoice ID", resp.getInvoiceID());
+							//Invoice number of the created invoice. 
 							map.put("Invoice Number", resp.getInvoiceNumber());
+							//URL location where merchants view the invoice details
 							map.put("Invoice URL", resp.getInvoiceURL());
 							session.setAttribute("map", map);
 							response.sendRedirect("Response.jsp");
@@ -124,12 +183,27 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 							response.sendRedirect("Error.jsp");
 						}
 					}
-				} else if (request.getParameter("CreateBtn").equals(
-						"CreateAndSendInvoice")) {
+				} else if (request.getParameter("CreateBtn").equals("CreateAndSendInvoice")) {
+					// CreateAndSendInvoiceRequest which takes mandatory params:
+					//
+					// * `Request Envelope` - Information common to each API operation, such
+					// as the language in which an error message is returned.
+					// * `Invoice` - Merchant, payer, and invoice information.
 					CreateAndSendInvoiceRequest createRequest = new CreateAndSendInvoiceRequest(
 							env, invoiceType);
+					
+					/* 
+					 ## Creating service wrapper object
+					 Creating service wrapper object to make API call and loading
+					 configuration file for your credentials and endpoint
+					*/ 
 					InvoiceService invoiceSrvc = new InvoiceService(this
 							.getClass().getResourceAsStream("/sdk_config.properties"));
+					
+					/* AccessToken and TokenSecret for third party authentication.
+					   PayPal Permission api provides these tokens.Please refer Permission SDK 
+					   at (https://github.com/paypal/permissions-sdk-java). 	
+					*/
 					if (request.getParameter("accessToken") != null
 							&& request.getParameter("tokenSecret") != null) {
 						invoiceSrvc.setAccessToken(request
@@ -138,9 +212,13 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 								.getParameter("tokenSecret"));
 
 					}
-
-					CreateAndSendInvoiceResponse resp = invoiceSrvc
-							.createAndSendInvoice(createRequest);
+					
+					/*
+					  ## Making API call
+					  Invoke the appropriate method corresponding to API in service
+					  wrapper object
+					*/  
+					CreateAndSendInvoiceResponse resp = invoiceSrvc.createAndSendInvoice(createRequest);
 
 					if (resp != null) {
 						session.setAttribute("RESPONSE_OBJECT", resp);
@@ -151,9 +229,20 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 						if (resp.getResponseEnvelope().getAck().toString()
 								.equalsIgnoreCase("SUCCESS")) {
 							Map<Object, Object> map = new LinkedHashMap<Object, Object>();
+							/*
+							 * common:AckCode Acknowledgement code. It is one of the following 
+							 * values:
+							    Success – The operation completed successfully.
+							    Failure – The operation failed.
+							    SuccessWithWarning – The operation completed successfully; however, there is a warning message.
+							    FailureWithWarning – The operation failed with a warning message.
+							 */
 							map.put("Ack", resp.getResponseEnvelope().getAck());
+							// ID of the created invoice.
 							map.put("Invoice ID", resp.getInvoiceID());
+							//Invoice number of the created invoice. 
 							map.put("Invoice Number", resp.getInvoiceNumber());
+							//URL location where merchants view the invoice details
 							map.put("Invoice URL", resp.getInvoiceURL());
 							session.setAttribute("map", map);
 							response.sendRedirect("Response.jsp");
