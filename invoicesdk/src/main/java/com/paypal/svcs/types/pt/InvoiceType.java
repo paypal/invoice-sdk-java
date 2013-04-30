@@ -43,6 +43,12 @@ public class InvoiceType{
 	private InvoiceItemListType itemList;
 
 	/**
+	*  If True, indicates tax calculated after discount. Default is
+	*  False.	 
+	 */ 
+	private Boolean taxCalculatedAfterDiscount;
+
+	/**
 	*  Currency used for all invoice item amounts and totals. 	  
 	 *@Required	 
 	 */ 
@@ -232,6 +238,20 @@ public class InvoiceType{
 	 */
 	 public void setItemList(InvoiceItemListType itemList) {
 	 	this.itemList = itemList;
+	 }
+	 
+	/**
+	 * Getter for taxCalculatedAfterDiscount
+	 */
+	 public Boolean getTaxCalculatedAfterDiscount() {
+	 	return taxCalculatedAfterDiscount;
+	 }
+	 
+	/**
+	 * Setter for taxCalculatedAfterDiscount
+	 */
+	 public void setTaxCalculatedAfterDiscount(Boolean taxCalculatedAfterDiscount) {
+	 	this.taxCalculatedAfterDiscount = taxCalculatedAfterDiscount;
 	 }
 	 
 	/**
@@ -528,6 +548,10 @@ public class InvoiceType{
 			String newPrefix = prefix + "itemList.";
 			sb.append(this.itemList.toNVPString(newPrefix));
 		}
+		if (this.taxCalculatedAfterDiscount != null) {
+			sb.append(prefix).append("taxCalculatedAfterDiscount=").append(this.taxCalculatedAfterDiscount);
+			sb.append("&");
+		}
 		if (this.currencyCode != null) {
 			sb.append(prefix).append("currencyCode=").append(NVPUtil.encodeUrl(this.currencyCode));
 			sb.append("&");
@@ -641,6 +665,10 @@ public class InvoiceType{
 		if (itemList != null) {
 			invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
 			invoiceType.setItemList(itemList);
+		}
+		if (map.containsKey(prefix + "taxCalculatedAfterDiscount")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setTaxCalculatedAfterDiscount(Boolean.valueOf(map.get(prefix + "taxCalculatedAfterDiscount")));
 		}
 		if (map.containsKey(prefix + "currencyCode")) {
 				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
