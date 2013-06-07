@@ -5,19 +5,19 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- *  The request object for CreateAndSendInvoice. 
+ * The request object for CreateAndSendInvoice. 
  */
 public class CreateAndSendInvoiceRequest{
 
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	*  Data to populate the newly created invoice. 	  
+	 * Data to populate the newly created invoice. 	  
 	 *@Required	 
 	 */ 
 	private InvoiceType invoice;

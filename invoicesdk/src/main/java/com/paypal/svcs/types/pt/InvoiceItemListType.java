@@ -7,13 +7,13 @@ import com.paypal.core.NVPUtil;
 import java.util.Map;
 
 /**
- *  A list of invoice items. 
+ * A list of invoice items. 
  */
 public class InvoiceItemListType{
 
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private List<InvoiceItemType> item = new ArrayList<InvoiceItemType>();

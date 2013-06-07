@@ -4,19 +4,19 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- *  The request object for GetInvoiceDetails. 
+ * The request object for GetInvoiceDetails. 
  */
 public class GetInvoiceDetailsRequest{
 
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	*  ID of the invoice to retrieve. 	  
+	 * ID of the invoice to retrieve. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceID;

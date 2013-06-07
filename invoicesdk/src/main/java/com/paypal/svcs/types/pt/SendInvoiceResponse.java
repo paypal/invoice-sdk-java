@@ -6,32 +6,32 @@ import com.paypal.svcs.types.common.ErrorData;
 import java.util.Map;
 
 /**
- *  The response object for SendInvoice. 
+ * The response object for SendInvoice. 
  */
 public class SendInvoiceResponse{
 
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private ResponseEnvelope responseEnvelope;
 
 	/**
-	*  The sent invoice's ID. 	  
+	 * The sent invoice's ID. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceID;
 
 	/**
-	*  The URL which lead merchant to view the invoice details on
-	*  web. 	  
+	 * The URL which lead merchant to view the invoice details on
+	 * web. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceURL;
 
 	/**
-	*  	 
+	 * 	 
 	 */ 
 	private List<ErrorData> error = new ArrayList<ErrorData>();
 

@@ -1,8 +1,8 @@
 package com.paypal.svcs.types.pt;
 
 /**
- *  Specifies the payment terms for this invoice.
- *   
+ * Specifies the payment terms for this invoice.
+ *  
  */
 public enum  PaymentTermsType {
 

@@ -4,21 +4,21 @@ import com.paypal.core.NVPUtil;
 import java.util.Map;
 
 /**
- *  Details of the refund made against this invoice. 
+ * Details of the refund made against this invoice. 
  */
 public class OtherPaymentRefundDetailsType{
 
 
 	/**
-	*  Optional note associated with the refund. 	 
+	 * Optional note associated with the refund. 	 
 	 */ 
 	private String note;
 
 	/**
-	*  Date when the invoice was marked as refunded. If the date is
-	*  not specified, the current date and time is used as a
-	*  default. In addition, the date must be after the payment
-	*  date of the invoice. 	 
+	 * Date when the invoice was marked as refunded. If the date is
+	 * not specified, the current date and time is used as a
+	 * default. In addition, the date must be after the payment
+	 * date of the invoice. 	 
 	 */ 
 	private String date;
 

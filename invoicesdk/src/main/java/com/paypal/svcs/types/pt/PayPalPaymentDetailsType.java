@@ -2,19 +2,19 @@ package com.paypal.svcs.types.pt;
 import java.util.Map;
 
 /**
- *  PayPal payment details about the invoice. 
+ * PayPal payment details about the invoice. 
  */
 public class PayPalPaymentDetailsType{
 
 
 	/**
-	*  Transaction ID of the PayPal payment. 	  
+	 * Transaction ID of the PayPal payment. 	  
 	 *@Required	 
 	 */ 
 	private String transactionID;
 
 	/**
-	*  Date when the invoice was paid. 	 
+	 * Date when the invoice was paid. 	 
 	 */ 
 	private String date;
 

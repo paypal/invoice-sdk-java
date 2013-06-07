@@ -4,24 +4,24 @@ import com.paypal.svcs.types.pt.OtherPaymentRefundDetailsType;
 import java.util.Map;
 
 /**
- *  Payment refund details about the invoice.  
+ * Payment refund details about the invoice.  
  */
 public class PaymentRefundDetailsType{
 
 
 	/**
-	*  True if the invoice was refunded using PayPal.  	  
+	 * True if the invoice was refunded using PayPal.  	  
 	 *@Required	 
 	 */ 
 	private Boolean viaPayPal;
 
 	/**
-	*  Other payment refund details.  	 
+	 * Other payment refund details.  	 
 	 */ 
 	private PayPalPaymentRefundDetailsType paypalPayment;
 
 	/**
-	*  details.  	 
+	 * details.  	 
 	 */ 
 	private OtherPaymentRefundDetailsType otherPayment;
 
