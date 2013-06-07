@@ -3,18 +3,18 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- *  Determines an inclusive date range. 
+ * Determines an inclusive date range. 
  */
 public class DateRangeType{
 
 
 	/**
-	*  Start of the date range. 	 
+	 * Start of the date range. 	 
 	 */ 
 	private String startDate;
 
 	/**
-	*  End of the date range. 	 
+	 * End of the date range. 	 
 	 */ 
 	private String endDate;
 

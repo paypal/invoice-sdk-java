@@ -4,19 +4,19 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- *  The request object for DeleteInvoice. 
+ * The request object for DeleteInvoice. 
  */
 public class DeleteInvoiceRequest{
 
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	*  ID of the invoice to be deleted. 	  
+	 * ID of the invoice to be deleted. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceID;

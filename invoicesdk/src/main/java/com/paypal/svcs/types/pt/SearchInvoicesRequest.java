@@ -5,37 +5,37 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- *  The request object for SearchInvoices. 
+ * The request object for SearchInvoices. 
  */
 public class SearchInvoicesRequest{
 
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	*  Invoice creator's email. 	  
+	 * Invoice creator's email. 	  
 	 *@Required	 
 	 */ 
 	private String merchantEmail;
 
 	/**
-	*  Parameters constraining the search. 	  
+	 * Parameters constraining the search. 	  
 	 *@Required	 
 	 */ 
 	private SearchParametersType parameters;
 
 	/**
-	*  Page number of result set, starting with 1. 	  
+	 * Page number of result set, starting with 1. 	  
 	 *@Required	 
 	 */ 
 	private Integer page;
 
 	/**
-	*  Number of results per page, between 1 and 100. 	  
+	 * Number of results per page, between 1 and 100. 	  
 	 *@Required	 
 	 */ 
 	private Integer pageSize;

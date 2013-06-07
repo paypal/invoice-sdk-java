@@ -7,147 +7,154 @@ import com.paypal.core.NVPUtil;
 import java.util.Map;
 
 /**
- *  Invoice details about the merchant, payer, totals and terms.
- *  
+ * Invoice details about the merchant, payer, totals and terms.
+ * 
  */
 public class InvoiceType{
 
 
 	/**
-	*  Merchant's email. 	  
+	 * Merchant's email. 	  
 	 *@Required	 
 	 */ 
 	private String merchantEmail;
 
 	/**
-	*  Email to which the invoice will be sent. 	  
+	 * Email to which the invoice will be sent. 	  
 	 *@Required	 
 	 */ 
 	private String payerEmail;
 
 	/**
-	*  Unique identifier for the invoice. 	 
+	 * Unique identifier for the invoice. 	 
 	 */ 
 	private String number;
 
 	/**
-	*  Company contact information of the merchant company sending
-	*  the invoice. 	 
+	 * Company contact information of the merchant company sending
+	 * the invoice. 	 
 	 */ 
 	private BusinessInfoType merchantInfo;
 
 	/**
-	*  List of items included in this invoice. 	  
+	 * List of items included in this invoice. 	  
 	 *@Required	 
 	 */ 
 	private InvoiceItemListType itemList;
 
 	/**
-	*  If True, indicates tax calculated after discount. Default is
-	*  False.	 
+	 * If True, indicates tax calculated after discount. Default is
+	 * False.	 
 	 */ 
 	private Boolean taxCalculatedAfterDiscount;
 
 	/**
-	*  Currency used for all invoice item amounts and totals. 	  
+	 * Currency used for all invoice item amounts and totals. 	  
 	 *@Required	 
 	 */ 
 	private String currencyCode;
 
 	/**
-	*  Date on which the invoice will be enabled. 	 
+	 * Date on which the invoice will be enabled. 	 
 	 */ 
 	private String invoiceDate;
 
 	/**
-	*  Date on which the invoice payment is due. 	 
+	 * Date on which the invoice payment is due. 	 
 	 */ 
 	private String dueDate;
 
 	/**
-	*  Terms by which the invoice payment is due. 	  
+	 * Terms by which the invoice payment is due. 	  
 	 *@Required	 
 	 */ 
 	private PaymentTermsType paymentTerms;
 
 	/**
-	*  A discount percent applied to the invoice, if any. 	 
+	 * A discount percent applied to the invoice, if any. 	 
 	 */ 
 	private Double discountPercent;
 
 	/**
-	*  A discount amount applied to the invoice, if any. If
-	*  DiscountPercent is provided, DiscountAmount is ignored. 	 
+	 * A discount amount applied to the invoice, if any. If
+	 * DiscountPercent is provided, DiscountAmount is ignored. 	 
 	 */ 
 	private Double discountAmount;
 
 	/**
-	*  General terms for the invoice. 	 
+	 * If true, indicates tax included in item amount. If present,
+	 * this setting will supersede the merchant’s default
+	 * setting. 	 
+	 */ 
+	private Boolean taxInclusive;
+
+	/**
+	 * General terms for the invoice. 	 
 	 */ 
 	private String terms;
 
 	/**
-	*  Note to the payer company. 	 
+	 * Note to the payer company. 	 
 	 */ 
 	private String note;
 
 	/**
-	*  Memo for book keeping that is private to the Merchant. 	 
+	 * Memo for book keeping that is private to the Merchant. 	 
 	 */ 
 	private String merchantMemo;
 
 	/**
-	*  Details of the receipt. Applicable only when invoice is a
-	*  receipt. 	 
+	 * Details of the receipt. Applicable only when invoice is a
+	 * receipt. 	 
 	 */ 
 	private String receiptDetails;
 
 	/**
-	*  Billing information for the payer. 	 
+	 * Billing information for the payer. 	 
 	 */ 
 	private BusinessInfoType billingInfo;
 
 	/**
-	*  Shipping information for the payer. 	 
+	 * Shipping information for the payer. 	 
 	 */ 
 	private BusinessInfoType shippingInfo;
 
 	/**
-	*  Cost of shipping. 	 
+	 * Cost of shipping. 	 
 	 */ 
 	private Double shippingAmount;
 
 	/**
-	*  Name of the applicable tax on shipping cost, if any. 	 
+	 * Name of the applicable tax on shipping cost, if any. 	 
 	 */ 
 	private String shippingTaxName;
 
 	/**
-	*  Rate of the applicable tax on shipping cost, if any. 	 
+	 * Rate of the applicable tax on shipping cost, if any. 	 
 	 */ 
 	private Double shippingTaxRate;
 
 	/**
-	*  The external image URL of the invoice's logo, if any 	 
+	 * The external image URL of the invoice's logo, if any 	 
 	 */ 
 	private String logoUrl;
 
 	/**
-	*  BN code for tracking transactions with a particular partner.
-	*  	 
+	 * BN code for tracking transactions with a particular partner.
+	 * 	 
 	 */ 
 	private String referrerCode;
 
 	/**
-	*  Label used to display custom amount value. If a value is
-	*  entered for customAmountLabel, then customAmountValue cannot
-	*  be empty. 	 
+	 * Label used to display custom amount value. If a value is
+	 * entered for customAmountLabel, then customAmountValue cannot
+	 * be empty. 	 
 	 */ 
 	private String customAmountLabel;
 
 	/**
-	*  Value of custom amount. If a value is entered for
-	*  customAmountValue, then customAmountLabel cannot be empty. 	 
+	 * Value of custom amount. If a value is entered for
+	 * customAmountValue, then customAmountLabel cannot be empty. 	 
 	 */ 
 	private Double customAmountValue;
 
@@ -336,6 +343,20 @@ public class InvoiceType{
 	 */
 	 public void setDiscountAmount(Double discountAmount) {
 	 	this.discountAmount = discountAmount;
+	 }
+	 
+	/**
+	 * Getter for taxInclusive
+	 */
+	 public Boolean getTaxInclusive() {
+	 	return taxInclusive;
+	 }
+	 
+	/**
+	 * Setter for taxInclusive
+	 */
+	 public void setTaxInclusive(Boolean taxInclusive) {
+	 	this.taxInclusive = taxInclusive;
 	 }
 	 
 	/**
@@ -576,6 +597,10 @@ public class InvoiceType{
 			sb.append(prefix).append("discountAmount=").append(this.discountAmount);
 			sb.append("&");
 		}
+		if (this.taxInclusive != null) {
+			sb.append(prefix).append("taxInclusive=").append(this.taxInclusive);
+			sb.append("&");
+		}
 		if (this.terms != null) {
 			sb.append(prefix).append("terms=").append(NVPUtil.encodeUrl(this.terms));
 			sb.append("&");
@@ -693,6 +718,10 @@ public class InvoiceType{
 		if (map.containsKey(prefix + "discountAmount")) {
 				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
 				invoiceType.setDiscountAmount(Double.valueOf(map.get(prefix + "discountAmount")));
+		}
+		if (map.containsKey(prefix + "taxInclusive")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setTaxInclusive(Boolean.valueOf(map.get(prefix + "taxInclusive")));
 		}
 		if (map.containsKey(prefix + "terms")) {
 				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
