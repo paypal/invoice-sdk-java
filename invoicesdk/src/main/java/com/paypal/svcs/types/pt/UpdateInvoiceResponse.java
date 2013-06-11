@@ -6,45 +6,45 @@ import com.paypal.svcs.types.common.ErrorData;
 import java.util.Map;
 
 /**
- *  The response object for UpdateInvoice. 
+ * The response object for UpdateInvoice. 
  */
 public class UpdateInvoiceResponse{
 
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private ResponseEnvelope responseEnvelope;
 
 	/**
-	*  The invoice's ID. 	  
+	 * The invoice's ID. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceID;
 
 	/**
-	*  The updated invoice's number. 	  
+	 * The updated invoice's number. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceNumber;
 
 	/**
-	*  The URL which lead merchant to view the invoice details on
-	*  web. 	  
+	 * The URL which lead merchant to view the invoice details on
+	 * web. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceURL;
 
 	/**
-	*  The total amount of the invoice (cost of items, shipping and
-	*  tax, less any discount). 	  
+	 * The total amount of the invoice (cost of items, shipping and
+	 * tax, less any discount). 	  
 	 *@Required	 
 	 */ 
 	private Integer totalAmount;
 
 	/**
-	*  	 
+	 * 	 
 	 */ 
 	private List<ErrorData> error = new ArrayList<ErrorData>();
 

@@ -2,13 +2,13 @@ package com.paypal.svcs.types.pt;
 import java.util.Map;
 
 /**
- *  Details of the paypal refund made against this invoice. 
+ * Details of the paypal refund made against this invoice. 
  */
 public class PayPalPaymentRefundDetailsType{
 
 
 	/**
-	*  Date when the invoice was marked as refunded by PayPal. 	 
+	 * Date when the invoice was marked as refunded by PayPal. 	 
 	 */ 
 	private String date;
 

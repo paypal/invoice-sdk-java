@@ -6,45 +6,45 @@ import com.paypal.svcs.types.common.ErrorData;
 import java.util.Map;
 
 /**
- *  The response object for CreateInvoice. 
+ * The response object for CreateInvoice. 
  */
 public class CreateInvoiceResponse{
 
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private ResponseEnvelope responseEnvelope;
 
 	/**
-	*  The created invoice's ID. 	  
+	 * The created invoice's ID. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceID;
 
 	/**
-	*  The created invoice's number. 	  
+	 * The created invoice's number. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceNumber;
 
 	/**
-	*  The URL which lead merchant to view the invoice details on
-	*  web. 	  
+	 * The URL which lead merchant to view the invoice details on
+	 * web. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceURL;
 
 	/**
-	*  The total amount of the invoice (cost of items, shipping and
-	*  tax, less any discount). 	  
+	 * The total amount of the invoice (cost of items, shipping and
+	 * tax, less any discount). 	  
 	 *@Required	 
 	 */ 
 	private Integer totalAmount;
 
 	/**
-	*  	 
+	 * 	 
 	 */ 
 	private List<ErrorData> error = new ArrayList<ErrorData>();
 

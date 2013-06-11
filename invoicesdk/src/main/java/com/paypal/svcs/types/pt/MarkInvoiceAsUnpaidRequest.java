@@ -4,19 +4,19 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- *  The request object for MarkInvoiceAsUnpaid. 
+ * The request object for MarkInvoiceAsUnpaid. 
  */
 public class MarkInvoiceAsUnpaidRequest{
 
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	*  ID of the invoice to mark as unpaid. 	  
+	 * ID of the invoice to mark as unpaid. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceID;

@@ -5,25 +5,25 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- *  The request object for UpdateInvoice. 
+ * The request object for UpdateInvoice. 
  */
 public class UpdateInvoiceRequest{
 
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	*  invoice's ID 	  
+	 * invoice's ID 	  
 	 *@Required	 
 	 */ 
 	private String invoiceID;
 
 	/**
-	*  Data to populate the newly created invoice. 	  
+	 * Data to populate the newly created invoice. 	  
 	 *@Required	 
 	 */ 
 	private InvoiceType invoice;

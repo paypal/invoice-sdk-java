@@ -36,7 +36,7 @@ public class InvoiceService extends BaseService {
 
 
 	// Service Version
-	public static final String SERVICE_VERSION = "1.8.0";
+	public static final String SERVICE_VERSION = "1.9.0";
 
 	// Service Name
 	public static final String SERVICE_NAME = "Invoice";
@@ -45,7 +45,7 @@ public class InvoiceService extends BaseService {
 	private static final String SDK_NAME = "invoice-java-sdk";
 	
 	//SDK Version
-	private static final String SDK_VERSION = "2.2.101";
+	private static final String SDK_VERSION = "2.3.103";
 
 
 	/**
@@ -139,7 +139,7 @@ public class InvoiceService extends BaseService {
 
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -156,7 +156,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -175,7 +175,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -194,7 +194,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -211,7 +211,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -230,7 +230,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -249,7 +249,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -266,7 +266,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -285,7 +285,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -304,7 +304,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -321,7 +321,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -340,7 +340,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -359,7 +359,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -376,7 +376,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -395,7 +395,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -414,7 +414,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -431,7 +431,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -450,7 +450,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -469,7 +469,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -486,7 +486,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -505,7 +505,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -524,7 +524,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -541,7 +541,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -560,7 +560,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -579,7 +579,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -596,7 +596,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -615,7 +615,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -634,7 +634,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -651,7 +651,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -670,7 +670,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -689,7 +689,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -706,7 +706,7 @@ public class InvoiceService extends BaseService {
 	 }
 
 	/** 
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException
@@ -725,7 +725,7 @@ public class InvoiceService extends BaseService {
 	}
 	
 	/**	
-	*  
+	 * 
 	 * @throws SSLConfigurationException
 	 * @throws InvalidCredentialException
 	 * @throws UnsupportedEncodingException

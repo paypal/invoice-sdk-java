@@ -5,25 +5,25 @@ import java.io.UnsupportedEncodingException;
 import com.paypal.core.NVPUtil;
 
 /**
- *  The request object for MarkInvoiceAsPaid. 
+ * The request object for MarkInvoiceAsPaid. 
  */
 public class MarkInvoiceAsPaidRequest{
 
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	*  ID of the invoice to mark as paid. 	  
+	 * ID of the invoice to mark as paid. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceID;
 
 	/**
-	*  Details of the payment made against this invoice. 	  
+	 * Details of the payment made against this invoice. 	  
 	 *@Required	 
 	 */ 
 	private OtherPaymentDetailsType payment;

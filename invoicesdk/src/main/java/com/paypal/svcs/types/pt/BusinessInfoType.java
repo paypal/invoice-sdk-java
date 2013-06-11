@@ -5,50 +5,55 @@ import com.paypal.core.NVPUtil;
 import java.util.Map;
 
 /**
- *  Contact information for a company participating in the
- *  invoicing system. 
+ * Contact information for a company participating in the
+ * invoicing system. 
  */
 public class BusinessInfoType{
 
 
 	/**
-	*  First name of the company contact. 	 
+	 * First name of the company contact. 	 
 	 */ 
 	private String firstName;
 
 	/**
-	*  Last name of the company contact. 	 
+	 * Last name of the company contact. 	 
 	 */ 
 	private String lastName;
 
 	/**
-	*  Business name of the company. 	 
+	 * Business name of the company. 	 
 	 */ 
 	private String businessName;
 
 	/**
-	*  Phone number for contacting the company. 	 
+	 * Phone number for contacting the company. 	 
 	 */ 
 	private String phone;
 
 	/**
-	*  Fax number used by the company. 	 
+	 * Fax number used by the company. 	 
 	 */ 
 	private String fax;
 
 	/**
-	*  Website used by the company. 	 
+	 * Website used by the company. 	 
 	 */ 
 	private String website;
 
 	/**
-	*  Custom value to be displayed in the contact information
-	*  details. 	 
+	 * Tax ID of the merchant. 	 
+	 */ 
+	private String taxId;
+
+	/**
+	 * Custom value to be displayed in the contact information
+	 * details. 	 
 	 */ 
 	private String customValue;
 
 	/**
-	*  Street address of the company. 	 
+	 * Street address of the company. 	 
 	 */ 
 	private BaseAddress address;
 
@@ -145,6 +150,20 @@ public class BusinessInfoType{
 	 }
 	 
 	/**
+	 * Getter for taxId
+	 */
+	 public String getTaxId() {
+	 	return taxId;
+	 }
+	 
+	/**
+	 * Setter for taxId
+	 */
+	 public void setTaxId(String taxId) {
+	 	this.taxId = taxId;
+	 }
+	 
+	/**
 	 * Getter for customValue
 	 */
 	 public String getCustomValue() {
@@ -204,6 +223,10 @@ public class BusinessInfoType{
 			sb.append(prefix).append("website=").append(NVPUtil.encodeUrl(this.website));
 			sb.append("&");
 		}
+		if (this.taxId != null) {
+			sb.append(prefix).append("taxId=").append(NVPUtil.encodeUrl(this.taxId));
+			sb.append("&");
+		}
 		if (this.customValue != null) {
 			sb.append(prefix).append("customValue=").append(NVPUtil.encodeUrl(this.customValue));
 			sb.append("&");
@@ -251,6 +274,10 @@ public class BusinessInfoType{
 		if (map.containsKey(prefix + "website")) {
 				businessInfoType = (businessInfoType == null) ? new BusinessInfoType() : businessInfoType;
 				businessInfoType.setWebsite(map.get(prefix + "website"));
+		}
+		if (map.containsKey(prefix + "taxId")) {
+				businessInfoType = (businessInfoType == null) ? new BusinessInfoType() : businessInfoType;
+				businessInfoType.setTaxId(map.get(prefix + "taxId"));
 		}
 		if (map.containsKey(prefix + "customValue")) {
 				businessInfoType = (businessInfoType == null) ? new BusinessInfoType() : businessInfoType;

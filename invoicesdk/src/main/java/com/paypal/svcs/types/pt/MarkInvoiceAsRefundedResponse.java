@@ -6,39 +6,39 @@ import com.paypal.svcs.types.common.ErrorData;
 import java.util.Map;
 
 /**
- *  The response object for MarkInvoiceAsRefunded. 
+ * The response object for MarkInvoiceAsRefunded. 
  */
 public class MarkInvoiceAsRefundedResponse{
 
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private ResponseEnvelope responseEnvelope;
 
 	/**
-	*  The invoice ID of the invoice that was marked as refunded. 	  
+	 * The invoice ID of the invoice that was marked as refunded. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceID;
 
 	/**
-	*  The invoice number of the invoice that was marked as
-	*  refunded. 	  
+	 * The invoice number of the invoice that was marked as
+	 * refunded. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceNumber;
 
 	/**
-	*  The URL of the details page of the invoice that was marked
-	*  as refunded. 	  
+	 * The URL of the details page of the invoice that was marked
+	 * as refunded. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceURL;
 
 	/**
-	*  	 
+	 * 	 
 	 */ 
 	private List<ErrorData> error = new ArrayList<ErrorData>();
 

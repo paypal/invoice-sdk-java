@@ -6,39 +6,39 @@ import com.paypal.svcs.types.common.ErrorData;
 import java.util.Map;
 
 /**
- *  The response object for MarkInvoiceAsUnpaid. 
+ * The response object for MarkInvoiceAsUnpaid. 
  */
 public class MarkInvoiceAsUnpaidResponse{
 
 
 	/**
-	*  	  
+	 * 	  
 	 *@Required	 
 	 */ 
 	private ResponseEnvelope responseEnvelope;
 
 	/**
-	*  The invoice ID of the invoice that was marked as unpaid. 	  
+	 * The invoice ID of the invoice that was marked as unpaid. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceID;
 
 	/**
-	*  The invoice number of the invoice that was marked as unpaid.
-	*  	  
+	 * The invoice number of the invoice that was marked as unpaid.
+	 * 	  
 	 *@Required	 
 	 */ 
 	private String invoiceNumber;
 
 	/**
-	*  The URL of the details page of the invoice that was marked
-	*  as unpaid. 	  
+	 * The URL of the details page of the invoice that was marked
+	 * as unpaid. 	  
 	 *@Required	 
 	 */ 
 	private String invoiceURL;
 
 	/**
-	*  	 
+	 * 	 
 	 */ 
 	private List<ErrorData> error = new ArrayList<ErrorData>();
 
