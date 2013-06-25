@@ -68,7 +68,7 @@ public class GetInvoiceDetailsServlet extends HttpServlet {
 			 Creating service wrapper object to make API call and loading
 			 configuration file for your credentials and endpoint
 			*/ 
-			InvoiceService invoiceSrvc = new InvoiceService(Utility.getSignatureConfig());
+			InvoiceService invoiceSrvc = new InvoiceService(Configuration.getSignatureConfig());
 			
 			/* AccessToken and TokenSecret for third party authentication.
 			   PayPal Permission api provides these tokens.Please refer Permission SDK 

@@ -43,7 +43,7 @@ public class GenerateAccessTokenServlet extends HttpServlet {
 		session.setAttribute("url", request.getRequestURI());
 		response.setContentType("text/html");
 		try {
-			PermissionsService service = new PermissionsService(Utility.getSignatureConfig());
+			PermissionsService service = new PermissionsService(Configuration.getSignatureConfig());
 			GetAccessTokenRequest tokenReq = new GetAccessTokenRequest();
 			RequestEnvelope env = new RequestEnvelope();
 			env.setErrorLanguage("en_US");
