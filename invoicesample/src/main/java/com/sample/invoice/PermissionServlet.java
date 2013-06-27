@@ -19,6 +19,7 @@ import com.paypal.exception.InvalidResponseDataException;
 import com.paypal.exception.MissingCredentialException;
 import com.paypal.exception.SSLConfigurationException;
 import com.paypal.sdk.exceptions.OAuthException;
+import com.paypal.svcs.services.InvoiceService;
 import com.paypal.svcs.services.PermissionsService;
 import com.paypal.svcs.types.common.RequestEnvelope;
 import com.paypal.svcs.types.perm.RequestPermissionsRequest;
@@ -77,7 +78,14 @@ public class PermissionServlet extends HttpServlet {
 				RequestPermissionsRequest permRequest = new RequestPermissionsRequest(
 						scope, callback);
 				permRequest.setRequestEnvelope(env);
-				PermissionsService perm = new PermissionsService(Configuration.getSignatureConfig());
+				// Configuration map containing signature credentials and other required configuration.
+				// For a full list of configuration parameters refer at 
+				// [https://github.com/paypal/invoice-sdk-java/wiki/SDK-Configuration-Parameters]
+				Map<String,String> configurationMap =  Configuration.getSignatureConfig();
+				
+				// Creating service wrapper object to make an API call by loading configuration map.
+				PermissionsService perm = new PermissionsService(configurationMap);
+				
 				RequestPermissionsResponse resp = perm
 						.requestPermissions(permRequest);
 				response.getWriter()

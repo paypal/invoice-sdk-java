@@ -66,10 +66,15 @@ public class CancelInvoiceServlet extends HttpServlet {
 		req.setInvoiceID(request.getParameter("invoiceId"));
 		try {
 			
-			// ## Creating service wrapper object
-			// Creating service wrapper object to make API call and loading
-			// configuration file for your credentials and endpoint
-			InvoiceService invoiceSrvc = new InvoiceService(Configuration.getSignatureConfig());
+
+
+			// Configuration map containing signature credentials and other required configuration.
+			// For a full list of configuration parameters refer at 
+			// [https://github.com/paypal/invoice-sdk-java/wiki/SDK-Configuration-Parameters]
+			Map<String,String> configurationMap =  Configuration.getSignatureConfig();
+			
+			// Creating service wrapper object to make an API call by loading configuration map.
+			InvoiceService invoiceSrvc = new InvoiceService(configurationMap);
 			
 			/* AccessToken and TokenSecret for third party authentication.
 			   PayPal Permission api provides these tokens.Please refer Permission SDK 
