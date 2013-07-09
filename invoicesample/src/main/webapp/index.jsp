@@ -11,6 +11,7 @@
 <!-- Date: 2011-06-17 -->
 </head>
 <body>
+	<img src="https://devtools-paypal.com/image/bdg_payments_by_pp_2line.png" alt="PAYMENTS BY PayPal" />
 	<center>
 		<h4>Invoice API Sample App</h4>
 		<h5>SDK v<%=Constants.SDK_VERSION%></h5>
