@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.paypal.core.credential.SignatureCredential;
+import com.paypal.core.credential.ThirdPartyAuthorization;
+import com.paypal.core.credential.TokenAuthorization;
 import com.paypal.exception.ClientActionRequiredException;
 import com.paypal.exception.HttpErrorException;
 import com.paypal.exception.InvalidCredentialException;
@@ -223,7 +226,7 @@ public class SearchInvoicesServlet extends HttpServlet {
 			// Configuration map containing signature credentials and other required configuration.
 			// For a full list of configuration parameters refer at 
 			// [https://github.com/paypal/invoice-sdk-java/wiki/SDK-Configuration-Parameters]
-			Map<String,String> configurationMap =  Configuration.getSignatureConfig();
+			Map<String,String> configurationMap =  Configuration.getAcctAndConfig();
 			
 			// Creating service wrapper object to make an API call by loading configuration map.
 			InvoiceService invoiceSrvc = new InvoiceService(configurationMap);
@@ -232,17 +235,25 @@ public class SearchInvoicesServlet extends HttpServlet {
 			   PayPal Permission api provides these tokens.Please refer Permission SDK 
 			   at (https://github.com/paypal/permissions-sdk-java). 	
 			*/
+			SignatureCredential cred = null;
 			if (request.getParameter("accessToken") != null
 					&& request.getParameter("tokenSecret") != null) {
-				invoiceSrvc.setAccessToken(request.getParameter("accessToken"));
-				invoiceSrvc.setTokenSecret(request.getParameter("tokenSecret"));
+				ThirdPartyAuthorization thirdPartyAuth = new TokenAuthorization(
+						request.getParameter("accessToken"),
+						request.getParameter("tokenSecret"));
 
+				cred = new SignatureCredential("jb-us-seller_api1.paypal.com",
+						"WX4WTU3S8MY44S7F",
+						"AFcWxV21C7fd0v3bYYYRCpSSRl31A7yDhhsPUU2XhtMoZXsWHFxu-RWy");
+
+				cred.setApplicationId("APP-80W284485P519543T");
+				cred.setThirdPartyAuthorization(thirdPartyAuth);
 			}
 			response.setContentType("text/html");
 			// ## Making API call
 			// Invoke the appropriate method corresponding to API in service
 			// wrapper object
-			SearchInvoicesResponse resp = invoiceSrvc.searchInvoices(req);
+			SearchInvoicesResponse resp = invoiceSrvc.searchInvoices(req, cred);
 			String lastReq = null;
 			if (resp != null) {
 				session.setAttribute("RESPONSE_OBJECT", resp);
