@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="sdk.js"></script>
 </head>
 <body>
+	<img src="https://devtools-paypal.com/image/bdg_payments_by_pp_2line.png" alt="PAYMENTS BY PayPal" />
 	<h4>PayPal Permissions</h4>
 	<ul class="wizard">
 		<li class="complete">Step 1: Request Permissions</li>
