@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.paypal.core.credential.SignatureCredential;
+import com.paypal.core.credential.ThirdPartyAuthorization;
+import com.paypal.core.credential.TokenAuthorization;
 import com.paypal.exception.ClientActionRequiredException;
 import com.paypal.exception.HttpErrorException;
 import com.paypal.exception.InvalidCredentialException;
@@ -21,8 +24,6 @@ import com.paypal.svcs.services.InvoiceService;
 import com.paypal.svcs.types.common.RequestEnvelope;
 import com.paypal.svcs.types.pt.MarkInvoiceAsUnpaidRequest;
 import com.paypal.svcs.types.pt.MarkInvoiceAsUnpaidResponse;
-import com.paypal.svcs.types.pt.OtherPaymentDetailsType;
-import com.paypal.svcs.types.pt.PaymentMethodsType;
 
 /**
  * Servlet implementation class CreateInvoiceSerlvet
@@ -69,25 +70,34 @@ public class MarkInvoiceAsUnpaidServlet extends HttpServlet {
 
 		try {
 			
-			/* 
-			 ## Creating service wrapper object
-			 Creating service wrapper object to make API call and loading
-			 configuration file for your credentials and endpoint
-			*/
-			InvoiceService invoiceSrvc = new InvoiceService(this
-					.getClass().getResourceAsStream("/sdk_config.properties"));
+			// Configuration map containing signature credentials and other required configuration.
+			// For a full list of configuration parameters refer at 
+			// [https://github.com/paypal/invoice-sdk-java/wiki/SDK-Configuration-Parameters]
+			Map<String,String> configurationMap =  Configuration.getAcctAndConfig();
+			
+			// Creating service wrapper object to make an API call by loading configuration map.
+			InvoiceService invoiceSrvc = new InvoiceService(configurationMap);
 
 			/* AccessToken and TokenSecret for third party authentication.
 			   PayPal Permission api provides these tokens.Please refer Permission SDK 
 			   at (https://github.com/paypal/permissions-sdk-java). 	
 			*/
+			SignatureCredential cred = null;
 			if (request.getParameter("accessToken") != null
 					&& request.getParameter("tokenSecret") != null) {
-				invoiceSrvc.setAccessToken(request.getParameter("accessToken"));
-				invoiceSrvc.setTokenSecret(request.getParameter("tokenSecret"));
+				ThirdPartyAuthorization thirdPartyAuth = new TokenAuthorization(
+						request.getParameter("accessToken"),
+						request.getParameter("tokenSecret"));
+
+				cred = new SignatureCredential("jb-us-seller_api1.paypal.com",
+						"WX4WTU3S8MY44S7F",
+						"AFcWxV21C7fd0v3bYYYRCpSSRl31A7yDhhsPUU2XhtMoZXsWHFxu-RWy");
+
+				cred.setApplicationId("APP-80W284485P519543T");
+				cred.setThirdPartyAuthorization(thirdPartyAuth);
 			}
 			response.setContentType("text/html");
-			MarkInvoiceAsUnpaidResponse resp = invoiceSrvc.markInvoiceAsUnpaid(req);
+			MarkInvoiceAsUnpaidResponse resp = invoiceSrvc.markInvoiceAsUnpaid(req, cred);
 			if (resp != null) {
 				session.setAttribute("RESPONSE_OBJECT", resp);
 				session.setAttribute("lastReq", invoiceSrvc.getLastRequest());
