@@ -73,7 +73,7 @@ public class CancelInvoiceServlet extends HttpServlet {
 			// required configuration.
 			// For a full list of configuration parameters refer in wiki page
 			// (https://github.com/paypal/sdk-core-java/wiki/SDK-Configuration-Parameters).
-			Map<String, String> configurationMap = Configuration.getConfig();
+			Map<String, String> configurationMap = Configuration.getAcctAndConfig();
 
 			// Creating service wrapper object to make an API call by loading
 			// configuration map.
