@@ -266,8 +266,13 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 					 * ## Making API call Invoke the appropriate method
 					 * corresponding to API in service wrapper object
 					 */
-					CreateAndSendInvoiceResponse resp = invoiceSrvc
-							.createAndSendInvoice(createRequest, cred);
+					CreateAndSendInvoiceResponse resp = null;
+					if (cred != null) {
+						resp = invoiceSrvc.createAndSendInvoice(createRequest,
+								cred);
+					} else {
+						resp = invoiceSrvc.createAndSendInvoice(createRequest);
+					}
 
 					if (resp != null) {
 						session.setAttribute("RESPONSE_OBJECT", resp);
