@@ -62,29 +62,37 @@ public class MarkInvoiceAsUnpaidServlet extends HttpServlet {
 
 		RequestEnvelope env = new RequestEnvelope();
 		/*
-		 *  (Required) RFC 3066 language in which error messages are returned; 
-		 *  by default it is en_US, which is the only language currently supported. 
+		 * (Required) RFC 3066 language in which error messages are returned; by
+		 * default it is en_US, which is the only language currently supported.
 		 */
 		env.setErrorLanguage("en_US");
-		MarkInvoiceAsUnpaidRequest req = new MarkInvoiceAsUnpaidRequest(env, request.getParameter("invoiceId"));
+		MarkInvoiceAsUnpaidRequest req = new MarkInvoiceAsUnpaidRequest(env,
+				request.getParameter("invoiceId"));
 
 		try {
-			
-			// Configuration map containing signature credentials and other required configuration.
+
+			// Configuration map containing signature credentials and other
+			// required configuration.
 			// For a full list of configuration parameters refer in wiki page
 			// (https://github.com/paypal/sdk-core-java/wiki/SDK-Configuration-Parameters)
-			Map<String,String> configurationMap =  Configuration.getAcctAndConfig();
-			
-			// Creating service wrapper object to make an API call by loading configuration map.
+			Map<String, String> configurationMap = Configuration
+					.getAcctAndConfig();
+
+			// Creating service wrapper object to make an API call by loading
+			// configuration map.
 			InvoiceService invoiceSrvc = new InvoiceService(configurationMap);
 
-			/* AccessToken and TokenSecret for third party authentication.
-			   PayPal Permission api provides these tokens.Please refer Permission SDK 
-			   at (https://github.com/paypal/permissions-sdk-java). 	
-			*/
+			/*
+			 * AccessToken and TokenSecret for third party authentication.
+			 * PayPal Permission api provides these tokens.Please refer
+			 * Permission SDK at
+			 * (https://github.com/paypal/permissions-sdk-java).
+			 */
 			SignatureCredential cred = null;
 			if (request.getParameter("accessToken") != null
-					&& request.getParameter("tokenSecret") != null) {
+					&& request.getParameter("accessToken").length() > 0
+					&& request.getParameter("tokenSecret") != null
+					&& request.getParameter("tokenSecret").length() > 0) {
 				ThirdPartyAuthorization thirdPartyAuth = new TokenAuthorization(
 						request.getParameter("accessToken"),
 						request.getParameter("tokenSecret"));
@@ -97,31 +105,38 @@ public class MarkInvoiceAsUnpaidServlet extends HttpServlet {
 				cred.setThirdPartyAuthorization(thirdPartyAuth);
 			}
 			response.setContentType("text/html");
-			MarkInvoiceAsUnpaidResponse resp = invoiceSrvc.markInvoiceAsUnpaid(req, cred);
+			MarkInvoiceAsUnpaidResponse resp = null;
+			if (cred != null) {
+				resp = invoiceSrvc.markInvoiceAsUnpaid(req, cred);
+			}else{
+				resp = invoiceSrvc.markInvoiceAsUnpaid(req);
+			}
 			if (resp != null) {
 				session.setAttribute("RESPONSE_OBJECT", resp);
 				session.setAttribute("lastReq", invoiceSrvc.getLastRequest());
 				session.setAttribute("lastResp", invoiceSrvc.getLastResponse());
-				if (resp.getResponseEnvelope().getAck().toString().equalsIgnoreCase("SUCCESS")) {
+				if (resp.getResponseEnvelope().getAck().toString()
+						.equalsIgnoreCase("SUCCESS")) {
 					Map<Object, Object> map = new LinkedHashMap<Object, Object>();
-					
+
 					/*
-					 * common:AckCode Acknowledgement code. It is one of the following 
-					 * values:
-					    Success – The operation completed successfully.
-					    Failure – The operation failed.
-					    SuccessWithWarning – The operation completed successfully; however, there is a warning message.
-					    FailureWithWarning – The operation failed with a warning message.
+					 * common:AckCode Acknowledgement code. It is one of the
+					 * following values: Success – The operation completed
+					 * successfully. Failure – The operation failed.
+					 * SuccessWithWarning – The operation completed
+					 * successfully; however, there is a warning message.
+					 * FailureWithWarning – The operation failed with a warning
+					 * message.
 					 */
 					map.put("Ack", resp.getResponseEnvelope().getAck());
-					
+
 					// ID of the created invoice.
 					map.put("Invoice ID", resp.getInvoiceID());
-					
-					//Invoice number of the created invoice.
+
+					// Invoice number of the created invoice.
 					map.put("Invoice Number", resp.getInvoiceNumber());
-					
-					//URL location where merchants view the invoice details
+
+					// URL location where merchants view the invoice details
 					map.put("Invoice URL", resp.getInvoiceURL());
 					session.setAttribute("map", map);
 					response.sendRedirect("Response.jsp");

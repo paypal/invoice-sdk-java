@@ -73,8 +73,7 @@ public class CancelInvoiceServlet extends HttpServlet {
 			// required configuration.
 			// For a full list of configuration parameters refer in wiki page
 			// (https://github.com/paypal/sdk-core-java/wiki/SDK-Configuration-Parameters).
-			Map<String, String> configurationMap = Configuration
-					.getConfig();
+			Map<String, String> configurationMap = Configuration.getConfig();
 
 			// Creating service wrapper object to make an API call by loading
 			// configuration map.
@@ -88,7 +87,9 @@ public class CancelInvoiceServlet extends HttpServlet {
 			 */
 			SignatureCredential cred = null;
 			if (request.getParameter("accessToken") != null
-					&& request.getParameter("tokenSecret") != null) {
+					&& request.getParameter("accessToken").length() > 0
+					&& request.getParameter("tokenSecret") != null
+					&& request.getParameter("tokenSecret").length() > 0) {
 				ThirdPartyAuthorization thirdPartyAuth = new TokenAuthorization(
 						request.getParameter("accessToken"),
 						request.getParameter("tokenSecret"));
@@ -101,7 +102,12 @@ public class CancelInvoiceServlet extends HttpServlet {
 				cred.setThirdPartyAuthorization(thirdPartyAuth);
 			}
 			response.setContentType("text/html");
-			CancelInvoiceResponse resp = invoiceSrvc.cancelInvoice(req, cred);
+			CancelInvoiceResponse resp = null;
+			if (cred != null) {
+				resp = invoiceSrvc.cancelInvoice(req, cred);
+			} else {
+				resp = invoiceSrvc.cancelInvoice(req);
+			}
 			if (resp != null) {
 				session.setAttribute("RESPONSE_OBJECT", resp);
 				session.setAttribute("lastReq", invoiceSrvc.getLastRequest());

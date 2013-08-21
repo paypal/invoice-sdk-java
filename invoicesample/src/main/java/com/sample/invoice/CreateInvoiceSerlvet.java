@@ -140,7 +140,8 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 
 					// Configuration map containing signature credentials and
 					// other required configuration.
-					// For a full list of configuration parameters refer in wiki page.
+					// For a full list of configuration parameters refer in wiki
+					// page.
 					// (https://github.com/paypal/sdk-core-java/wiki/SDK-Configuration-Parameters)
 					Map<String, String> configurationMap = Configuration
 							.getAcctAndConfig();
@@ -158,7 +159,9 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 					 */
 					SignatureCredential cred = null;
 					if (request.getParameter("accessToken") != null
-							&& request.getParameter("tokenSecret") != null) {
+							&& request.getParameter("accessToken").length() > 0
+							&& request.getParameter("tokenSecret") != null
+							&& request.getParameter("tokenSecret").length() > 0) {
 						ThirdPartyAuthorization thirdPartyAuth = new TokenAuthorization(
 								request.getParameter("accessToken"),
 								request.getParameter("tokenSecret"));
@@ -176,8 +179,12 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 					// Invoke the appropriate method corresponding to API in
 					// service
 					// wrapper object
-					CreateInvoiceResponse resp = invoiceSrvc.createInvoice(
-							createRequest, cred);
+					CreateInvoiceResponse resp = null;
+					if (cred != null) {
+						resp = invoiceSrvc.createInvoice(createRequest, cred);
+					} else {
+						resp = invoiceSrvc.createInvoice(createRequest);
+					}
 
 					if (resp != null) {
 						session.setAttribute("RESPONSE_OBJECT", resp);
@@ -239,7 +246,9 @@ public class CreateInvoiceSerlvet extends HttpServlet {
 					 */
 					SignatureCredential cred = null;
 					if (request.getParameter("accessToken") != null
-							&& request.getParameter("tokenSecret") != null) {
+							&& request.getParameter("accessToken").length() > 0
+							&& request.getParameter("tokenSecret") != null
+							&& request.getParameter("tokenSecret").length() > 0) {
 						ThirdPartyAuthorization thirdPartyAuth = new TokenAuthorization(
 								request.getParameter("accessToken"),
 								request.getParameter("tokenSecret"));
