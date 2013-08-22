@@ -77,8 +77,14 @@ public class PermissionServlet extends HttpServlet {
 				RequestPermissionsRequest permRequest = new RequestPermissionsRequest(
 						scope, callback);
 				permRequest.setRequestEnvelope(env);
-				PermissionsService perm = new PermissionsService(this
-						.getClass().getResourceAsStream("/sdk_config.properties"));
+				// Configuration map containing signature credentials and other required configuration.
+				// For a full list of configuration parameters refer in wiki page
+				// (https://github.com/paypal/sdk-core-java/wiki/SDK-Configuration-Parameters)
+				Map<String,String> configurationMap =  Configuration.getAcctAndConfig();
+				
+				// Creating service wrapper object to make an API call by loading configuration map.
+				PermissionsService perm = new PermissionsService(configurationMap);
+				
 				RequestPermissionsResponse resp = perm
 						.requestPermissions(permRequest);
 				response.getWriter()
