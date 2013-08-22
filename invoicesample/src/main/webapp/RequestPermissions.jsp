@@ -18,6 +18,7 @@
 %>
 </head>
 <body>
+	<img src="https://devtools-paypal.com/image/bdg_payments_by_pp_2line.png" alt="PAYMENTS BY PayPal" />
 	<form method="post">
 		<h4>PayPal Permissions</h4>
 		<ul class="wizard">

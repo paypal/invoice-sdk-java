@@ -1,3 +1,10 @@
+Version 2.4.106 - August 21, 2013
+ 
+	- Updated stubs.
+	- Updated samples to showcase dynamic configuration.
+	
+You can see source code of this release in github under https://github.com/paypal/invoice-sdk-java/tree/v2.4.106.
+--------------------------------------------------------------------------------------------------
 Version 2.3.103 - June 07, 2013
  
 	- Updated stubs for 103 release.
