@@ -6,6 +6,8 @@ package com.paypal.svcs.types.pt;
  */
 public enum  PaymentTermsType {
 
+	NODUEDATE("NoDueDate"),
+
 	DUEONRECEIPT("DueOnReceipt"),
 
 	DUEONDATESPECIFIED("DueOnDateSpecified"),

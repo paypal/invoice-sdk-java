@@ -12,6 +12,8 @@ import com.paypal.svcs.types.pt.CreateInvoiceRequest;
 import com.paypal.svcs.types.pt.CreateInvoiceResponse;
 import com.paypal.svcs.types.pt.SendInvoiceRequest;
 import com.paypal.svcs.types.pt.SendInvoiceResponse;
+import com.paypal.svcs.types.pt.RemindInvoiceRequest;
+import com.paypal.svcs.types.pt.RemindInvoiceResponse;
 import com.paypal.svcs.types.pt.CreateAndSendInvoiceRequest;
 import com.paypal.svcs.types.pt.CreateAndSendInvoiceResponse;
 import com.paypal.svcs.types.pt.UpdateInvoiceRequest;
@@ -36,7 +38,7 @@ public class InvoiceService extends BaseService {
 
 
 	// Service Version
-	public static final String SERVICE_VERSION = "1.9.0";
+	public static final String SERVICE_VERSION = "1.10.0";
 
 	// Service Name
 	public static final String SERVICE_NAME = "Invoice";
@@ -45,7 +47,7 @@ public class InvoiceService extends BaseService {
 	private static final String SDK_NAME = "invoice-java-sdk";
 	
 	//SDK Version
-	private static final String SDK_VERSION = "2.3.103";
+	private static final String SDK_VERSION = "2.4.106";
 
 
 	/**
@@ -246,6 +248,61 @@ public class InvoiceService extends BaseService {
 		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(sendInvoiceRequest.toNVPString(), SERVICE_NAME, "SendInvoice", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return SendInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
+	 }
+
+	/** 
+	 * 
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public RemindInvoiceResponse remindInvoice(RemindInvoiceRequest remindInvoiceRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return remindInvoice(remindInvoiceRequest, (String) null);
+	 }
+
+	/** 
+	 * 
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public RemindInvoiceResponse remindInvoice(RemindInvoiceRequest remindInvoiceRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(remindInvoiceRequest.toNVPString(), SERVICE_NAME, "RemindInvoice", credential, SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
+	 	String response = call(apiCallPreHandler);
+		return RemindInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
+	}
+	
+	/**	
+	 * 
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public RemindInvoiceResponse remindInvoice(RemindInvoiceRequest remindInvoiceRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(remindInvoiceRequest.toNVPString(), SERVICE_NAME, "RemindInvoice", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
+	 	String response = call(apiCallPreHandler);
+		return RemindInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 
 	/** 
