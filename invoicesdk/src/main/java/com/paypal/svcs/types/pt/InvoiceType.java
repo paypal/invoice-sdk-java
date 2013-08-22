@@ -65,8 +65,7 @@ public class InvoiceType{
 	private String dueDate;
 
 	/**
-	 * Terms by which the invoice payment is due. 	  
-	 *@Required	 
+	 * Terms by which the invoice payment is due. 	 
 	 */ 
 	private PaymentTermsType paymentTerms;
 
@@ -163,12 +162,11 @@ public class InvoiceType{
 	/**
 	 * Constructor with arguments
 	 */
-	public InvoiceType (String merchantEmail, String payerEmail, InvoiceItemListType itemList, String currencyCode, PaymentTermsType paymentTerms){
+	public InvoiceType (String merchantEmail, String payerEmail, InvoiceItemListType itemList, String currencyCode){
 		this.merchantEmail = merchantEmail;
 		this.payerEmail = payerEmail;
 		this.itemList = itemList;
 		this.currencyCode = currencyCode;
-		this.paymentTerms = paymentTerms;
 	}	
 
 	/**
