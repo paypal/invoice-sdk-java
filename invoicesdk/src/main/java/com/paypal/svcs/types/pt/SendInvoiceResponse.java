@@ -31,6 +31,13 @@ public class SendInvoiceResponse{
 	private String invoiceURL;
 
 	/**
+	 * The URL which lead merchant to view the invoice as the payer
+	 * would see it. 	  
+	 *@Required	 
+	 */ 
+	private String payerViewURL;
+
+	/**
 	 * 	 
 	 */ 
 	private List<ErrorData> error = new ArrayList<ErrorData>();
@@ -86,6 +93,20 @@ public class SendInvoiceResponse{
 	 }
 	 
 	/**
+	 * Getter for payerViewURL
+	 */
+	 public String getPayerViewURL() {
+	 	return payerViewURL;
+	 }
+	 
+	/**
+	 * Setter for payerViewURL
+	 */
+	 public void setPayerViewURL(String payerViewURL) {
+	 	this.payerViewURL = payerViewURL;
+	 }
+	 
+	/**
 	 * Getter for error
 	 */
 	 public List<ErrorData> getError() {
@@ -127,6 +148,10 @@ public class SendInvoiceResponse{
 		if (map.containsKey(prefix + "invoiceURL")) {
 				sendInvoiceResponse = (sendInvoiceResponse == null) ? new SendInvoiceResponse() : sendInvoiceResponse;
 				sendInvoiceResponse.setInvoiceURL(map.get(prefix + "invoiceURL"));
+		}
+		if (map.containsKey(prefix + "payerViewURL")) {
+				sendInvoiceResponse = (sendInvoiceResponse == null) ? new SendInvoiceResponse() : sendInvoiceResponse;
+				sendInvoiceResponse.setPayerViewURL(map.get(prefix + "payerViewURL"));
 		}
 		i = 0;
 		while(true) {

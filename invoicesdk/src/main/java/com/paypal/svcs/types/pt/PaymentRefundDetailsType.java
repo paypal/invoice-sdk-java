@@ -1,6 +1,8 @@
 package com.paypal.svcs.types.pt;
 import com.paypal.svcs.types.pt.PayPalPaymentRefundDetailsType;
+import com.paypal.svcs.types.pt.PayPalPaymentRefundDetailsListType;
 import com.paypal.svcs.types.pt.OtherPaymentRefundDetailsType;
+import com.paypal.svcs.types.pt.OtherPaymentRefundDetailsListType;
 import java.util.Map;
 
 /**
@@ -21,9 +23,19 @@ public class PaymentRefundDetailsType{
 	private PayPalPaymentRefundDetailsType paypalPayment;
 
 	/**
+	 * Other payment refund details.  	 
+	 */ 
+	private PayPalPaymentRefundDetailsListType paypalPayments;
+
+	/**
 	 * details.  	 
 	 */ 
 	private OtherPaymentRefundDetailsType otherPayment;
+
+	/**
+	 * details.  	 
+	 */ 
+	private OtherPaymentRefundDetailsListType otherPayments;
 
 	
 
@@ -62,6 +74,20 @@ public class PaymentRefundDetailsType{
 	 }
 	 
 	/**
+	 * Getter for paypalPayments
+	 */
+	 public PayPalPaymentRefundDetailsListType getPaypalPayments() {
+	 	return paypalPayments;
+	 }
+	 
+	/**
+	 * Setter for paypalPayments
+	 */
+	 public void setPaypalPayments(PayPalPaymentRefundDetailsListType paypalPayments) {
+	 	this.paypalPayments = paypalPayments;
+	 }
+	 
+	/**
 	 * Getter for otherPayment
 	 */
 	 public OtherPaymentRefundDetailsType getOtherPayment() {
@@ -73,6 +99,20 @@ public class PaymentRefundDetailsType{
 	 */
 	 public void setOtherPayment(OtherPaymentRefundDetailsType otherPayment) {
 	 	this.otherPayment = otherPayment;
+	 }
+	 
+	/**
+	 * Getter for otherPayments
+	 */
+	 public OtherPaymentRefundDetailsListType getOtherPayments() {
+	 	return otherPayments;
+	 }
+	 
+	/**
+	 * Setter for otherPayments
+	 */
+	 public void setOtherPayments(OtherPaymentRefundDetailsListType otherPayments) {
+	 	this.otherPayments = otherPayments;
 	 }
 	 
 
@@ -100,10 +140,20 @@ public class PaymentRefundDetailsType{
 			paymentRefundDetailsType = (paymentRefundDetailsType == null) ? new PaymentRefundDetailsType() : paymentRefundDetailsType;
 			paymentRefundDetailsType.setPaypalPayment(paypalPayment);
 		}
+		PayPalPaymentRefundDetailsListType paypalPayments =  PayPalPaymentRefundDetailsListType.createInstance(map, prefix + "paypalPayments", -1);
+		if (paypalPayments != null) {
+			paymentRefundDetailsType = (paymentRefundDetailsType == null) ? new PaymentRefundDetailsType() : paymentRefundDetailsType;
+			paymentRefundDetailsType.setPaypalPayments(paypalPayments);
+		}
 		OtherPaymentRefundDetailsType otherPayment =  OtherPaymentRefundDetailsType.createInstance(map, prefix + "otherPayment", -1);
 		if (otherPayment != null) {
 			paymentRefundDetailsType = (paymentRefundDetailsType == null) ? new PaymentRefundDetailsType() : paymentRefundDetailsType;
 			paymentRefundDetailsType.setOtherPayment(otherPayment);
+		}
+		OtherPaymentRefundDetailsListType otherPayments =  OtherPaymentRefundDetailsListType.createInstance(map, prefix + "otherPayments", -1);
+		if (otherPayments != null) {
+			paymentRefundDetailsType = (paymentRefundDetailsType == null) ? new PaymentRefundDetailsType() : paymentRefundDetailsType;
+			paymentRefundDetailsType.setOtherPayments(otherPayments);
 		}
 		return paymentRefundDetailsType;
 	}

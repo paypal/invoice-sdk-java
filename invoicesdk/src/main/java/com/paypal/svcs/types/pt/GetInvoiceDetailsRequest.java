@@ -16,19 +16,22 @@ public class GetInvoiceDetailsRequest{
 	private RequestEnvelope requestEnvelope;
 
 	/**
-	 * ID of the invoice to retrieve. 	  
-	 *@Required	 
+	 * ID of the invoice to retrieve. 	 
 	 */ 
 	private String invoiceID;
+
+	/**
+	 * Invoice number of the invoice to retrieve. 	 
+	 */ 
+	private String invoiceNumber;
 
 	
 
 	/**
 	 * Constructor with arguments
 	 */
-	public GetInvoiceDetailsRequest (RequestEnvelope requestEnvelope, String invoiceID){
+	public GetInvoiceDetailsRequest (RequestEnvelope requestEnvelope){
 		this.requestEnvelope = requestEnvelope;
-		this.invoiceID = invoiceID;
 	}	
 
 	/**
@@ -65,6 +68,20 @@ public class GetInvoiceDetailsRequest{
 	 	this.invoiceID = invoiceID;
 	 }
 	 
+	/**
+	 * Getter for invoiceNumber
+	 */
+	 public String getInvoiceNumber() {
+	 	return invoiceNumber;
+	 }
+	 
+	/**
+	 * Setter for invoiceNumber
+	 */
+	 public void setInvoiceNumber(String invoiceNumber) {
+	 	this.invoiceNumber = invoiceNumber;
+	 }
+	 
 
 
 	public String toNVPString() throws UnsupportedEncodingException {
@@ -79,6 +96,10 @@ public class GetInvoiceDetailsRequest{
 		}
 		if (this.invoiceID != null) {
 			sb.append(prefix).append("invoiceID=").append(NVPUtil.encodeUrl(this.invoiceID));
+			sb.append("&");
+		}
+		if (this.invoiceNumber != null) {
+			sb.append(prefix).append("invoiceNumber=").append(NVPUtil.encodeUrl(this.invoiceNumber));
 			sb.append("&");
 		}
 		return sb.toString();

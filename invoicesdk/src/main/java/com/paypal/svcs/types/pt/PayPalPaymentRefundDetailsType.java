@@ -8,9 +8,20 @@ public class PayPalPaymentRefundDetailsType{
 
 
 	/**
+	 * Transaction ID of the PayPal refund. 	  
+	 *@Required	 
+	 */ 
+	private String transactionID;
+
+	/**
 	 * Date when the invoice was marked as refunded by PayPal. 	 
 	 */ 
 	private String date;
+
+	/**
+	 * Refund amount, if empty, it means a full refund. 	 
+	 */ 
+	private Double amount;
 
 	
 
@@ -20,6 +31,20 @@ public class PayPalPaymentRefundDetailsType{
 	public PayPalPaymentRefundDetailsType (){
 	}	
 
+	/**
+	 * Getter for transactionID
+	 */
+	 public String getTransactionID() {
+	 	return transactionID;
+	 }
+	 
+	/**
+	 * Setter for transactionID
+	 */
+	 public void setTransactionID(String transactionID) {
+	 	this.transactionID = transactionID;
+	 }
+	 
 	/**
 	 * Getter for date
 	 */
@@ -32,6 +57,20 @@ public class PayPalPaymentRefundDetailsType{
 	 */
 	 public void setDate(String date) {
 	 	this.date = date;
+	 }
+	 
+	/**
+	 * Getter for amount
+	 */
+	 public Double getAmount() {
+	 	return amount;
+	 }
+	 
+	/**
+	 * Setter for amount
+	 */
+	 public void setAmount(Double amount) {
+	 	this.amount = amount;
 	 }
 	 
 
@@ -50,9 +89,17 @@ public class PayPalPaymentRefundDetailsType{
 			}
 		}
 			
+		if (map.containsKey(prefix + "transactionID")) {
+				payPalPaymentRefundDetailsType = (payPalPaymentRefundDetailsType == null) ? new PayPalPaymentRefundDetailsType() : payPalPaymentRefundDetailsType;
+				payPalPaymentRefundDetailsType.setTransactionID(map.get(prefix + "transactionID"));
+		}
 		if (map.containsKey(prefix + "date")) {
 				payPalPaymentRefundDetailsType = (payPalPaymentRefundDetailsType == null) ? new PayPalPaymentRefundDetailsType() : payPalPaymentRefundDetailsType;
 				payPalPaymentRefundDetailsType.setDate(map.get(prefix + "date"));
+		}
+		if (map.containsKey(prefix + "amount")) {
+				payPalPaymentRefundDetailsType = (payPalPaymentRefundDetailsType == null) ? new PayPalPaymentRefundDetailsType() : payPalPaymentRefundDetailsType;
+				payPalPaymentRefundDetailsType.setAmount(Double.valueOf(map.get(prefix + "amount")));
 		}
 		return payPalPaymentRefundDetailsType;
 	}
