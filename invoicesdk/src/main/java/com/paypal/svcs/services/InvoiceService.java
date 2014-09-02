@@ -14,6 +14,8 @@ import com.paypal.svcs.types.pt.SendInvoiceRequest;
 import com.paypal.svcs.types.pt.SendInvoiceResponse;
 import com.paypal.svcs.types.pt.RemindInvoiceRequest;
 import com.paypal.svcs.types.pt.RemindInvoiceResponse;
+import com.paypal.svcs.types.pt.GenerateInvoiceNumberRequest;
+import com.paypal.svcs.types.pt.GenerateInvoiceNumberResponse;
 import com.paypal.svcs.types.pt.CreateAndSendInvoiceRequest;
 import com.paypal.svcs.types.pt.CreateAndSendInvoiceResponse;
 import com.paypal.svcs.types.pt.UpdateInvoiceRequest;
@@ -38,7 +40,7 @@ public class InvoiceService extends BaseService {
 
 
 	// Service Version
-	public static final String SERVICE_VERSION = "1.10.0";
+	public static final String SERVICE_VERSION = "1.12.0";
 
 	// Service Name
 	public static final String SERVICE_NAME = "Invoice";
@@ -47,7 +49,7 @@ public class InvoiceService extends BaseService {
 	private static final String SDK_NAME = "invoice-java-sdk";
 	
 	//SDK Version
-	private static final String SDK_VERSION = "2.4.106";
+	private static final String SDK_VERSION = "2.5.117";
 
 
 	/**
@@ -303,6 +305,61 @@ public class InvoiceService extends BaseService {
 		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(remindInvoiceRequest.toNVPString(), SERVICE_NAME, "RemindInvoice", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
 	 	String response = call(apiCallPreHandler);
 		return RemindInvoiceResponse.createInstance(NVPUtil.decode(response), "", -1);
+	 }
+
+	/** 
+	 * 
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public GenerateInvoiceNumberResponse generateInvoiceNumber(GenerateInvoiceNumberRequest generateInvoiceNumberRequest) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+	 	return generateInvoiceNumber(generateInvoiceNumberRequest, (String) null);
+	 }
+
+	/** 
+	 * 
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public GenerateInvoiceNumberResponse generateInvoiceNumber(GenerateInvoiceNumberRequest generateInvoiceNumberRequest, ICredential credential) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(generateInvoiceNumberRequest.toNVPString(), SERVICE_NAME, "GenerateInvoiceNumber", credential, SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
+	 	String response = call(apiCallPreHandler);
+		return GenerateInvoiceNumberResponse.createInstance(NVPUtil.decode(response), "", -1);
+	}
+	
+	/**	
+	 * 
+	 * @throws SSLConfigurationException
+	 * @throws InvalidCredentialException
+	 * @throws UnsupportedEncodingException
+	 * @throws IOException
+	 * @throws HttpErrorException
+	 * @throws InvalidResponseDataException
+	 * @throws ClientActionRequiredException
+	 * @throws MissingCredentialException
+	 * @throws InterruptedException
+	 * @throws OAuthException
+	 */
+	 public GenerateInvoiceNumberResponse generateInvoiceNumber(GenerateInvoiceNumberRequest generateInvoiceNumberRequest, String apiUsername) throws SSLConfigurationException, InvalidCredentialException, UnsupportedEncodingException, IOException, HttpErrorException, InvalidResponseDataException, ClientActionRequiredException, MissingCredentialException, InterruptedException, OAuthException {
+		APICallPreHandler apiCallPreHandler = new PlatformAPICallPreHandler(generateInvoiceNumberRequest.toNVPString(), SERVICE_NAME, "GenerateInvoiceNumber", apiUsername, getAccessToken(), getTokenSecret(), SDK_NAME, SDK_VERSION, "Invoice", this.configurationMap);
+	 	String response = call(apiCallPreHandler);
+		return GenerateInvoiceNumberResponse.createInstance(NVPUtil.decode(response), "", -1);
 	 }
 
 	/** 

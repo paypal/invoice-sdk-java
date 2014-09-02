@@ -75,10 +75,16 @@ public class InvoiceType{
 	private Double discountPercent;
 
 	/**
-	 * A discount amount applied to the invoice, if any. If
-	 * DiscountPercent is provided, DiscountAmount is ignored. 	 
+	 * A Invoice level discount amount applied on the invoice, if
+	 * any. If DiscountPercent is provided, DiscountAmount is
+	 * ignored. 	 
 	 */ 
 	private Double discountAmount;
+
+	/**
+	 * Total Items Discount applied to the invoice, if any. 	 
+	 */ 
+	private Double totalItemDiscountAmount;
 
 	/**
 	 * If true, indicates tax included in item amount. If present,
@@ -134,6 +140,12 @@ public class InvoiceType{
 	private Double shippingTaxRate;
 
 	/**
+	 * The tax on shipping amount, either included or on top of it.
+	 * 	 
+	 */ 
+	private Double shippingTaxAmount;
+
+	/**
 	 * The external image URL of the invoice's logo, if any 	 
 	 */ 
 	private String logoUrl;
@@ -156,6 +168,13 @@ public class InvoiceType{
 	 * customAmountValue, then customAmountLabel cannot be empty. 	 
 	 */ 
 	private Double customAmountValue;
+
+	/**
+	 * False, if the payment cannot be paid using both external and
+	 * PayPal payment. True, if the payment can be paid using both
+	 * external and PayPal payment. 	 
+	 */ 
+	private Boolean allowPartialPayments;
 
 	
 
@@ -344,6 +363,20 @@ public class InvoiceType{
 	 }
 	 
 	/**
+	 * Getter for totalItemDiscountAmount
+	 */
+	 public Double getTotalItemDiscountAmount() {
+	 	return totalItemDiscountAmount;
+	 }
+	 
+	/**
+	 * Setter for totalItemDiscountAmount
+	 */
+	 public void setTotalItemDiscountAmount(Double totalItemDiscountAmount) {
+	 	this.totalItemDiscountAmount = totalItemDiscountAmount;
+	 }
+	 
+	/**
 	 * Getter for taxInclusive
 	 */
 	 public Boolean getTaxInclusive() {
@@ -484,6 +517,20 @@ public class InvoiceType{
 	 }
 	 
 	/**
+	 * Getter for shippingTaxAmount
+	 */
+	 public Double getShippingTaxAmount() {
+	 	return shippingTaxAmount;
+	 }
+	 
+	/**
+	 * Setter for shippingTaxAmount
+	 */
+	 public void setShippingTaxAmount(Double shippingTaxAmount) {
+	 	this.shippingTaxAmount = shippingTaxAmount;
+	 }
+	 
+	/**
 	 * Getter for logoUrl
 	 */
 	 public String getLogoUrl() {
@@ -537,6 +584,20 @@ public class InvoiceType{
 	 */
 	 public void setCustomAmountValue(Double customAmountValue) {
 	 	this.customAmountValue = customAmountValue;
+	 }
+	 
+	/**
+	 * Getter for allowPartialPayments
+	 */
+	 public Boolean getAllowPartialPayments() {
+	 	return allowPartialPayments;
+	 }
+	 
+	/**
+	 * Setter for allowPartialPayments
+	 */
+	 public void setAllowPartialPayments(Boolean allowPartialPayments) {
+	 	this.allowPartialPayments = allowPartialPayments;
 	 }
 	 
 
@@ -595,6 +656,10 @@ public class InvoiceType{
 			sb.append(prefix).append("discountAmount=").append(this.discountAmount);
 			sb.append("&");
 		}
+		if (this.totalItemDiscountAmount != null) {
+			sb.append(prefix).append("totalItemDiscountAmount=").append(this.totalItemDiscountAmount);
+			sb.append("&");
+		}
 		if (this.taxInclusive != null) {
 			sb.append(prefix).append("taxInclusive=").append(this.taxInclusive);
 			sb.append("&");
@@ -635,6 +700,10 @@ public class InvoiceType{
 			sb.append(prefix).append("shippingTaxRate=").append(this.shippingTaxRate);
 			sb.append("&");
 		}
+		if (this.shippingTaxAmount != null) {
+			sb.append(prefix).append("shippingTaxAmount=").append(this.shippingTaxAmount);
+			sb.append("&");
+		}
 		if (this.logoUrl != null) {
 			sb.append(prefix).append("logoUrl=").append(NVPUtil.encodeUrl(this.logoUrl));
 			sb.append("&");
@@ -649,6 +718,10 @@ public class InvoiceType{
 		}
 		if (this.customAmountValue != null) {
 			sb.append(prefix).append("customAmountValue=").append(this.customAmountValue);
+			sb.append("&");
+		}
+		if (this.allowPartialPayments != null) {
+			sb.append(prefix).append("allowPartialPayments=").append(this.allowPartialPayments);
 			sb.append("&");
 		}
 		return sb.toString();
@@ -717,6 +790,10 @@ public class InvoiceType{
 				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
 				invoiceType.setDiscountAmount(Double.valueOf(map.get(prefix + "discountAmount")));
 		}
+		if (map.containsKey(prefix + "totalItemDiscountAmount")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setTotalItemDiscountAmount(Double.valueOf(map.get(prefix + "totalItemDiscountAmount")));
+		}
 		if (map.containsKey(prefix + "taxInclusive")) {
 				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
 				invoiceType.setTaxInclusive(Boolean.valueOf(map.get(prefix + "taxInclusive")));
@@ -759,6 +836,10 @@ public class InvoiceType{
 				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
 				invoiceType.setShippingTaxRate(Double.valueOf(map.get(prefix + "shippingTaxRate")));
 		}
+		if (map.containsKey(prefix + "shippingTaxAmount")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setShippingTaxAmount(Double.valueOf(map.get(prefix + "shippingTaxAmount")));
+		}
 		if (map.containsKey(prefix + "logoUrl")) {
 				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
 				invoiceType.setLogoUrl(map.get(prefix + "logoUrl"));
@@ -774,6 +855,10 @@ public class InvoiceType{
 		if (map.containsKey(prefix + "customAmountValue")) {
 				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
 				invoiceType.setCustomAmountValue(Double.valueOf(map.get(prefix + "customAmountValue")));
+		}
+		if (map.containsKey(prefix + "allowPartialPayments")) {
+				invoiceType = (invoiceType == null) ? new InvoiceType() : invoiceType;
+				invoiceType.setAllowPartialPayments(Boolean.valueOf(map.get(prefix + "allowPartialPayments")));
 		}
 		return invoiceType;
 	}

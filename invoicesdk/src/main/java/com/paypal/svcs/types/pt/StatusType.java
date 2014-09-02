@@ -20,7 +20,11 @@ public enum  StatusType {
 
 	PARTIALLYREFUNDED("PartiallyRefunded"),
 
-	MARKEDASREFUNDED("MarkedAsRefunded");
+	MARKEDASREFUNDED("MarkedAsRefunded"),
+
+	PAYMENTPENDING("PaymentPending"),
+
+	PARTIALLYPAID("PartiallyPaid");
 
 	private String value;
 

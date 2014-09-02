@@ -25,6 +25,11 @@ public class OtherPaymentDetailsType{
 	 */ 
 	private String date;
 
+	/**
+	 * Payment amount. If empty, it means a full payment. 	 
+	 */ 
+	private Double amount;
+
 	
 
 	/**
@@ -75,6 +80,20 @@ public class OtherPaymentDetailsType{
 	 	this.date = date;
 	 }
 	 
+	/**
+	 * Getter for amount
+	 */
+	 public Double getAmount() {
+	 	return amount;
+	 }
+	 
+	/**
+	 * Setter for amount
+	 */
+	 public void setAmount(Double amount) {
+	 	this.amount = amount;
+	 }
+	 
 
 
 	public String toNVPString() throws UnsupportedEncodingException {
@@ -93,6 +112,10 @@ public class OtherPaymentDetailsType{
 		}
 		if (this.date != null) {
 			sb.append(prefix).append("date=").append(NVPUtil.encodeUrl(this.date));
+			sb.append("&");
+		}
+		if (this.amount != null) {
+			sb.append(prefix).append("amount=").append(this.amount);
 			sb.append("&");
 		}
 		return sb.toString();
@@ -122,6 +145,10 @@ public class OtherPaymentDetailsType{
 		if (map.containsKey(prefix + "date")) {
 				otherPaymentDetailsType = (otherPaymentDetailsType == null) ? new OtherPaymentDetailsType() : otherPaymentDetailsType;
 				otherPaymentDetailsType.setDate(map.get(prefix + "date"));
+		}
+		if (map.containsKey(prefix + "amount")) {
+				otherPaymentDetailsType = (otherPaymentDetailsType == null) ? new OtherPaymentDetailsType() : otherPaymentDetailsType;
+				otherPaymentDetailsType.setAmount(Double.valueOf(map.get(prefix + "amount")));
 		}
 		return otherPaymentDetailsType;
 	}

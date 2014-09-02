@@ -1,4 +1,5 @@
 package com.paypal.svcs.types.pt;
+import com.paypal.svcs.types.pt.PaymentTransactionType;
 import java.util.Map;
 
 /**
@@ -17,6 +18,17 @@ public class PayPalPaymentDetailsType{
 	 * Date when the invoice was paid. 	 
 	 */ 
 	private String date;
+
+	/**
+	 * Payment amount. If empty, it means a full payment. 	 
+	 */ 
+	private Double amount;
+
+	/**
+	 * Payment Transaction Type. 	  
+	 *@Required	 
+	 */ 
+	private PaymentTransactionType transactionType;
 
 	
 
@@ -54,6 +66,34 @@ public class PayPalPaymentDetailsType{
 	 	this.date = date;
 	 }
 	 
+	/**
+	 * Getter for amount
+	 */
+	 public Double getAmount() {
+	 	return amount;
+	 }
+	 
+	/**
+	 * Setter for amount
+	 */
+	 public void setAmount(Double amount) {
+	 	this.amount = amount;
+	 }
+	 
+	/**
+	 * Getter for transactionType
+	 */
+	 public PaymentTransactionType getTransactionType() {
+	 	return transactionType;
+	 }
+	 
+	/**
+	 * Setter for transactionType
+	 */
+	 public void setTransactionType(PaymentTransactionType transactionType) {
+	 	this.transactionType = transactionType;
+	 }
+	 
 
 
 	
@@ -77,6 +117,14 @@ public class PayPalPaymentDetailsType{
 		if (map.containsKey(prefix + "date")) {
 				payPalPaymentDetailsType = (payPalPaymentDetailsType == null) ? new PayPalPaymentDetailsType() : payPalPaymentDetailsType;
 				payPalPaymentDetailsType.setDate(map.get(prefix + "date"));
+		}
+		if (map.containsKey(prefix + "amount")) {
+				payPalPaymentDetailsType = (payPalPaymentDetailsType == null) ? new PayPalPaymentDetailsType() : payPalPaymentDetailsType;
+				payPalPaymentDetailsType.setAmount(Double.valueOf(map.get(prefix + "amount")));
+		}
+		if (map.containsKey(prefix + "transactionType")) {
+				payPalPaymentDetailsType = (payPalPaymentDetailsType == null) ? new PayPalPaymentDetailsType() : payPalPaymentDetailsType;
+				payPalPaymentDetailsType.setTransactionType(PaymentTransactionType.fromValue(map.get(prefix + "transactionType")));
 		}
 		return payPalPaymentDetailsType;
 	}

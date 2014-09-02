@@ -37,6 +37,13 @@ public class CreateInvoiceResponse{
 	private String invoiceURL;
 
 	/**
+	 * The URL which lead merchant to view the invoice as the payer
+	 * would see it. 	  
+	 *@Required	 
+	 */ 
+	private String payerViewURL;
+
+	/**
 	 * The total amount of the invoice (cost of items, shipping and
 	 * tax, less any discount). 	  
 	 *@Required	 
@@ -113,6 +120,20 @@ public class CreateInvoiceResponse{
 	 }
 	 
 	/**
+	 * Getter for payerViewURL
+	 */
+	 public String getPayerViewURL() {
+	 	return payerViewURL;
+	 }
+	 
+	/**
+	 * Setter for payerViewURL
+	 */
+	 public void setPayerViewURL(String payerViewURL) {
+	 	this.payerViewURL = payerViewURL;
+	 }
+	 
+	/**
 	 * Getter for totalAmount
 	 */
 	 public Integer getTotalAmount() {
@@ -172,6 +193,10 @@ public class CreateInvoiceResponse{
 		if (map.containsKey(prefix + "invoiceURL")) {
 				createInvoiceResponse = (createInvoiceResponse == null) ? new CreateInvoiceResponse() : createInvoiceResponse;
 				createInvoiceResponse.setInvoiceURL(map.get(prefix + "invoiceURL"));
+		}
+		if (map.containsKey(prefix + "payerViewURL")) {
+				createInvoiceResponse = (createInvoiceResponse == null) ? new CreateInvoiceResponse() : createInvoiceResponse;
+				createInvoiceResponse.setPayerViewURL(map.get(prefix + "payerViewURL"));
 		}
 		if (map.containsKey(prefix + "totalAmount")) {
 				createInvoiceResponse = (createInvoiceResponse == null) ? new CreateInvoiceResponse() : createInvoiceResponse;

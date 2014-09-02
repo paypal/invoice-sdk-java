@@ -22,6 +22,12 @@ public class OtherPaymentRefundDetailsType{
 	 */ 
 	private String date;
 
+	/**
+	 * Refunded amount. If empty then it is assumed to be a full
+	 * refund. 	 
+	 */ 
+	private Double amount;
+
 	
 
 	/**
@@ -58,6 +64,20 @@ public class OtherPaymentRefundDetailsType{
 	 	this.date = date;
 	 }
 	 
+	/**
+	 * Getter for amount
+	 */
+	 public Double getAmount() {
+	 	return amount;
+	 }
+	 
+	/**
+	 * Setter for amount
+	 */
+	 public void setAmount(Double amount) {
+	 	this.amount = amount;
+	 }
+	 
 
 
 	public String toNVPString() throws UnsupportedEncodingException {
@@ -72,6 +92,10 @@ public class OtherPaymentRefundDetailsType{
 		}
 		if (this.date != null) {
 			sb.append(prefix).append("date=").append(NVPUtil.encodeUrl(this.date));
+			sb.append("&");
+		}
+		if (this.amount != null) {
+			sb.append(prefix).append("amount=").append(this.amount);
 			sb.append("&");
 		}
 		return sb.toString();
@@ -97,6 +121,10 @@ public class OtherPaymentRefundDetailsType{
 		if (map.containsKey(prefix + "date")) {
 				otherPaymentRefundDetailsType = (otherPaymentRefundDetailsType == null) ? new OtherPaymentRefundDetailsType() : otherPaymentRefundDetailsType;
 				otherPaymentRefundDetailsType.setDate(map.get(prefix + "date"));
+		}
+		if (map.containsKey(prefix + "amount")) {
+				otherPaymentRefundDetailsType = (otherPaymentRefundDetailsType == null) ? new OtherPaymentRefundDetailsType() : otherPaymentRefundDetailsType;
+				otherPaymentRefundDetailsType.setAmount(Double.valueOf(map.get(prefix + "amount")));
 		}
 		return otherPaymentRefundDetailsType;
 	}

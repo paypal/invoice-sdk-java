@@ -1,6 +1,8 @@
 package com.paypal.svcs.types.pt;
 import com.paypal.svcs.types.pt.PayPalPaymentDetailsType;
+import com.paypal.svcs.types.pt.PayPalPaymentDetailsListType;
 import com.paypal.svcs.types.pt.OtherPaymentDetailsType;
+import com.paypal.svcs.types.pt.OtherPaymentDetailsListType;
 import java.util.Map;
 
 /**
@@ -21,9 +23,19 @@ public class PaymentDetailsType{
 	private PayPalPaymentDetailsType paypalPayment;
 
 	/**
+	 * List of paypal payments. 	 
+	 */ 
+	private PayPalPaymentDetailsListType paypalPayments;
+
+	/**
 	 * Other payment details. 	 
 	 */ 
 	private OtherPaymentDetailsType otherPayment;
+
+	/**
+	 * Other payment details. 	 
+	 */ 
+	private OtherPaymentDetailsListType otherPayments;
 
 	
 
@@ -62,6 +74,20 @@ public class PaymentDetailsType{
 	 }
 	 
 	/**
+	 * Getter for paypalPayments
+	 */
+	 public PayPalPaymentDetailsListType getPaypalPayments() {
+	 	return paypalPayments;
+	 }
+	 
+	/**
+	 * Setter for paypalPayments
+	 */
+	 public void setPaypalPayments(PayPalPaymentDetailsListType paypalPayments) {
+	 	this.paypalPayments = paypalPayments;
+	 }
+	 
+	/**
 	 * Getter for otherPayment
 	 */
 	 public OtherPaymentDetailsType getOtherPayment() {
@@ -73,6 +99,20 @@ public class PaymentDetailsType{
 	 */
 	 public void setOtherPayment(OtherPaymentDetailsType otherPayment) {
 	 	this.otherPayment = otherPayment;
+	 }
+	 
+	/**
+	 * Getter for otherPayments
+	 */
+	 public OtherPaymentDetailsListType getOtherPayments() {
+	 	return otherPayments;
+	 }
+	 
+	/**
+	 * Setter for otherPayments
+	 */
+	 public void setOtherPayments(OtherPaymentDetailsListType otherPayments) {
+	 	this.otherPayments = otherPayments;
 	 }
 	 
 
@@ -100,10 +140,20 @@ public class PaymentDetailsType{
 			paymentDetailsType = (paymentDetailsType == null) ? new PaymentDetailsType() : paymentDetailsType;
 			paymentDetailsType.setPaypalPayment(paypalPayment);
 		}
+		PayPalPaymentDetailsListType paypalPayments =  PayPalPaymentDetailsListType.createInstance(map, prefix + "paypalPayments", -1);
+		if (paypalPayments != null) {
+			paymentDetailsType = (paymentDetailsType == null) ? new PaymentDetailsType() : paymentDetailsType;
+			paymentDetailsType.setPaypalPayments(paypalPayments);
+		}
 		OtherPaymentDetailsType otherPayment =  OtherPaymentDetailsType.createInstance(map, prefix + "otherPayment", -1);
 		if (otherPayment != null) {
 			paymentDetailsType = (paymentDetailsType == null) ? new PaymentDetailsType() : paymentDetailsType;
 			paymentDetailsType.setOtherPayment(otherPayment);
+		}
+		OtherPaymentDetailsListType otherPayments =  OtherPaymentDetailsListType.createInstance(map, prefix + "otherPayments", -1);
+		if (otherPayments != null) {
+			paymentDetailsType = (paymentDetailsType == null) ? new PaymentDetailsType() : paymentDetailsType;
+			paymentDetailsType.setOtherPayments(otherPayments);
 		}
 		return paymentDetailsType;
 	}
