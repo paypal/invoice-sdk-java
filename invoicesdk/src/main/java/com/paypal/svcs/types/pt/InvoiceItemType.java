@@ -40,6 +40,17 @@ public class InvoiceItemType{
 	private Double unitPrice;
 
 	/**
+	 * A discount percent applied to the item, if any. 	 
+	 */ 
+	private Double discountPercent;
+
+	/**
+	 * A discount amount applied to the item, if any. If
+	 * DiscountPercent is provided, DiscountAmount is ignored. 	 
+	 */ 
+	private Double discountAmount;
+
+	/**
 	 * Name of an applicable tax, if any. 	 
 	 */ 
 	private String taxName;
@@ -48,6 +59,17 @@ public class InvoiceItemType{
 	 * Rate of an applicable tax, if any. 	 
 	 */ 
 	private Double taxRate;
+
+	/**
+	 * The tax amount on the item, either included or on top of it.
+	 * 	 
+	 */ 
+	private Double taxAmount;
+
+	/**
+	 * Image URL of the item, if any. 	 
+	 */ 
+	private String imageUrl;
 
 	
 
@@ -137,6 +159,34 @@ public class InvoiceItemType{
 	 }
 	 
 	/**
+	 * Getter for discountPercent
+	 */
+	 public Double getDiscountPercent() {
+	 	return discountPercent;
+	 }
+	 
+	/**
+	 * Setter for discountPercent
+	 */
+	 public void setDiscountPercent(Double discountPercent) {
+	 	this.discountPercent = discountPercent;
+	 }
+	 
+	/**
+	 * Getter for discountAmount
+	 */
+	 public Double getDiscountAmount() {
+	 	return discountAmount;
+	 }
+	 
+	/**
+	 * Setter for discountAmount
+	 */
+	 public void setDiscountAmount(Double discountAmount) {
+	 	this.discountAmount = discountAmount;
+	 }
+	 
+	/**
 	 * Getter for taxName
 	 */
 	 public String getTaxName() {
@@ -162,6 +212,34 @@ public class InvoiceItemType{
 	 */
 	 public void setTaxRate(Double taxRate) {
 	 	this.taxRate = taxRate;
+	 }
+	 
+	/**
+	 * Getter for taxAmount
+	 */
+	 public Double getTaxAmount() {
+	 	return taxAmount;
+	 }
+	 
+	/**
+	 * Setter for taxAmount
+	 */
+	 public void setTaxAmount(Double taxAmount) {
+	 	this.taxAmount = taxAmount;
+	 }
+	 
+	/**
+	 * Getter for imageUrl
+	 */
+	 public String getImageUrl() {
+	 	return imageUrl;
+	 }
+	 
+	/**
+	 * Setter for imageUrl
+	 */
+	 public void setImageUrl(String imageUrl) {
+	 	this.imageUrl = imageUrl;
 	 }
 	 
 
@@ -192,12 +270,28 @@ public class InvoiceItemType{
 			sb.append(prefix).append("unitPrice=").append(this.unitPrice);
 			sb.append("&");
 		}
+		if (this.discountPercent != null) {
+			sb.append(prefix).append("discountPercent=").append(this.discountPercent);
+			sb.append("&");
+		}
+		if (this.discountAmount != null) {
+			sb.append(prefix).append("discountAmount=").append(this.discountAmount);
+			sb.append("&");
+		}
 		if (this.taxName != null) {
 			sb.append(prefix).append("taxName=").append(NVPUtil.encodeUrl(this.taxName));
 			sb.append("&");
 		}
 		if (this.taxRate != null) {
 			sb.append(prefix).append("taxRate=").append(this.taxRate);
+			sb.append("&");
+		}
+		if (this.taxAmount != null) {
+			sb.append(prefix).append("taxAmount=").append(this.taxAmount);
+			sb.append("&");
+		}
+		if (this.imageUrl != null) {
+			sb.append(prefix).append("imageUrl=").append(NVPUtil.encodeUrl(this.imageUrl));
 			sb.append("&");
 		}
 		return sb.toString();
@@ -236,6 +330,14 @@ public class InvoiceItemType{
 				invoiceItemType = (invoiceItemType == null) ? new InvoiceItemType() : invoiceItemType;
 				invoiceItemType.setUnitPrice(Double.valueOf(map.get(prefix + "unitPrice")));
 		}
+		if (map.containsKey(prefix + "discountPercent")) {
+				invoiceItemType = (invoiceItemType == null) ? new InvoiceItemType() : invoiceItemType;
+				invoiceItemType.setDiscountPercent(Double.valueOf(map.get(prefix + "discountPercent")));
+		}
+		if (map.containsKey(prefix + "discountAmount")) {
+				invoiceItemType = (invoiceItemType == null) ? new InvoiceItemType() : invoiceItemType;
+				invoiceItemType.setDiscountAmount(Double.valueOf(map.get(prefix + "discountAmount")));
+		}
 		if (map.containsKey(prefix + "taxName")) {
 				invoiceItemType = (invoiceItemType == null) ? new InvoiceItemType() : invoiceItemType;
 				invoiceItemType.setTaxName(map.get(prefix + "taxName"));
@@ -243,6 +345,14 @@ public class InvoiceItemType{
 		if (map.containsKey(prefix + "taxRate")) {
 				invoiceItemType = (invoiceItemType == null) ? new InvoiceItemType() : invoiceItemType;
 				invoiceItemType.setTaxRate(Double.valueOf(map.get(prefix + "taxRate")));
+		}
+		if (map.containsKey(prefix + "taxAmount")) {
+				invoiceItemType = (invoiceItemType == null) ? new InvoiceItemType() : invoiceItemType;
+				invoiceItemType.setTaxAmount(Double.valueOf(map.get(prefix + "taxAmount")));
+		}
+		if (map.containsKey(prefix + "imageUrl")) {
+				invoiceItemType = (invoiceItemType == null) ? new InvoiceItemType() : invoiceItemType;
+				invoiceItemType.setImageUrl(map.get(prefix + "imageUrl"));
 		}
 		return invoiceItemType;
 	}

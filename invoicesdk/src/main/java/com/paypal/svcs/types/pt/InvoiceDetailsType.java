@@ -18,6 +18,13 @@ public class InvoiceDetailsType{
 	private StatusType status;
 
 	/**
+	 * The total discount amount on the invoice. This field is set
+	 * by the invoicing system and will ignore any changes made by
+	 * API callers. 	 
+	 */ 
+	private Double totalDiscountAmount;
+
+	/**
 	 * The total amount of the invoice (cost of items, shipping and
 	 * tax, less any discount). This field is set by the invoicing
 	 * system and will ignore any changes made by API callers. 	 
@@ -87,6 +94,13 @@ public class InvoiceDetailsType{
 	 */ 
 	private String paidDate;
 
+	/**
+	 * The adjustment amount of the invoice (total invoice amount
+	 * less all payments). This field is set by the invoicing
+	 * system and will ignore any changes made by API callers. 	 
+	 */ 
+	private Double adjustmentAmount;
+
 	
 
 	/**
@@ -107,6 +121,20 @@ public class InvoiceDetailsType{
 	 */
 	 public void setStatus(StatusType status) {
 	 	this.status = status;
+	 }
+	 
+	/**
+	 * Getter for totalDiscountAmount
+	 */
+	 public Double getTotalDiscountAmount() {
+	 	return totalDiscountAmount;
+	 }
+	 
+	/**
+	 * Setter for totalDiscountAmount
+	 */
+	 public void setTotalDiscountAmount(Double totalDiscountAmount) {
+	 	this.totalDiscountAmount = totalDiscountAmount;
 	 }
 	 
 	/**
@@ -291,6 +319,20 @@ public class InvoiceDetailsType{
 	 	this.paidDate = paidDate;
 	 }
 	 
+	/**
+	 * Getter for adjustmentAmount
+	 */
+	 public Double getAdjustmentAmount() {
+	 	return adjustmentAmount;
+	 }
+	 
+	/**
+	 * Setter for adjustmentAmount
+	 */
+	 public void setAdjustmentAmount(Double adjustmentAmount) {
+	 	this.adjustmentAmount = adjustmentAmount;
+	 }
+	 
 
 
 	
@@ -310,6 +352,10 @@ public class InvoiceDetailsType{
 		if (map.containsKey(prefix + "status")) {
 				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
 				invoiceDetailsType.setStatus(StatusType.fromValue(map.get(prefix + "status")));
+		}
+		if (map.containsKey(prefix + "totalDiscountAmount")) {
+				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
+				invoiceDetailsType.setTotalDiscountAmount(Double.valueOf(map.get(prefix + "totalDiscountAmount")));
 		}
 		if (map.containsKey(prefix + "totalAmount")) {
 				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
@@ -362,6 +408,10 @@ public class InvoiceDetailsType{
 		if (map.containsKey(prefix + "paidDate")) {
 				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
 				invoiceDetailsType.setPaidDate(map.get(prefix + "paidDate"));
+		}
+		if (map.containsKey(prefix + "adjustmentAmount")) {
+				invoiceDetailsType = (invoiceDetailsType == null) ? new InvoiceDetailsType() : invoiceDetailsType;
+				invoiceDetailsType.setAdjustmentAmount(Double.valueOf(map.get(prefix + "adjustmentAmount")));
 		}
 		return invoiceDetailsType;
 	}

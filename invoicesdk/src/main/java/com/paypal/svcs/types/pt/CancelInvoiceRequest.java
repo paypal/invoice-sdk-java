@@ -35,6 +35,11 @@ public class CancelInvoiceRequest{
 	 */ 
 	private Boolean sendCopyToMerchant;
 
+	/**
+	 * send cancel notification to payer 	 
+	 */ 
+	private Boolean sendPayerNotification;
+
 	
 
 	/**
@@ -120,6 +125,20 @@ public class CancelInvoiceRequest{
 	 	this.sendCopyToMerchant = sendCopyToMerchant;
 	 }
 	 
+	/**
+	 * Getter for sendPayerNotification
+	 */
+	 public Boolean getSendPayerNotification() {
+	 	return sendPayerNotification;
+	 }
+	 
+	/**
+	 * Setter for sendPayerNotification
+	 */
+	 public void setSendPayerNotification(Boolean sendPayerNotification) {
+	 	this.sendPayerNotification = sendPayerNotification;
+	 }
+	 
 
 
 	public String toNVPString() throws UnsupportedEncodingException {
@@ -146,6 +165,10 @@ public class CancelInvoiceRequest{
 		}
 		if (this.sendCopyToMerchant != null) {
 			sb.append(prefix).append("sendCopyToMerchant=").append(this.sendCopyToMerchant);
+			sb.append("&");
+		}
+		if (this.sendPayerNotification != null) {
+			sb.append(prefix).append("sendPayerNotification=").append(this.sendPayerNotification);
 			sb.append("&");
 		}
 		return sb.toString();

@@ -42,6 +42,11 @@ public class BusinessInfoType{
 	private String website;
 
 	/**
+	 * Language of the participant. 	 
+	 */ 
+	private String language;
+
+	/**
 	 * Tax ID of the merchant. 	 
 	 */ 
 	private String taxId;
@@ -150,6 +155,20 @@ public class BusinessInfoType{
 	 }
 	 
 	/**
+	 * Getter for language
+	 */
+	 public String getLanguage() {
+	 	return language;
+	 }
+	 
+	/**
+	 * Setter for language
+	 */
+	 public void setLanguage(String language) {
+	 	this.language = language;
+	 }
+	 
+	/**
 	 * Getter for taxId
 	 */
 	 public String getTaxId() {
@@ -223,6 +242,10 @@ public class BusinessInfoType{
 			sb.append(prefix).append("website=").append(NVPUtil.encodeUrl(this.website));
 			sb.append("&");
 		}
+		if (this.language != null) {
+			sb.append(prefix).append("language=").append(NVPUtil.encodeUrl(this.language));
+			sb.append("&");
+		}
 		if (this.taxId != null) {
 			sb.append(prefix).append("taxId=").append(NVPUtil.encodeUrl(this.taxId));
 			sb.append("&");
@@ -274,6 +297,10 @@ public class BusinessInfoType{
 		if (map.containsKey(prefix + "website")) {
 				businessInfoType = (businessInfoType == null) ? new BusinessInfoType() : businessInfoType;
 				businessInfoType.setWebsite(map.get(prefix + "website"));
+		}
+		if (map.containsKey(prefix + "language")) {
+				businessInfoType = (businessInfoType == null) ? new BusinessInfoType() : businessInfoType;
+				businessInfoType.setLanguage(map.get(prefix + "language"));
 		}
 		if (map.containsKey(prefix + "taxId")) {
 				businessInfoType = (businessInfoType == null) ? new BusinessInfoType() : businessInfoType;
