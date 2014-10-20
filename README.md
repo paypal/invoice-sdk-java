@@ -25,7 +25,21 @@ For Maven Users:
 
         mvn install:install-file -Dfile=commons-codec-1.3.jar -DgroupId=commons-codec -DartifactId=commons-codec -Dversion=1.3 -Dpackaging=jar
         mvn install:install-file -Dfile=paypal-core-1.0.jar -DgroupId=com.paypal.sdk -DartifactId=paypal-core -Dversion=1.0 -Dpackaging=jar
-		mvn install:install-file -Dfile=invoicesdk-2.5.117.jar -DgroupId=com.paypal.sdk -DartifactId=invoicesdk -Dversion=2.5.117 -Dpackaging=jar	
+		mvn install:install-file -Dfile=invoicesdk-2.6.117.jar -DgroupId=com.paypal.sdk -DartifactId=invoicesdk -Dversion=2.6.117 -Dpackaging=jar	
+
+For Non-Maven Users:
+--------------------
+*   Create a new application.
+
+*   Copy  all the jar files present inside 'lib' folder to your application.
+
+For Maven Users:
+----------------
+*   Install all the jar files present inside 'lib' folder manually to local repository. 
+
+        mvn install:install-file -Dfile=commons-codec-1.3.jar -DgroupId=commons-codec -DartifactId=commons-codec -Dversion=1.3 -Dpackaging=jar
+        mvn install:install-file -Dfile=paypal-core-1.0.jar -DgroupId=com.paypal.sdk -DartifactId=paypal-core -Dversion=1.0 -Dpackaging=jar
+		mvn install:install-file -Dfile=invoicesdk-2.6.117.jar -DgroupId=com.paypal.sdk -DartifactId=invoicesdk -Dversion=2.6.117 -Dpackaging=jar	
 
 *	Create a new maven application.
 
@@ -35,7 +49,7 @@ For Maven Users:
     <dependency>
         <groupId>com.paypal.sdk</groupId>
         <artifactId>invoicesdk</artifactId>
-        <version>2.5.117</version>
+        <version>2.6.117</version>
     </dependency>
     ```
 
