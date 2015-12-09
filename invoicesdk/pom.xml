@@ -23,6 +23,9 @@
 			<version>1.6.4</version>
 		</dependency>
 	</dependencies>
+	<properties>
+		<additionalparam>-Xdoclint:none</additionalparam>
+	</properties>
 	<build>
 		<plugins>
 			<plugin>
