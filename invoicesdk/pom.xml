@@ -20,9 +20,12 @@
 		<dependency>
 			<groupId>com.paypal.sdk</groupId>
 			<artifactId>paypal-core</artifactId>
-			<version>1.6.4</version>
+			<version>1.7.0</version>
 		</dependency>
 	</dependencies>
+	<properties>
+		<additionalparam>-Xdoclint:none</additionalparam>
+	</properties>
 	<build>
 		<plugins>
 			<plugin>
