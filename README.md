@@ -1,5 +1,9 @@
 This repository contains java sdk and samples for Invoicing API.
 
+## Support
+
+> Please contact [PayPal Technical Support](https://developer.paypal.com/support/) for any live or account issues.
+
 Prerequisites:
 ---------------
 *	Java jdk-1.5 or higher
